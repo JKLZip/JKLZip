@@ -3,5 +3,10 @@ from flask import render_template
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return render_template('index.html', text="Hello world!")
+def index():
+    return render_template('index.html')
+
+
+@app.route("/40700")
+def dummyAlue():
+    return render_template("charts.html", postinumero=40700, postinumeroNimi="jyväskylä")
