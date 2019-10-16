@@ -4,4 +4,31 @@ body {
 }
 a {
     color: ghostwhite;
+    padding: 4em;
+
+}
+button {
+    color:pink;
+    background-color: pink;
+}
+nav {
+    color: black;
+    background-color: red;
+    border:1px;
+}
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 2em;
+}
+.flexUnit {
+    margin: 2em;
+    background-color: #282c34;
+    padding: 3em;
+
+}
+#postiNumeroLinkit {
+    background-color: #282c34;
+    padding-right: 2em;
+    padding-left: 1em;
 }

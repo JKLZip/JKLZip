@@ -13,9 +13,16 @@
 
         <title>JKLZip</title>
     </head>
+
     <body>
-        <div id="navBar"></div>
-    <h1 id="mainTitle">JKLZip</h1>
+    <div class="flexUnit">
+            <div id="navbarContainer">
+                <nav><a href="/">Etusivu</a></nav>
+            </div>
+        <h1 id="mainTitle">JKLZip</h1>
+    </div>
+    <div class="flexContainer">
+
         <!-- Tähän javascriptillä/reactilla dynaamisesti postinumeroiden linkit-->
     <div id="postiNumeroLinkit">
         {% for alue in alueet %}
@@ -23,8 +30,17 @@
         {% endfor %}
     </div>
             <div id="root"></div>
-
+    <div class="flexUnit">
         <script src="{{ url_for("static", filename="scripts.js") }}" type="module"></script>
 
+     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, nibh ac scelerisque elementum, augue erat faucibus ante, nec posuere urna leo accumsan diam. Curabitur venenatis arcu eu ex vulputate iaculis. Quisque finibus auctor condimentum. Morbi vitae leo sed mauris eleifend dictum a sit amet sem. Donec at sem luctus nisl vestibulum ornare non non felis. Morbi id elit a ligula venenatis fringilla. Proin metus ante, rutrum ac risus vitae, placerat scelerisque orci. Vestibulum sit amet justo faucibus diam vestibulum vestibulum et eget augue. Maecenas semper interdum malesuada. Suspendisse vel purus ac elit porttitor pulvinar eu vitae elit. Ut blandit arcu at fermentum luctus. Sed pellentesque augue eget pulvinar finibus. Integer eu laoreet est. Nunc nec maximus odio. Morbi vestibulum a justo nec tempus. Proin interdum lacinia magna, vel commodo nibh dictum at.
+
+<p>In eu tortor ac nibh tempor porta. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus fringilla laoreet augue, nec ultrices quam semper ac. Cras sed erat sit amet sem condimentum mollis. Nulla nulla nisi, tristique id venenatis non, fermentum ut mi. Vestibulum ornare sodales nisi, pulvinar lacinia augue semper id. Mauris lacinia, velit hendrerit tempor egestas, augue lorem semper est, at fermentum nisl enim sed erat. Quisque at libero lacinia odio sagittis vehicula eget sed ipsum. Ut et hendrerit lectus. Sed vel enim lectus. Fusce et elit interdum nisi imperdiet eleifend. Nam vel nisl diam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum pellentesque aliquam lobortis.
+
+<p>Quisque tempor vehicula justo, eu mattis metus pharetra vel. Praesent euismod, nibh nec semper consequat, nunc augue suscipit eros, sit amet consequat velit enim eget nisl. In ultrices id lacus sit amet rhoncus. Vivamus eget dui tortor. Nunc risus enim, mollis nec lorem at, luctus sagittis ipsum. Fusce ac ipsum tristique, tempus eros quis, ornare justo. Nam non dui luctus metus malesuada consectetur id vel erat.
+
+<p>Phasellus lorem purus, convallis nec dignissim et, maximus eu arcu. Cras neque nisi, tincidunt eget sodales non, iaculis ut metus. Sed nec interdum nisi, eu pellentesque elit. Nulla leo leo, pretium et nibh et, hendrerit condimentum ipsum. Cras pretium ligula ac ultrices pulvinar. Donec quis odio quis lacus viverra rutrum vel nec dolor. Etiam interdum, lacus sit amet gravida euismod, neque purus luctus erat, quis venenatis odio odio et metus. Donec et orci mauris. Praesent interdum, dui ut varius sodales, leo augue lacinia nunc, rhoncus semper quam ligula eu enim. Nullam tincidunt dapibus lacus eget commodo. Suspendisse blandit consequat purus, eu cursus quam porttitor ut. Donec rutrum erat eget nulla sodales convallis. Donec mauris massa, gravida ornare sagittis non, gravida eget eros. Nunc et leo sit amet urna finibus ultrices ut nec felis. Cras volutpat at ante quis luctus. Suspendisse varius sodales turpis, at pellentesque ipsum iaculis id.
+    </div>
     </body>
+</div>
 </html>
