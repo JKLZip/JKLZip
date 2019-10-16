@@ -5,27 +5,26 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
         <meta charset="utf-8" />
 
-        <!-- We will put our React component inside this div. -->
-        <div id="like_button_container"></div>
-
         <!-- Load React. -->
         <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-        <script src="{{ url_for("static", filename="navbar.js") }}" type="module"></script>
 
 
         <title>JKLZip</title>
     </head>
     <body>
         <div id="navBar"></div>
-
     <h1 id="mainTitle">JKLZip</h1>
         <!-- Tähän javascriptillä/reactilla dynaamisesti postinumeroiden linkit-->
     <div id="postiNumeroLinkit">
-        <a href="/40700">Dummy postinumero</a>
+        {% for alue in alueet %}
+        <p><a href="/40700">{{ alue }}</a></p>
+        {% endfor %}
     </div>
+            <div id="root"></div>
+
+        <script src="{{ url_for("static", filename="scripts.js") }}" type="module"></script>
 
     </body>
 </html>

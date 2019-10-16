@@ -1,4 +1,7 @@
 body {
-    background-color: #404040;
+    background-color: black;
+    color: ghostwhite;
+}
+a {
     color: ghostwhite;
 }
