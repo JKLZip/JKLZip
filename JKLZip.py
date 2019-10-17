@@ -50,6 +50,10 @@ def index():
 def dummyAlue():
     return render_template("placeholderText.html", postinumero=40700, postinumeroNimi="jyväskylä")
 
+@app.route("/charts")
+def charts():
+    return render_template("charts.html", postinumero=40700, postinumeroNimi="jyväskylä")
+
 @app.route("/about")
 def aboutPage():
     return render_template("about.html", alueet=postinumerotnimet)

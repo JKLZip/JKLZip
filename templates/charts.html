@@ -9,8 +9,9 @@
         <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-        <script src="{{ url_for("static", filename="scripts.js") }}" type="module"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="{{ url_for('static', filename='charts.js') }}" type="module"></script>
+        <script src="{{ url_for('static', filename='scripts.js') }}" type="module"></script>
 
 
         <title>JKLZip</title>
@@ -20,6 +21,8 @@
         <div id="data">
             <h2> {{ postinumero }} {{ postinumeroNimi }}</h2>
              Hienoja kaavioita
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <div id="chart_div"></div>
         </div>
     </body>
 </html>
