@@ -19,8 +19,10 @@
     <header>
         <img src="{{ url_for('static', filename='banner.JPG') }}" id="bannerImg">
         <h1 id="mainTitle">JKLZip</h1>
+
         <div id="navbarContainer">
             <nav>
+
                 <a href="/">Etusivu</a>
                 <a href="/about">Tietoa</a>
             </nav>
@@ -28,10 +30,11 @@
     </header>
     <div class="flexContainer">
 
-        <!-- Tähän javascriptillä/reactilla dynaamisesti postinumeroiden linkit-->
+        <!-- Tähän flaskilla dynaamisesti postinumeroiden linkit-->
     <div id="postiNumeroLinkit" class="leftNav">
+        <h4>Alue</h4>
         {% for alue in alueet %}
-            <a href="/40700">{{ alue }}</a>
+            <a class="alueLinkki" href="/40700">{{ alue }}</a>
         {% endfor %}
     </div>
             <div id="root"></div>
