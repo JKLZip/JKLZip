@@ -43,7 +43,7 @@ postinumerotnimet = ["40100 Jyväskylä Keskus",
 
 @app.route('/')
 def index():
-    return render_template('placeholderText.html', alueet=postinumerotnimet)
+    return render_template('index.html', alueet=postinumerotnimet)
 
 
 @app.route("/40700")
