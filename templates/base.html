@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <meta charset="utf-8" />
+
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+
+        <title>JKLZip</title>
+    </head>
+
+    <body>
+    <header>
+        <img src="{{ url_for('static', filename='banner.JPG') }}" id="bannerImg">
+        <h1 id="mainTitle">JKLZip</h1>
+
+        <div id="navbarContainer">
+            <nav>
+
+                <a href="/">Etusivu</a>
+                <a href="/about">Tietoa</a>
+            </nav>
+        </div>
+    </header>
+    <div class="flexContainer">
+
+        <!-- Tähän flaskilla dynaamisesti postinumeroiden linkit-->
+    <div id="postiNumeroLinkit" class="leftNav">
+        <h4>Alue</h4>
+        {% for alue in alueet %}
+            <a class="alueLinkki" href="/40700">{{ alue }}</a>
+        {% endfor %}
+    </div>
+            <div id="root"></div>
+    <div class="flexUnit">
+        <script src="{{ url_for("static", filename="scripts.js") }}" type="module"></script>
+        <div id="content"> {% block content %} {% endblock %}</div>
+    </div>
+    </div>
+    </body>
+</div>
+</html>

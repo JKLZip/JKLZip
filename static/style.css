@@ -11,9 +11,24 @@ button {
     background-color: pink;
 }
 nav {
-    color: black;
-    background-color: red;
+    color: ghostwhite;
+    background-color: #282c34;
     border:1px;
+    border-color: ghostwhite;
+    border-radius: 2em;
+    padding: 1em;
+}
+nav a {
+    margin: 0.5em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 0.5em;
+}
+nav a:hover{
+    color: #f1f1f1;
+    background-color: lightgrey;
+    border-radius: 5px;
+
 }
 .flexContainer {
     display: flex;
@@ -23,6 +38,7 @@ nav {
 .flexUnit {
     margin: 2em;
     background-color: #282c34;
+    border-radius: 1em;
     padding: 3em;
 
 }
@@ -30,20 +46,34 @@ nav {
     background-color: #282c34;
     padding-right: 2em;
     padding-left: 1em;
+    border-radius: 1em;
 }
 .leftNav a {
     border-top: 1px;
     border-bottom: 1px;
     border-color: red;
-    padding: 8px 8px 8px 32px;
+    padding: 1em;
+    padding-left: 0.5em;
     text-decoration: none;
     color: #818181;
     display: block;
     transition: 0.3s;
+    font-size: 0.9em;
 }
 .leftNav a:hover {
     color: #f1f1f1;
+    background-color: lightgrey;
+    border-radius: 5px;
+
 }
 #bannerImg {
     max-height: 20em;
+    max-width: 100%;
+    border-radius: 1em;
 }
+#mainTitle {
+    margin-left: 4em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
