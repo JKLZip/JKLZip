@@ -2,6 +2,7 @@
 <html lang="fi">
     <head>
 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
         <meta charset="utf-8" />
 
@@ -15,18 +16,19 @@
     </head>
 
     <body>
-    <div class="flexUnit">
-            <div id="navbarContainer">
-                <nav><a href="/">Etusivu</a></nav>
-            </div>
+    <header>
+        <img src="{{ url_for('static', filename='banner.JPG') }}" id="bannerImg">
         <h1 id="mainTitle">JKLZip</h1>
-    </div>
+        <div id="navbarContainer">
+            <nav><a href="/">Etusivu</a></nav>
+        </div>
+    </header>
     <div class="flexContainer">
 
         <!-- Tähän javascriptillä/reactilla dynaamisesti postinumeroiden linkit-->
-    <div id="postiNumeroLinkit">
+    <div id="postiNumeroLinkit" class="leftNav">
         {% for alue in alueet %}
-        <p><a href="/40700">{{ alue }}</a></p>
+            <a href="/40700">{{ alue }}</a>
         {% endfor %}
     </div>
             <div id="root"></div>

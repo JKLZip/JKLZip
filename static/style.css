@@ -1,11 +1,10 @@
 body {
     background-color: black;
     color: ghostwhite;
+    font-family: 'Open Sans', sans-serif;
 }
 a {
     color: ghostwhite;
-    padding: 4em;
-
 }
 button {
     color:pink;
@@ -31,4 +30,20 @@ nav {
     background-color: #282c34;
     padding-right: 2em;
     padding-left: 1em;
+}
+.leftNav a {
+    border-top: 1px;
+    border-bottom: 1px;
+    border-color: red;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.leftNav a:hover {
+    color: #f1f1f1;
+}
+#bannerImg {
+    max-height: 20em;
 }
