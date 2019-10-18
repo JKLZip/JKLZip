@@ -30,11 +30,10 @@
     </header>
     <div class="flexContainer">
 
-        <!-- Tähän flaskilla dynaamisesti postinumeroiden linkit-->
     <div id="postiNumeroLinkit" class="leftNav">
         <h4>Alue</h4>
         {% for alue in alueet %}
-            <a class="alueLinkki" href="/40700">{{ alue }}</a>
+            <a class="alueLinkki" href="/alue?pnro={{ alue['id'] }}">{{ alue['nimi'] }} ({{ alue['id'] }})</a>
         {% endfor %}
     </div>
             <div id="root"></div>
