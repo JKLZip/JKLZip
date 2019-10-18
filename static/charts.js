@@ -1,4 +1,4 @@
-'use strict'
+/*'use strict'
 
 	// pie chart
 	google.charts.load('current', {'packages':['corechart']});
@@ -6,11 +6,12 @@
 
     function drawChart() {
 
+        //var data = new google.visualization.DataTable(jsonData);
         var data = google.visualization.arrayToDataTable([
-          ['Tiedot', 'määrä'],
+          ['Tiedot', 'Määrä'],
           ['Miehet',     5511],
           ['Naiset',      3442],
-          ['Eläkeläiset',  3424],
+          ['Lapset',  3424],
           ['Opiskelijat', 3452],
         ]);
 
@@ -58,4 +59,4 @@
 
       chart.draw(data, options);
     }
-	
+	*/
