@@ -9,7 +9,9 @@
         <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
+        <script type="text/javascript">
+           var data = {{ data|tojson }};
+        </script>
         <script src="{{ url_for("static", filename="scripts.js") }}" type="module"></script>
 
 
