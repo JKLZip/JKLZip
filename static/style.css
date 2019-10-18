@@ -23,12 +23,14 @@ nav a {
     margin-top: 2em;
     margin-bottom: 2em;
     padding: 0.5em;
+    transition: 0.3s;
+    font-size: 1.2em;
 }
 nav a:hover{
     color: #f1f1f1;
     background-color: lightgrey;
     border-radius: 5px;
-
+    transition: 0.3s;
 }
 .flexContainer {
     display: flex;
@@ -55,14 +57,14 @@ nav a:hover{
     padding: 1em;
     padding-left: 0.5em;
     text-decoration: none;
-    color: #818181;
+    color: ghostwhite;
     display: block;
     transition: 0.3s;
     font-size: 0.9em;
 }
 .leftNav a:hover {
     color: #f1f1f1;
-    background-color: lightgrey;
+    background-color: darkgray;
     border-radius: 5px;
 
 }
@@ -75,5 +77,8 @@ nav a:hover{
     margin-left: 4em;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+h1 {
+    padding-top: 0.1em;
 }
 
