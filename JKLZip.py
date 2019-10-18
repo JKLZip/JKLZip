@@ -52,7 +52,7 @@ def dummyAlue():
 
 @app.route("/charts")
 def charts():
-    return render_template("charts.html", postinumero=40700, postinumeroNimi="jyväskylä")
+    return render_template("charts.html", postinumero=40700, postinumeroNimi="jyväskylä", alueet=postinumerotnimet)
 
 @app.route("/about")
 def aboutPage():
