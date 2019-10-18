@@ -129,14 +129,14 @@ def sort_data(data):
     tiedot_taulu = [x for x in tiedot]
     alue_arvot = [arvot[x:x+len(tiedot)] for x in range(0, len(arvot), len(tiedot))]
 
-    data_sorted = {}
+    data_sorted = []
     for i in range(0, len(alueet_taulu)):
         data_alue = {}
         data_alue['id'] = alueet_taulu[i]
         data_alue['nimi'] = alueet[alueet_taulu[i]][6:-15]
         for j in range(0, len(tiedot_taulu)):
             data_alue[tiedot_taulu[j]] = alue_arvot[i][j]
-        data_sorted[alueet_taulu[i]] = data_alue
+        data_sorted.append(data_alue)
 
     with open('data-sorted.json', 'w') as outfile:
         json.dump(data_sorted, outfile)
@@ -155,7 +155,12 @@ def dummyAlue():
 def alue():
     data = get_data()
     pnro = request.args.get('pnro', default = '40100', type = str)
-    return render_template('charts.html', data=data[pnro])
+    index = 0
+    for i in range(0, len(data)):
+        if data[i]['id'] == pnro:
+            index = i
+            break
+    return render_template('charts.html', data=data[index])
 
 @app.route("/about")
 def aboutPage():
