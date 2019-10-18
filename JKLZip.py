@@ -105,15 +105,43 @@ def query_api():
     return json.loads(response.read())
 
 def get_data():
-    if os.path.isfile('data.json'):
-        with open('data.json') as json_file:
+    if os.path.isfile('data-sorted.json'):
+        with open('data-sorted.json') as json_file:
             data = json.load(json_file)
         return data
     else:
-        data = query_api()
-        with open('data.json', 'w') as outfile:
-            json.dump(data, outfile)
-        return data
+        if os.path.isfile('data.json'):
+            with open('data.json') as json_file:
+                data = json.load(json_file)
+            return sort_data(data)
+        else:
+            data = query_api()
+            with open('data.json', 'w') as outfile:
+                json.dump(data, outfile)
+            return sort_data(data)
+
+def sort_data(data):
+    alueet = data['dataset']['dimension']['Postinumeroalue']['category']['label']
+    tiedot = data['dataset']['dimension']['Tiedot']['category']['index']
+    arvot = data['dataset']['value']
+
+    alueet_taulu = [x for x in alueet]
+    tiedot_taulu = [x for x in tiedot]
+    alue_arvot = [arvot[x:x+len(tiedot)] for x in range(0, len(arvot), len(tiedot))]
+
+    data_sorted = {}
+    for i in range(0, len(alueet_taulu)):
+        data_alue = {}
+        data_alue['id'] = alueet_taulu[i]
+        data_alue['nimi'] = alueet[alueet_taulu[i]][6:-15]
+        for j in range(0, len(tiedot_taulu)):
+            data_alue[tiedot_taulu[j]] = alue_arvot[i][j]
+        data_sorted[alueet_taulu[i]] = data_alue
+
+    with open('data-sorted.json', 'w') as outfile:
+        json.dump(data_sorted, outfile)
+
+    return data_sorted
 
 @app.route('/')
 def index():
@@ -127,7 +155,7 @@ def dummyAlue():
 def alue():
     data = get_data()
     pnro = request.args.get('pnro', default = '40100', type = str)
-    return render_template('charts.html', postinumero=pnro, postinumeroNimi="jyväskylä", data=data)
+    return render_template('charts.html', data=data[pnro])
 
 @app.route("/about")
 def aboutPage():
