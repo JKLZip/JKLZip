@@ -130,7 +130,8 @@ def alue():
         if data[i]['id'] == pnro:
             index = i
             break
-    return render_template('charts.html', data=data[index])
+    alueet = get_alueet()
+    return render_template('charts.html', alueet=alueet, data=data[index])
 
 @app.route('/about')
 def about():
