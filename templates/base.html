@@ -25,6 +25,7 @@
 
                 <a href="/">Etusivu</a>
                 <a href="/about">Tietoa</a>
+                <a href="/charts">Dummy Kaaviot</a>
             </nav>
         </div>
     </header>
@@ -38,7 +39,7 @@
     </div>
             <div id="root"></div>
     <div class="flexUnit">
-        <script src="{{ url_for("static", filename="scripts.js") }}" type="module"></script>
+        <script src="{{ url_for("static", filename="chart.js") }}" type="module"></script>
         <div id="content"> {% block content %} {% endblock %}</div>
     </div>
     </div>
