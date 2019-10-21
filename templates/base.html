@@ -17,9 +17,10 @@
 
     <body>
     <header>
-        <img src="{{ url_for('static', filename='banner.JPG') }}" id="bannerImg">
-        <h1 id="mainTitle">JKLZip</h1>
-
+        <div id="bannerContainer">
+            <h1 id="mainTitle" class="mainTitle">JKLZip</h1>
+            <img src="{{ url_for('static', filename='banner.JPG') }}" id="bannerImg">
+        </div>
         <div id="navbarContainer">
             <nav>
                 <a href="/">Etusivu</a>
@@ -28,15 +29,17 @@
         </div>
     </header>
     <div class="flexContainer">
-
-    <div id="postiNumeroLinkit" class="leftNav">
-        <h4>Alue</h4>
-        {% for alue in alueet %}
-            <a class="alueLinkki" href="/alue?pnro={{ alue['id'] }}">{{ alue['nimi'] }} ({{ alue['id'] }})</a>
-        {% endfor %}
+    <div class="flexUnit" id="leftNav">
+        <div id="postiNumeroLinkit" class="leftNav">
+            <h4>Alue</h4>
+            <div class="hint"> Järjestetty postinumeron mukaan.</div>
+            {% for alue in alueet %}
+                <a class="alueLinkki" href="/alue?pnro={{ alue['id'] }}">{{ alue['nimi'] }} ({{ alue['id'] }})</a>
+            {% endfor %}
+        </div>
     </div>
             <div id="root"></div>
-    <div class="flexUnit">
+    <div class="flexUnit" id="content">
         <script src="{{ url_for("static", filename="chart.js") }}" type="module"></script>
         <div id="content"> {% block content %} {% endblock %}</div>
     </div>
