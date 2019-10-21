@@ -94,3 +94,9 @@ h1 {
 {
     font-size: 0.6em;
 }
+h3 {
+    text-indent: 10px;
+    background-color: #808b96;
+    transition: 0.3s;
+    margin: 0.5em;
+}
