@@ -62,21 +62,27 @@ def query_api():
     response = urllib.request.urlopen(req)
     return json.loads(response.read())
 
+def get_api_data():
+    if os.path.isfile('data.json'):
+        with open('data.json') as json_file:
+            data = json.load(json_file)
+        return data
+    else:
+        data = query_api()
+        with open('data.json', 'w') as outfile:
+            json.dump(data, outfile)
+        return data
+
 def get_data():
     if os.path.isfile('data-sorted.json'):
         with open('data-sorted.json') as json_file:
             data = json.load(json_file)
         return data
     else:
-        if os.path.isfile('data.json'):
-            with open('data.json') as json_file:
-                data = json.load(json_file)
-            return sort_data(data)
-        else:
-            data = query_api()
-            with open('data.json', 'w') as outfile:
-                json.dump(data, outfile)
-            return sort_data(data)
+        data = sort_data(get_api_data())
+        with open('data-sorted.json', 'w') as outfile:
+            json.dump(data, outfile)
+        return data
 
 def sort_data(data):
     alueet = data['dataset']['dimension']['Postinumeroalue']['category']['label']
@@ -95,9 +101,6 @@ def sort_data(data):
         for j in range(0, len(tiedot_taulu)):
             data_alue[tiedot_taulu[j]] = alue_arvot[i][j]
         data_sorted.append(data_alue)
-
-    with open('data-sorted.json', 'w') as outfile:
-        json.dump(data_sorted, outfile)
 
     return data_sorted
 
