@@ -105,8 +105,7 @@ def sort_data(data):
 
     return data_sorted
 
-@app.route('/')
-def index():
+def get_alueet():
     data = get_data()
     alueet = []
     for i in range(0, len(data)):
@@ -114,6 +113,12 @@ def index():
         alue['id'] = data[i]['id']
         alue['nimi'] = data[i]['nimi']
         alueet.append(alue)
+    return alueet
+
+@app.route('/')
+def index():
+    data = get_data()
+    alueet = get_alueet()
     return render_template('index.html', alueet=alueet)
 
 @app.route('/alue')
@@ -127,6 +132,7 @@ def alue():
             break
     return render_template('charts.html', data=data[index])
 
-@app.route("/about")
-def aboutPage():
-    return render_template("about.html", alueet=postinumerotnimet)
+@app.route('/about')
+def about():
+    alueet = get_alueet()
+    return render_template('about.html', alueet=alueet)
