@@ -5,7 +5,8 @@
 {% endblock %}
 {% block content %}
         <script type="text/javascript">
-           var jkldata = {{ data|tojson }};
+            var selitteet = {{ selitteet|tojson }};
+            var aluedata = {{ data|tojson }};
         </script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
        <!-- <script type="module" src="{{ url_for("static", filename="scripts.js") }}"></script> -->

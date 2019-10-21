@@ -19,7 +19,8 @@ def alue():
             index = i
             break
     alueet = apidata.get_alueet()
-    return render_template('charts.html', alueet = alueet, data = data[index])
+    selitteet = apidata.get_selitteet()
+    return render_template('charts.html', alueet = alueet, selitteet = selitteet, data = data[index])
 
 @app.route('/about')
 def about():

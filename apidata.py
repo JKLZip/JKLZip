@@ -113,3 +113,7 @@ def get_alueet():
         alue['nimi'] = data[i]['nimi']
         alueet.append(alue)
     return alueet
+
+def get_selitteet():
+    data = get_api_data()
+    return data['dataset']['dimension']['Tiedot']['category']['label']
