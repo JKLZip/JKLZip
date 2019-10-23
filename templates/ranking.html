@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Ranking</h1>
+    <div id="rankingContainer">
+        <table class="ranking">
+            <th><td>Alueen nimi</td> <td>Postinumero</td></th>
+            {% for alue in alueet %}
+                <tr><td>{{ alue["nimi"] }}</td> <td>{{ alue["id"]}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
