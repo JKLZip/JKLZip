@@ -66,7 +66,7 @@ function drawIkarakenneChart() {
         titleTextStyle: { color: 'white' }
     };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_ikarakenne'));
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_ikajakauma'));
 
     chart.draw(data, options);
 }

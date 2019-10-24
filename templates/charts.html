@@ -21,9 +21,38 @@
         <div id="root"></div>
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
-            <h3 onclick="show_hide('chart_sukupuoli')">Kaavio 1</h3>
-            <div id="chart_sukupuoli" style="width: 900px; height: 500px;"></div>
-            <h3 onclick="show_hide('chart_ikarakenne')">Kaavio 2</h3>
-            <div id="chart_ikarakenne"></div>
+            <div id="ikarakenne">
+                <h3 onclick="show_hide('chart_ikarakenne')">Ikärakenne</h3>
+			    <div id="chart_ikarakenne" style="height: 22em;">
+				    <div id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
+				    <div id="chart_ikajakauma" style="width:40em; height:20em; float:left;"></div>
+			    </div>
+            </div>
+            <div>
+		        <h3 onclick="show_hide('chart_tuloluokat')">Tuloluokat</h3>
+                <div>
+
+                </div>
+            </div>
+            <h3 onclick="show_hide('chart_koulutus')">Koulutus</h3>
+            <div>
+
+            </div>
+            <h3 onclick="show_hide('chart_vaesto')">Väestön jakautuminen</h3>
+            <div>
+
+            </div>
+            <h3 onclick="show_hide('chart_asuminen')">Asuminen</h3>
+            <div>
+
+            </div>
+            <h3 onclick="show_hide('chart_taloudet')">Taloudet</h3>
+            <div>
+
+            </div>
+            <h3 onclick="show_hide('chart_tyopaikat')">Työpaikat</h3>
+            <div>
+
+            </div>
         </div>
 {% endblock %}
