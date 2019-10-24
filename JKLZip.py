@@ -26,3 +26,8 @@ def alue():
 def about():
     alueet = apidata.get_alueet()
     return render_template('about.html', alueet = alueet)
+
+@app.route('/ranking')
+def ranking():
+    alueet = apidata.get_alueet()
+    return render_template('ranking.html', alueet = alueet)
