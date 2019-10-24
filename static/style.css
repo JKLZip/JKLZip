@@ -108,3 +108,11 @@ footer {
     padding-bottom: 0.3em;
     text-align: center;
 }
+th {
+    text-align: left;
+}
+ table, th, td {
+    border: 1px solid ghostwhite;
+    border-collapse: collapse;
+    padding: 0.25em;
+ }

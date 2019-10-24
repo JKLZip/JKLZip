@@ -6,8 +6,9 @@
 {% block content %}
     <h1>Ranking</h1>
     <div id="rankingContainer">
+        <script src="{{ url_for("static", filename="ranking.js") }}" type="module"></script>
         <table class="ranking">
-            <tr><th>Alueen nimi</th> <th>Postinumero</th></tr>
+            <tr><th onclick="sortRanking(0)">Alueen nimi</th> <th onclick="sortRanking(1)">Postinumero</th></tr>
             {% for alue in alueet %}
                 <tr><td>{{ alue["nimi"] }}</td> <td>{{ alue["id"]}}</td></tr>
             {% endfor %}
