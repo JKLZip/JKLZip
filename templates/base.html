@@ -11,6 +11,10 @@
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
+        <script type="text/javascript">
+           var alueet = {{ alueet|tojson }};
+        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='search.js') }}"></script>
 
         <title>JKLZip</title>
     </head>
@@ -33,10 +37,9 @@
     <div class="flexUnit" id="leftNav">
         <div id="postiNumeroLinkit" class="leftNav">
             <h4>Alue</h4>
-            <div class="hint"> Järjestetty postinumeron mukaan.</div>
-            {% for alue in alueet %}
-                <a class="alueLinkki" href="/alue?pnro={{ alue['id'] }}">{{ alue['nimi'] }} ({{ alue['id'] }})</a>
-            {% endfor %}
+            <!--<div class="hint"> Järjestetty postinumeron mukaan.</div>-->
+            <form><input type="text" id="input"></input></form>
+            <div id="alueet"></div>
         </div>
     </div>
             <div id="root"></div>
