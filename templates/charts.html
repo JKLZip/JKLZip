@@ -5,24 +5,30 @@
 {% endblock %}
 {% block content %}
         <script type="text/javascript">
-           var jkldata = {{ data|tojson }};
-           function show_hide(elementID) {
+            var selitteet = {{ selitteet|tojson }};
+            var aluedata = {{ data|tojson }};
+            function show_hide(elementID) {
                 var x = document.getElementById(elementID);
                 if (x.style.display === "none") {
                     x.style.display = "block";
                 } else {
                     x.style.display = "none";
                 }
-           }
+            }
         </script>
+        <script type="module" src="{{ url_for("static", filename="charts.js") }}"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<<<<<<< HEAD
         <script type="module" src="{{ url_for("static", filename="chart.js") }}"></script>
             <div id="root"></div>
+=======
+        <div id="root"></div>
+>>>>>>> master
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
-            <h3 onclick="show_hide('piechart')">Kaavio 1</h3>
-            <div id="piechart" style="width: 900px; height: 500px;"></div>
-            <h3 onclick="show_hide('chart_div')">Kaavio 2</h3>
-            <div id="chart_div"></div>
+            <h3 onclick="show_hide('chart_sukupuoli')">Kaavio 1</h3>
+            <div id="chart_sukupuoli" style="width: 900px; height: 500px;"></div>
+            <h3 onclick="show_hide('chart_ikarakenne')">Kaavio 2</h3>
+            <div id="chart_ikarakenne"></div>
         </div>
 {% endblock %}
