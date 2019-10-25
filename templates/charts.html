@@ -19,40 +19,46 @@
         <script type="module" src="{{ url_for("static", filename="charts.js") }}"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="root"></div>
-        <div id="data">
+        <form id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
-            <div id="ikarakenne">
-                <h3 onclick="show_hide('chart_ikarakenne')">Ikärakenne</h3>
-			    <div id="chart_ikarakenne" style="height: 22em;">
-				    <div id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
-				    <div id="chart_ikajakauma" style="width:40em; height:20em; float:left;"></div>
-			    </div>
-            </div>
-            <div>
-		        <h3 onclick="show_hide('chart_tuloluokat')">Tuloluokat</h3>
-                <div>
 
-                </div>
-            </div>
-            <h3 onclick="show_hide('chart_koulutus')">Koulutus</h3>
-            <div>
+            <h3 onclick="show_hide('kartta')">Alueen kartta</h3>
 
+            <h3 onclick="show_hide('ikarakenne')">Ikärakenne</h3>
+            <div id="ikarakenne" style="height: 22em;">
+                <div id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_ikajakauma" style="width:45em; height:20em; float:left;"></div>
             </div>
-            <h3 onclick="show_hide('chart_vaesto')">Väestön jakautuminen</h3>
-            <div>
 
+            <h3 onclick="show_hide('tuloluokat')">Tuloluokat</h3>
+            <div id="tuloluokat" style="height: 22em;">
+                <div id="chart_tuloluokat" style="width:40em; height:20em; float:left;"></div>
+                <p id="keskitulot"></p>
             </div>
-            <h3 onclick="show_hide('chart_asuminen')">Asuminen</h3>
-            <div>
 
+            <h3 onclick="show_hide('koulutus')">Koulutus</h3>
+            <div id="koulutus" style="height: 22em;">
+                <div id="chart_koulutus" style="width:40em; height:20em; float:left;"></div>
             </div>
-            <h3 onclick="show_hide('chart_taloudet')">Taloudet</h3>
-            <div>
 
+            <h3 onclick="show_hide('vaesto')">Väestön jakautuminen</h3>
+            <div id="vaesto" style="height: 22em;">
+                <div id="chart_vaesto" style="width:40em; height:20em; float:left;"></div>
             </div>
-            <h3 onclick="show_hide('chart_tyopaikat')">Työpaikat</h3>
-            <div>
 
+            <h3 onclick="show_hide('asuminen')">Asuminen</h3>
+            <div id="asuminen" style="height: 22em;">
+                <div id="chart_asuminen" style="width:40em; height:20em; float:left;"></div>
             </div>
-        </div>
+
+            <h3 onclick="show_hide('taloudet')">Taloudet</h3>
+            <div id="taloudet" style="height: 22em;">
+                <div id="chart_taloudet" style="width:40em; height:20em; float:left;"></div>
+            </div>
+
+            <h3 onclick="show_hide('tyollisyys')">Työpaikat</h3>
+            <div id="tyollisyys" style="height: 22em;">
+                <div id="chart_tyollisyys" style="width:40em; height:20em; float:left;"></div>
+            </div>
+        </form>
 {% endblock %}
