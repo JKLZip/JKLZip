@@ -1,5 +1,6 @@
 'use strict';
 createRankTable();
+//TODO: korjaa sorting numeroilla
 function sortRanking(n) {
     //koodi: https://www.w3schools.com/howto/howto_js_sort_table.asp
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -41,12 +42,24 @@ function sortRanking(n) {
 function createRankTable() {
   let table = document.getElementById("rankingTable");
   for (let alue of data) {
-    let row = createTableRow(alue.nimi, alue.id, alue.He_kika);
+    let row = createTableRow(alue.nimi, alue.id, alue.He_kika,parseInt(alue.He_vakiy));
     table.appendChild(row);
   }
   console.log(data);
 }
-
+function createTableHeaders(){
+  let row = document.createElement("tr");
+  for (let i = 0; i < arguments.length; i++) {
+    let header = createHeader(i,"header");
+    row.appendChild(header);
+  }
+}
+function createHeader(column, text) {
+  let th = document.createElement("th");
+  th.appendChild(document.createTextNode(text));
+  th.setAttribute("onclick", sortRanking(column));
+  return th;
+}
 function createTableRow(text) {
   let row = document.createElement("tr");
 
