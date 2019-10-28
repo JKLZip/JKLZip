@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 import apidata
+import kartta
 app = Flask(__name__)
 
 @app.route('/')
@@ -31,3 +32,7 @@ def about():
 def ranking():
     alueet = apidata.get_alueet()
     return render_template('ranking.html', alueet = alueet)
+@app.route('/map')
+def jklmap():
+    jklkartta=kartta.luo_kartta()
+    return  jklkartta._repr_html_()
