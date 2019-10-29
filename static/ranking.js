@@ -1,5 +1,6 @@
 'use strict';
 createRankTable();
+createFieldSelector();
 //TODO: korjaa sorting numeroilla
 function sortRanking(n) {
     //koodi: https://www.w3schools.com/howto/howto_js_sort_table.asp
@@ -59,11 +60,10 @@ function createTableHeaders(){
 //tekee parametrina annetusta tekstistä yksittäisen headerin ja asettaa sille vastaavan rivin sorting.
 function createHeader(column, text) {
   let th = document.createElement("th");
-  th.onclick = function (column){ //TODO: fix
+  th.onclick = function (){
       sortRanking(column);
-  }
+  };
   th.appendChild(document.createTextNode(text));
-  console.log(text);
   return th;
 }
 function createTableRow(text) {
@@ -77,4 +77,15 @@ function createTableRow(text) {
   }
 
   return row;
+}
+
+function createFieldSelector() {
+  let container = document.getElementById("fieldSelector");
+  for (let selite in selitteet) {
+    let option = document.createElement("option");
+    option.value = selite;
+    option.appendChild(document.createTextNode(selitteet[selite]));
+    container.appendChild(option);
+  }
+
 }
