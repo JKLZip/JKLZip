@@ -14,11 +14,7 @@
         <div class="hint">Järjestä klikkaamalla otsikkoa.</div>
         <!-- TODO: yksinkertaista headereitten luominen -->
         <table class="ranking" id="rankingTable">
-            <tr>
-                <th onclick="sortRanking(0)">Alueen nimi</th>
-                <th onclick="sortRanking(1)">Postinumero</th>
-                <th onclick="sortRanking(2)">Asukkaiden keski-ikä</th>
-                <TH onclick="sortRanking(3)">Asukkaita yhteensä</TH>
+            <tr id="headers">
             </tr>
         </table>
         <script src="{{ url_for("static", filename="ranking.js") }}"></script>

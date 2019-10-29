@@ -41,23 +41,29 @@ function sortRanking(n) {
 
 function createRankTable() {
   let table = document.getElementById("rankingTable");
+  console.log(selitteet);
   for (let alue of data) {
     let row = createTableRow(alue.nimi, alue.id, alue.He_kika,parseInt(alue.He_vakiy));
     table.appendChild(row);
   }
+  createTableHeaders("Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy);
   console.log(data);
 }
+//tekee parametreina annetuista arvoista ranking -taulukkoon header rivin.
 function createTableHeaders(){
-  let row = document.createElement("tr");
   for (let i = 0; i < arguments.length; i++) {
-    let header = createHeader(i,"header");
-    row.appendChild(header);
+    let header = createHeader(i,arguments[i]); //i vastaa saraketta
+      document.getElementById("headers").appendChild(header);
   }
 }
+//tekee parametrina annetusta tekstistä yksittäisen headerin ja asettaa sille vastaavan rivin sorting.
 function createHeader(column, text) {
   let th = document.createElement("th");
+  th.onclick = function (column){
+      sortRanking(column);
+  }
   th.appendChild(document.createTextNode(text));
-  th.setAttribute("onclick", sortRanking(column));
+  console.log(text);
   return th;
 }
 function createTableRow(text) {
