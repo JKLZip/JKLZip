@@ -1,9 +1,11 @@
 'use strict';
-
+createRankTable();
+createFieldSelector();
+//TODO: korjaa sorting numeroilla
 function sortRanking(n) {
     //koodi: https://www.w3schools.com/howto/howto_js_sort_table.asp
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("ranking");
+    table = document.getElementById("rankingTable");
     switching = true;
       dir = "asc";
       while (switching) {
@@ -36,4 +38,54 @@ function sortRanking(n) {
           }
         }
       }
+}
+
+function createRankTable() {
+  let table = document.getElementById("rankingTable");
+  console.log(selitteet);
+  for (let alue of data) {
+    let row = createTableRow(alue.nimi, alue.id, alue.He_kika, parseInt(alue.He_vakiy));
+    table.appendChild(row);
+  }
+  createTableHeaders("Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy);
+  console.log(data);
+}
+//tekee parametreina annetuista arvoista ranking -taulukkoon header rivin.
+function createTableHeaders(){
+  for (let i = 0; i < arguments.length; i++) {
+    let header = createHeader(i,arguments[i]); //i vastaa saraketta
+      document.getElementById("headers").appendChild(header);
+  }
+}
+//tekee parametrina annetusta tekstistä yksittäisen headerin ja asettaa sille vastaavan rivin sorting.
+function createHeader(column, text) {
+  let th = document.createElement("th");
+  th.onclick = function (){
+      sortRanking(column);
+  };
+  th.appendChild(document.createTextNode(text));
+  return th;
+}
+function createTableRow(text) {
+  let row = document.createElement("tr");
+
+  for (let i = 0; i < arguments.length; i++) {
+    let td = document.createElement("td");
+    let nimi = document.createTextNode(arguments[i]);
+    td.appendChild(nimi);
+    row.appendChild(td);
+  }
+
+  return row;
+}
+
+function createFieldSelector() {
+  let container = document.getElementById("fieldSelector");
+  for (let selite in selitteet) {
+    let option = document.createElement("option");
+    option.value = selite;
+    option.appendChild(document.createTextNode(selitteet[selite]));
+    container.appendChild(option);
+  }
+
 }

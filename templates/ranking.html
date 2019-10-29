@@ -1,26 +1,23 @@
 {% extends "base.html" %}
-{% block title %}Index{% endblock %}
+{% block title %}Ranking{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
 {% block content %}
     <h1>Ranking</h1>
+        <script type="text/javascript">
+        var data = {{ data|tojson }};
+        var selitteet = {{ selitteet|tojson }};
+        </script>
+
     <div id="rankingContainer">
-        <script src="{{ url_for("static", filename="ranking.js") }}"></script>
         <div class="hint">Järjestä klikkaamalla otsikkoa.</div>
-        <table class="ranking" id="ranking">
-            <tr>
-                <th onclick="sortRanking(0)">Alueen nimi</th>
-                <th onclick="sortRanking(1)">Postinumero</th>
-                <th onclick="sortRanking(2)">Asukkaiden keski-ikä</th>
+        <select id="fieldSelector"></select>
+        <table class="ranking" id="rankingTable">
+            <tr id="headers">
             </tr>
-            {% for alue in alueet %}
-                <tr>
-                    <td>{{ alue["nimi"] }}</td>
-                    <td>{{ alue["id"]}}</td>
-                    <td>{{ alue["He_vakiy"] }}</td>
-                </tr>
-            {% endfor %}
         </table>
+        <script src="{{ url_for("static", filename="ranking.js") }}"></script>
+
     </div>
 {% endblock %}

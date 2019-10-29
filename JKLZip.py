@@ -30,4 +30,6 @@ def about():
 @app.route('/ranking')
 def ranking():
     alueet = apidata.get_alueet()
-    return render_template('ranking.html', alueet = alueet)
+    data = apidata.get_data()
+    selitteet = apidata.get_selitteet()
+    return render_template('ranking.html', alueet = alueet,data=data, selitteet = selitteet)
