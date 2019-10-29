@@ -1,6 +1,7 @@
 'use strict';
 createRankTable();
 createFieldSelector();
+let fields = ["Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy];
 //TODO: korjaa sorting numeroilla
 function sortRanking(n) {
     //koodi: https://www.w3schools.com/howto/howto_js_sort_table.asp
@@ -87,5 +88,12 @@ function createFieldSelector() {
     option.appendChild(document.createTextNode(selitteet[selite]));
     container.appendChild(option);
   }
+  container.onchange = function() {
+    changeField(container.value);
+  };
 
+}
+function changeField(selection) {
+  console.log(selection);
+  
 }
