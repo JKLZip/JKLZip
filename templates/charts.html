@@ -7,58 +7,67 @@
         <script type="text/javascript">
             var selitteet = {{ selitteet|tojson }};
             var aluedata = {{ data|tojson }};
-            function show_hide(elementID) {
-                var x = document.getElementById(elementID);
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                    x.style.display = "none";
+
+            window.onload = function(e){
+                var coll = document.getElementsByClassName("collapsible");
+                var i;
+
+                for (i = 0; i < coll.length; i++) {
+                    coll[i].addEventListener("click", function() {
+                        this.classList.toggle("active");
+                        var content = this.nextElementSibling;
+                        if (content.style.maxHeight){
+                            content.style.maxHeight = null;
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                        }
+                    });
                 }
             }
         </script>
         <script type="module" src="{{ url_for("static", filename="charts.js") }}"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="root"></div>
-        <form id="data">
+        <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
 
-            <h3 onclick="show_hide('kartta')">Alueen kartta</h3>
+           <!-- <h3 onclick="show_hide('kartta')">Alueen kartta</h3> -->
 
-            <h3 onclick="show_hide('ikarakenne')">Ikärakenne</h3>
-            <div id="ikarakenne" style="height: 22em;">
+
+            <button type="button" class="collapsible">Ikärakenne</button>
+            <div class="kaaviot">
                 <div id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
                 <div id="chart_ikajakauma" style="width:45em; height:20em; float:left;"></div>
             </div>
 
-            <h3 onclick="show_hide('tuloluokat')">Tuloluokat</h3>
-            <div id="tuloluokat" style="height: 22em;">
+             <button type="button" class="collapsible">Tuloluokat</button>
+            <div class="kaaviot">
                 <div id="chart_tuloluokat" style="width:40em; height:20em; float:left;"></div>
-                <p id="keskitulot"></p>
             </div>
 
-            <h3 onclick="show_hide('koulutus')">Koulutus</h3>
-            <div id="koulutus" style="height: 22em;">
+            <button type="button" class="collapsible">Koulutus</button>
+            <div class="kaaviot">
                 <div id="chart_koulutus" style="width:40em; height:20em; float:left;"></div>
             </div>
 
-            <h3 onclick="show_hide('vaesto')">Väestön jakautuminen</h3>
-            <div id="vaesto" style="height: 22em;">
+            <button type="button" class="collapsible">Väestön jakautuminen</button>
+            <div class="kaaviot">
                 <div id="chart_vaesto" style="width:40em; height:20em; float:left;"></div>
             </div>
 
-            <h3 onclick="show_hide('asuminen')">Asuminen</h3>
-            <div id="asuminen" style="height: 22em;">
+            <button type="button" class="collapsible">Asuminen</button>
+            <div class="kaaviot">
                 <div id="chart_asuminen" style="width:40em; height:20em; float:left;"></div>
             </div>
 
-            <h3 onclick="show_hide('taloudet')">Taloudet</h3>
-            <div id="taloudet" style="height: 22em;">
+            <button type="button" class="collapsible">Taloudet</button>
+            <div class="kaaviot">
                 <div id="chart_taloudet" style="width:40em; height:20em; float:left;"></div>
             </div>
 
-            <h3 onclick="show_hide('tyollisyys')">Työpaikat</h3>
-            <div id="tyollisyys" style="height: 22em;">
+            <button type="button" class="collapsible">Työpaikat</button>
+            <div class="kaaviot">
                 <div id="chart_tyollisyys" style="width:40em; height:20em; float:left;"></div>
             </div>
-        </form>
+        </div>
 {% endblock %}
