@@ -43,7 +43,7 @@ function createRankTable() {
   let table = document.getElementById("rankingTable");
   console.log(selitteet);
   for (let alue of data) {
-    let row = createTableRow(alue.nimi, alue.id, alue.He_kika,parseInt(alue.He_vakiy));
+    let row = createTableRow(alue.nimi, alue.id, alue.He_kika, parseInt(alue.He_vakiy));
     table.appendChild(row);
   }
   createTableHeaders("Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy);
@@ -59,7 +59,7 @@ function createTableHeaders(){
 //tekee parametrina annetusta tekstistä yksittäisen headerin ja asettaa sille vastaavan rivin sorting.
 function createHeader(column, text) {
   let th = document.createElement("th");
-  th.onclick = function (column){
+  th.onclick = function (column){ //TODO: fix
       sortRanking(column);
   }
   th.appendChild(document.createTextNode(text));
