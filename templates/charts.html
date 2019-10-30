@@ -7,12 +7,21 @@
         <script type="text/javascript">
             var selitteet = {{ selitteet|tojson }};
             var aluedata = {{ data|tojson }};
-            function show_hide(elementID) {
-                var x = document.getElementById(elementID);
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                    x.style.display = "none";
+
+            window.onload = function(e){
+                var coll = document.getElementsByClassName("collapsible");
+                var i;
+
+                for (i = 0; i < coll.length; i++) {
+                    coll[i].addEventListener("click", function() {
+                        this.classList.toggle("active");
+                        var content = this.nextElementSibling;
+                        if (content.style.maxHeight){
+                            content.style.maxHeight = null;
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                        }
+                    });
                 }
             }
         </script>
@@ -21,9 +30,44 @@
         <div id="root"></div>
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
-            <h3 onclick="show_hide('chart_sukupuoli')">Kaavio 1</h3>
-            <div id="chart_sukupuoli" style="width: 900px; height: 500px;"></div>
-            <h3 onclick="show_hide('chart_ikarakenne')">Kaavio 2</h3>
-            <div id="chart_ikarakenne"></div>
+
+           <!-- <h3 onclick="show_hide('kartta')">Alueen kartta</h3> -->
+
+
+            <button type="button" class="collapsible">Ikärakenne</button>
+            <div class="kaaviot">
+                <div id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_ikajakauma" style="width:45em; height:20em; float:left;"></div>
+            </div>
+
+             <button type="button" class="collapsible">Tuloluokat</button>
+            <div class="kaaviot">
+                <div id="chart_tuloluokat" style="width:40em; height:20em; float:left;"></div>
+            </div>
+
+            <button type="button" class="collapsible">Koulutus</button>
+            <div class="kaaviot">
+                <div id="chart_koulutus" style="width:40em; height:20em; float:left;"></div>
+            </div>
+
+            <button type="button" class="collapsible">Väestön jakautuminen</button>
+            <div class="kaaviot">
+                <div id="chart_vaesto" style="width:40em; height:20em; float:left;"></div>
+            </div>
+
+            <button type="button" class="collapsible">Asuminen</button>
+            <div class="kaaviot">
+                <div id="chart_asuminen" style="width:40em; height:20em; float:left;"></div>
+            </div>
+
+            <button type="button" class="collapsible">Taloudet</button>
+            <div class="kaaviot">
+                <div id="chart_taloudet" style="width:40em; height:20em; float:left;"></div>
+            </div>
+
+            <button type="button" class="collapsible">Työpaikat</button>
+            <div class="kaaviot">
+                <div id="chart_tyollisyys" style="width:40em; height:20em; float:left;"></div>
+            </div>
         </div>
 {% endblock %}
