@@ -1,7 +1,10 @@
 'use strict';
+let fields = ["He_kika","He_vakiy"];
+
 createRankTable();
 createFieldSelector();
-let fields = ["Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy];
+createTableHeaders("Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy);
+
 //TODO: korjaa sorting numeroilla
 function sortRanking(n) {
     //koodi: https://www.w3schools.com/howto/howto_js_sort_table.asp
@@ -43,13 +46,15 @@ function sortRanking(n) {
 
 function createRankTable() {
   let table = document.getElementById("rankingTable");
-  console.log(selitteet);
+  //console.log(selitteet);
   for (let alue of data) {
-    let row = createTableRow(alue.nimi, alue.id, alue.He_kika, parseInt(alue.He_vakiy));
+    let values = [];
+    for (let i = 0; i < fields.length; i++) {
+      values.push(alue[fields[i]]);
+    }
+    let row = createTableRow(alue.nimi, alue.id, values);
     table.appendChild(row);
   }
-  createTableHeaders("Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy);
-  console.log(data);
 }
 //tekee parametreina annetuista arvoista ranking -taulukkoon header rivin.
 function createTableHeaders(){
@@ -67,15 +72,20 @@ function createHeader(column, text) {
   th.appendChild(document.createTextNode(text));
   return th;
 }
-function createTableRow(text) {
+function createTableRow(name, id, text) {
   let row = document.createElement("tr");
-
-  for (let i = 0; i < arguments.length; i++) {
-    let td = document.createElement("td");
-    let nimi = document.createTextNode(arguments[i]);
-    td.appendChild(nimi);
-    row.appendChild(td);
+  row.appendChild(createTableField(name));
+  row.appendChild(createTableField(id));
+  for (let i = 0; i < text.length; i++) {
+    row.appendChild(createTableField(text[i]));
   }
+function createTableField(text) {
+    let td = document.createElement("td");
+    let nimi = document.createTextNode(text);
+    td.appendChild(nimi);
+    return td;
+}
+
 
   return row;
 }
@@ -94,6 +104,16 @@ function createFieldSelector() {
 
 }
 function changeField(selection) {
+  let table = document.getElementById("rankingTable");
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+  let headers = document.createElement("tr");
+  headers.id = "headers";
+  table.appendChild(headers);
+  fields = [selection];
+  createRankTable();
+  createTableHeaders("Nimi", "Postinumero", selitteet[selection]);
   console.log(selection);
   
 }
