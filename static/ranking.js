@@ -104,6 +104,21 @@ function createFieldSelector() {
 
 }
 function changeField(selection) {
+  clearTable();
+  fields = [selection];
+  createRankTable();
+  createTableHeaders("Nimi", "Postinumero", selitteet[selection]);
+  console.log(selitteet[selection]);
+  
+}
+
+function addField() {
+  let selector = document.getElementById("fieldSelector");
+  console.log(selector.value);
+  changeField(selector.value);
+}
+
+function clearTable() {
   let table = document.getElementById("rankingTable");
   while (table.firstChild) {
     table.removeChild(table.firstChild);
@@ -111,9 +126,4 @@ function changeField(selection) {
   let headers = document.createElement("tr");
   headers.id = "headers";
   table.appendChild(headers);
-  fields = [selection];
-  createRankTable();
-  createTableHeaders("Nimi", "Postinumero", selitteet[selection]);
-  console.log(selection);
-  
 }
