@@ -6,6 +6,10 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" id="theme">
         <meta charset="utf-8" />
 
+        <script type="text/javascript">
+           var alueet = {{ alueet|tojson }};
+        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='search.js') }}"></script>
 
         <title>JKLZip : {% block title %} {% endblock %}</title>
     </head>
@@ -31,10 +35,9 @@
     <div class="flexUnit" id="leftNav">
         <div id="postiNumeroLinkit" class="leftNav">
             <h4>Alue</h4>
-            <div class="hint"> Järjestetty postinumeron mukaan.</div>
-            {% for alue in alueet %}
-                <a class="alueLinkki" href="/alue?pnro={{ alue['id'] }}">{{ alue['nimi'] }} ({{ alue['id'] }})</a>
-            {% endfor %}
+            <!--<div class="hint"> Järjestetty postinumeron mukaan.</div>-->
+            <form><input type="text" id="input"></input></form>
+            <div id="alueet"></div>
         </div>
     </div>
             <div id="root"></div>
