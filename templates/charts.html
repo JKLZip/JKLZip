@@ -7,23 +7,6 @@
         <script type="text/javascript">
             var selitteet = {{ selitteet|tojson }};
             var aluedata = {{ data|tojson }};
-
-            window.onload = function(e){
-                var coll = document.getElementsByClassName("collapsible");
-                var i;
-
-                for (i = 0; i < coll.length; i++) {
-                    coll[i].addEventListener("click", function() {
-                        this.classList.toggle("active");
-                        var content = this.nextElementSibling;
-                        if (content.style.maxHeight){
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                        }
-                    });
-                }
-            }
         </script>
         <script type="module" src="{{ url_for("static", filename="charts.js") }}"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
