@@ -12,7 +12,11 @@
 
     <div id="rankingContainer">
         <div class="hint">Järjestä klikkaamalla otsikkoa.</div>
-        <select id="fieldSelector"></select>
+        <div class="selectorContainer">
+            <select id="fieldSelector"></select>
+            <button id="addButton" onclick="addField()">Lisää</button>
+            <button id="clearButton" onclick="clearTable()">Tyhjennä</button>
+        </div>
         <table class="ranking" id="rankingTable">
             <tr id="headers">
             </tr>
