@@ -1,11 +1,12 @@
 'use strict';
-
+//todo: teeman vaihtaminen cookieen ja ilmoitus cookiesta tarvittaessa. Pelkästään session cookieita.
 document.getElementById('changeThemeButton').onclick = function() {
-  if (document.getElementById('theme').href.includes("/static/style.css")) {
-    document.getElementById('theme').href = "/static/light.css";
+  let theme = document.getElementById('theme');
+  if (theme.href.includes("/static/style.css")) {
+    theme.href = "/static/light.css";
     console.log("light");
   } else {
-    document.getElementById('theme').href = "/static/style.css";
+    theme.href = "/static/style.css";
     console.log("dark",  document.getElementById('theme').href);
   }
 };
