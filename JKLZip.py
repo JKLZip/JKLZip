@@ -3,12 +3,19 @@ from flask import render_template
 from flask import request
 import apidata
 import kartta
+import os
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    alueet = apidata.get_alueet()
-    return render_template('index.html', alueet = alueet)
+    if os.path.isfile('templates/m_1.html'):
+        alueet = apidata.get_alueet()
+        return render_template('index.html', alueet=alueet)
+    else:
+        jklkartta = kartta.luo_kartta()
+        alueet = apidata.get_alueet()
+        return render_template('index.html', alueet=alueet)
+
 
 @app.route('/alue')
 def alue():
@@ -31,8 +38,9 @@ def about():
 @app.route('/ranking')
 def ranking():
     alueet = apidata.get_alueet()
-    return render_template('ranking.html', alueet = alueet)
+    data = apidata.get_data()
+    selitteet = apidata.get_selitteet()
+    return render_template('ranking.html', alueet = alueet,data=data, selitteet = selitteet)
 @app.route('/map')
 def jklmap():
-    jklkartta=kartta.luo_kartta()
-    return  jklkartta._repr_html_()
+    return render_template('m_1.html')
