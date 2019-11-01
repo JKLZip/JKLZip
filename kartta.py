@@ -6,7 +6,7 @@ import geopandas as gpd, folium,json
 from branca.colormap import linear
 
 
-kartta= f'jkldata.geojson'
+
 dataa = gpd.read_file("jkldata.geojson")
 with open('data.json') as json_file:
             selite = json.load(json_file)
@@ -39,7 +39,7 @@ def luomap(ominaisuus):
     colormap.caption = "{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus])
     style = {'weight': 1, 'color': 'Black', "opacity": 0.6}
     dic = dataa.set_index('id')[ominaisuus]
-    jklmap = folium.GeoJson(kartta,
+    jklmap = folium.GeoJson(open("jkldata.geojson",encoding = "utf-8").read(),
                             name="{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus]),
                             tooltip=folium.features.GeoJsonTooltip(fields=[ominaisuus, 'nimi', "id"],
                                                                    aliases=["{}".format(
