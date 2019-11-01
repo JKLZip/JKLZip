@@ -5,6 +5,30 @@ console.log(aluedata);
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawSukupuoliChart);
 google.charts.setOnLoadCallback(drawIkarakenneChart);
+google.charts.setOnLoadCallback(drawTuloluokatChart);
+google.charts.setOnLoadCallback(drawKoulutusChart);
+google.charts.setOnLoadCallback(drawVaestoChart);
+google.charts.setOnLoadCallback(drawAsuminenChart);
+google.charts.setOnLoadCallback(drawTaloudetChart);
+google.charts.setOnLoadCallback(drawTyollisyysChart);
+
+collapse();
+function collapse() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+}
 
 function drawSukupuoliChart() {
     var data = google.visualization.arrayToDataTable([
@@ -66,7 +90,131 @@ function drawIkarakenneChart() {
         titleTextStyle: { color: 'white' }
     };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_ikarakenne'));
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_ikajakauma'));
+
+    chart.draw(data, options);
+}
+
+function drawTuloluokatChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Tiedot', 'Määrä'],
+        [selitteet.Hr_hy_tul, aluedata.Hr_hy_tul],
+        [selitteet.Hr_ke_tul, aluedata.Hr_ke_tul],
+        [selitteet.Hr_pi_tul, aluedata.Hr_pi_tul],
+    ]);
+
+    var options = {
+        title: 'Tuloluokat',
+        backgroundColor: { fill: 'transparent' },
+        titleTextStyle: { color: 'white' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_tuloluokat'));
+
+    chart.draw(data, options);
+}
+
+function drawKoulutusChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Tiedot', 'Määrä'],
+        [selitteet.Ko_perus, aluedata.Ko_perus],
+        [selitteet.Ko_ammat, aluedata.Ko_ammat],
+        [selitteet.Ko_yliop, aluedata.Ko_yliop],
+        [selitteet.Ko_al_kork, aluedata.Ko_al_kork],
+        [selitteet.Ko_yl_kork, aluedata.Ko_yl_kork],
+    ]);
+
+    var options = {
+        title: 'Koulutus',
+        backgroundColor: { fill: 'transparent' },
+        titleTextStyle: { color: 'white' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_koulutus'));
+
+    chart.draw(data, options);
+}
+
+function drawVaestoChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Tiedot', 'Määrä'],
+        [selitteet.Pt_0_14, aluedata.Pt_0_14],
+        [selitteet.Pt_opisk, aluedata.Pt_opisk],
+        [selitteet.Pt_tyoll, aluedata.Pt_tyoll],
+        [selitteet.Pt_tyott, aluedata.Pt_tyott],
+        [selitteet.Pt_elakel, aluedata.Pt_elakel],
+    ]);
+
+    var options = {
+        title: 'Väestön jakautuminen',
+        backgroundColor: { fill: 'transparent' },
+        titleTextStyle: { color: 'white' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_vaesto'));
+
+    chart.draw(data, options);
+}
+
+function drawAsuminenChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Tiedot', 'Määrä'],
+        [selitteet.Ra_ke, aluedata.Ra_ke],
+        [selitteet.Ra_kt_as, aluedata.Ra_kt_as],
+        [selitteet.Ra_pt_as, aluedata.Ra_pt_as],
+    ]);
+
+    var options = {
+        title: 'Asuminen',
+        backgroundColor: { fill: 'transparent' },
+        titleTextStyle: { color: 'white' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_asuminen'));
+
+    chart.draw(data, options);
+}
+
+function drawTaloudetChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Tiedot', 'Määrä'],
+        [selitteet.Te_aik, aluedata.Te_aik],
+        [selitteet.Te_aklap, aluedata.Te_aklap],
+        [selitteet.Te_eil_np, aluedata.Te_eil_np],
+        [selitteet.Te_elak, aluedata.Te_elak],
+        [selitteet.Te_klap, aluedata.Te_klap],
+        [selitteet.Te_laps, aluedata.Te_laps],
+        [selitteet.Te_nuor, aluedata.Te_nuor],
+        [selitteet.Te_omis_as, aluedata.Te_omis_as],
+        [selitteet.Te_vuok_as, aluedata.Te_vuok_as],
+    ]);
+
+    var options = {
+        title: 'Taloudet',
+        backgroundColor: { fill: 'transparent' },
+        titleTextStyle: { color: 'white' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_taloudet'));
+
+    chart.draw(data, options);
+}
+
+function drawTyollisyysChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Tiedot', 'Määrä'],
+        [selitteet.Tp_alku_a, aluedata.Tp_alku_a],
+        [selitteet.Tp_c_teol, aluedata.Tp_c_teol],
+        [selitteet.Tp_palv_gu, aluedata.Tp_palv_gu],
+    ]);
+
+    var options = {
+        title: 'Työllisyys',
+        backgroundColor: { fill: 'transparent' },
+        titleTextStyle: { color: 'white' }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_tyollisyys'));
 
     chart.draw(data, options);
 }
