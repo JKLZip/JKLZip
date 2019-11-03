@@ -47,6 +47,22 @@
                     <h4>Alueen koulutettujen asukkaiden määrä</h4>
                     <p id="koulutetut">Koulutetut yhteensä: </p>
                 </div>
+                <div id="koulut">
+                    {% if data['koulut_ak_lkm'] > 0 %}
+                    <table>
+                    <tr><th colspan="4">Alakoulut</th></tr>
+                    <tr><th>Lukumäärä</th><th>Oppilaat</th><th>Opetusryhmät</th><th>Keskimääräinen ryhmäkoko</th></tr>
+                    <tr><td>{{ data['koulut_ak_lkm'] }}</td><td>{{ data['koulut_ak_oppilaat'] }}</td><td>{{ data['koulut_ak_ryhmat'] }}</td><td>{{ data['koulut_ak_ryhmakoko'] }}</td></tr>
+                    </table>
+                    {% endif %}
+                    {% if data['koulut_yk_lkm'] > 0 %}
+                    <table>
+                    <tr><th colspan="4">Yläkoulut</th></tr>
+                    <tr><th>Lukumäärä</th><th>Oppilaat</th><th>Opetusryhmät</th><th>Keskimääräinen ryhmäkoko</th></tr>
+                    <tr><td>{{ data['koulut_yk_lkm'] }}</td><td>{{ data['koulut_yk_oppilaat'] }}</td><td>{{ data['koulut_yk_ryhmat'] }}</td><td>{{ data['koulut_yk_ryhmakoko'] }}</td></tr>
+                    </table>
+                    {% endif %}
+                </div>
             </div>
 
             <button type="button" class="collapsible">Väestön jakautuminen</button>
@@ -77,6 +93,10 @@
             <button type="button" class="collapsible">Työpaikat</button>
             <div class="kaaviot">
                 <div id="chart_tyollisyys" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div class="infopanel">
+                    <h4>Alueen yritykset</h4>
+                    <p id="yritykset">Yritysten lukumäärä: {{ data['yritykset_lkm'] }}</p>
+                </div>
             </div>
         </div>
 {% endblock %}
