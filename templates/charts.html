@@ -14,43 +14,68 @@
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
 
-           <!-- <h3 onclick="show_hide('kartta')">Alueen kartta</h3> -->
+            <button type="button" class="collapsible">Alueen kartta</button>
+            <div class="kaaviot">
 
+            </div>
 
             <button type="button" class="collapsible">Ikärakenne</button>
             <div class="kaaviot">
-                <div id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
-                <div id="chart_ikajakauma" style="width:45em; height:20em; float:left;"></div>
+                <div class="piechart" id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
+                <div class="barchart" id="chart_ikajakauma" style="width:40em; height:20em; float:left;"></div>
+                <div class="infopanel">
+                    <h4>Alueen asukkaiden lukumäärä ja keski-ikä</h4>
+                    <p id="as_lkm">Asukkaita yhteensä: </p>
+                    <p id="keski_ika">Asukkaiden keski-ikä: </p>
+                </div>
             </div>
 
              <button type="button" class="collapsible">Tuloluokat</button>
             <div class="kaaviot">
-                <div id="chart_tuloluokat" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_tuloluokat" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div class="infopanel">
+                    <h4>Alueen asukkaiden keskitulot</h4>
+                    <p id="as_tulot">Asukkaiden keskitulot: </p>
+                </div>
             </div>
 
             <button type="button" class="collapsible">Koulutus</button>
             <div class="kaaviot">
-                <div id="chart_koulutus" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_koulutus" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div class="infopanel">
+                    <h4>Alueen koulutettujen asukkaiden määrä</h4>
+                    <p id="koulutetut">Koulutetut yhteensä: </p>
+                </div>
             </div>
 
             <button type="button" class="collapsible">Väestön jakautuminen</button>
             <div class="kaaviot">
-                <div id="chart_vaesto" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_vaesto" class="piechart" style="width:40em; height:20em; float:left;"></div>
             </div>
 
             <button type="button" class="collapsible">Asuminen</button>
             <div class="kaaviot">
-                <div id="chart_asuminen" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_asuminen" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div class="infopanel">
+                    <h4>Alueen asuntojen keskipinta-ala</h4>
+                    <p id="as_kpinta_ala">Asuntojen keskipinta-ala: </p>
+                </div>
             </div>
 
             <button type="button" class="collapsible">Taloudet</button>
             <div class="kaaviot">
-                <div id="chart_taloudet" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_taloudet1" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_taloudet2" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div class="infopanel">
+                    <h4>Alueen taloudet</h4>
+                    <p id="t_lkm">Taloudet yhteensä: </p>
+                    <p id="t_keskikoko">Talouksien keskikoko: </p>
+                </div>
             </div>
 
             <button type="button" class="collapsible">Työpaikat</button>
             <div class="kaaviot">
-                <div id="chart_tyollisyys" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_tyollisyys" class="piechart" style="width:40em; height:20em; float:left;"></div>
             </div>
         </div>
 {% endblock %}
