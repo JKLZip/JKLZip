@@ -1,3 +1,4 @@
+import csv
 import json
 import os
 import urllib.request
@@ -80,6 +81,7 @@ def get_data():
         return data
     else:
         data = sort_data(get_api_data())
+        data = lisaa_koulut(data)
         with open('data-sorted.json', 'w') as outfile:
             json.dump(data, outfile)
         return data
@@ -116,4 +118,54 @@ def get_alueet():
 
 def get_selitteet():
     data = get_api_data()
-    return data['dataset']['dimension']['Tiedot']['category']['label']
+    selitteet = data['dataset']['dimension']['Tiedot']['category']['label']
+    selitteet['koulut_ak_lkm'] = "Alakoulujen lukumäärä"
+    selitteet['koulut_ak_oppilaat'] = "Alakoulujen oppilasmäärä yhteensä"
+    selitteet['koulut_ak_ryhmat'] = "Alakoulujen opetusryhmien lukumäärä yhteensä"
+    selitteet['koulut_ak_ryhmakoko'] = "Alakoulujen keskimääräinen ryhmäkoko"
+    selitteet['koulut_yk_lkm'] = "Yläkoulujen lukumäärä"
+    selitteet['koulut_yk_oppilaat'] = "Yläkoulujen oppilasmäärä yhteensä"
+    selitteet['koulut_yk_ryhmat'] = "Yläkoulujen opetusryhmien lukumäärä yhteensä"
+    selitteet['koulut_yk_ryhmakoko'] = "Yläkoulujen keskimääräinen ryhmäkoko"
+    return selitteet
+
+def lisaa_koulut(data):
+    with open('koulut.csv') as csv_file:
+        csv_reader = csv.DictReader(csv_file, delimiter=',')
+        koulut = []
+        for row in csv_reader:
+            koulu = {
+                "nimi": row['nimi'],
+                "oppilaat": int(row['oppilaat']),
+                "opetusryhmat": int(row['opetusryhmat']),
+                "postinumero": row['postinumero'],
+                "tyyppi": row['tyyppi']
+            }
+            koulut.append(koulu)
+
+    for i in range(0, len(data)):
+        data[i]['koulut_ak_lkm'] = 0
+        data[i]['koulut_ak_oppilaat'] = 0
+        data[i]['koulut_ak_ryhmat'] = 0
+        data[i]['koulut_ak_ryhmakoko'] = 0
+        data[i]['koulut_yk_lkm'] = 0
+        data[i]['koulut_yk_oppilaat'] = 0
+        data[i]['koulut_yk_ryhmat'] = 0
+        data[i]['koulut_yk_ryhmakoko'] = 0
+        for j in range(0, len(koulut)):
+            if data[i]['id'] == koulut[j]['postinumero']:
+                if koulut[j]['tyyppi'] == 'alakoulu':
+                    data[i]['koulut_ak_lkm'] += 1
+                    data[i]['koulut_ak_oppilaat'] += koulut[j]['oppilaat']
+                    data[i]['koulut_ak_ryhmat'] += koulut[j]['opetusryhmat']
+                if koulut[j]['tyyppi'] == 'ylakoulu':
+                    data[i]['koulut_yk_lkm'] += 1
+                    data[i]['koulut_yk_oppilaat'] += koulut[j]['oppilaat']
+                    data[i]['koulut_yk_ryhmat'] += koulut[j]['opetusryhmat']
+
+        if data[i]['koulut_ak_ryhmat'] != 0:
+            data[i]['koulut_ak_ryhmakoko'] = data[i]['koulut_ak_oppilaat'] / data[i]['koulut_ak_ryhmat']
+        if data[i]['koulut_yk_ryhmat'] != 0:
+            data[i]['koulut_yk_ryhmakoko'] = data[i]['koulut_yk_oppilaat'] / data[i]['koulut_yk_ryhmat']
+
+    return data
