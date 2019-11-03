@@ -82,6 +82,7 @@ def get_data():
     else:
         data = sort_data(get_api_data())
         data = lisaa_koulut(data)
+        data = lisaa_yritykset(data)
         with open('data-sorted.json', 'w') as outfile:
             json.dump(data, outfile)
         return data
@@ -127,6 +128,7 @@ def get_selitteet():
     selitteet['koulut_yk_oppilaat'] = "Yläkoulujen oppilasmäärä yhteensä"
     selitteet['koulut_yk_ryhmat'] = "Yläkoulujen opetusryhmien lukumäärä yhteensä"
     selitteet['koulut_yk_ryhmakoko'] = "Yläkoulujen keskimääräinen ryhmäkoko"
+    selitteet['yritykset_lkm'] = "Yritysten lukumäärä"
     return selitteet
 
 def lisaa_koulut(data):
@@ -167,5 +169,36 @@ def lisaa_koulut(data):
             data[i]['koulut_ak_ryhmakoko'] = data[i]['koulut_ak_oppilaat'] / data[i]['koulut_ak_ryhmat']
         if data[i]['koulut_yk_ryhmat'] != 0:
             data[i]['koulut_yk_ryhmakoko'] = data[i]['koulut_yk_oppilaat'] / data[i]['koulut_yk_ryhmat']
+
+    return data
+
+def lisaa_yritykset(data):
+    with open('fullprhdata.csv') as csv_file:
+        csv_reader = csv.DictReader(csv_file, delimiter=';')
+        yritykset = []
+        for row in csv_reader:
+            yritys = {
+                "company_name": row['company_name'],
+                "business_id": row['business_id'],
+                "company_form": row['company_form'],
+                "business_line_code": row['business_line_code'],
+                "business_line_name": row['business_line_name'],
+                "registration_date": row['registration_date'],
+                "postal_address": row['postal_address'],
+                "postal_post_code": row['postal_post_code'],
+                "postal_city": row['postal_city'],
+                "street_address": row['street_address'],
+                "street_post_code": row['street_post_code'],
+                "street_city": row['street_city'],
+                "liquidation": row['liquidation'],
+                "registered_office": row['registered office']
+            }
+            yritykset.append(yritys)
+
+    for i in range(0, len(data)):
+        data[i]['yritykset_lkm'] = 0
+        for j in range(0, len(yritykset)):
+            if (data[i]['id'] == yritykset[j]['postal_post_code'] or data[i]['id'] == yritykset[j]['street_post_code']) and not yritykset[j]['company_form'] == "AOY":
+                data[i]['yritykset_lkm'] += 1
 
     return data
