@@ -9,10 +9,13 @@ google.charts.setOnLoadCallback(drawTuloluokatChart);
 google.charts.setOnLoadCallback(drawKoulutusChart);
 google.charts.setOnLoadCallback(drawVaestoChart);
 google.charts.setOnLoadCallback(drawAsuminenChart);
-google.charts.setOnLoadCallback(drawTaloudetChart);
+google.charts.setOnLoadCallback(drawTaloudet1Chart);
+google.charts.setOnLoadCallback(drawTaloudet2Chart);
 google.charts.setOnLoadCallback(drawTyollisyysChart);
 
-collapse()
+collapse();
+panels();
+
 
 function collapse(){
     var coll = document.getElementsByClassName("collapsible");
@@ -39,6 +42,29 @@ function collapse(){
     }
 }
 
+function panels(){
+    var keski_ika = aluedata.He_kika;
+	document.getElementById("keski_ika").textContent += keski_ika + " vuotta.";
+
+	var as_lkm = aluedata.He_vakiy;
+	document.getElementById("as_lkm").textContent += as_lkm + ".";
+
+	var as_tulot = aluedata.Hr_ktu;
+    document.getElementById("as_tulot").textContent += as_tulot + " €.";
+
+    var koulutetut = aluedata.Ko_koul;
+    document.getElementById("koulutetut").textContent += koulutetut +".";
+
+    var as_kpinta_ala = aluedata.Ra_as_kpa;
+    document.getElementById("as_kpinta_ala").textContent += as_kpinta_ala + " neliötä.";
+
+    var t_lkm = aluedata.Te_taly;
+    document.getElementById("t_lkm").textContent += t_lkm + ".";
+
+    var t_keskikoko = aluedata.Te_takk;
+    document.getElementById("t_keskikoko").textContent += t_keskikoko + " asukasta.";
+}
+
 
 function drawSukupuoliChart() {
     var data = google.visualization.arrayToDataTable([
@@ -48,9 +74,10 @@ function drawSukupuoliChart() {
     ]);
 
     var options = {
-        title: 'Sukupuoli',
-        backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        title: 'Sukupuolijakauma',
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
@@ -84,20 +111,29 @@ function drawIkarakenneChart() {
         [selitteet.He_70_74, aluedata.He_70_74],
         [selitteet.He_75_79, aluedata.He_75_79],
         [selitteet.He_80_84, aluedata.He_80_84],
-        [selitteet.He_85, aluedata.He_85],
+        [selitteet.He_85_, aluedata.He_85_],
    ]);
 
     var options = {
         title: 'Ikäjakauma',
         hAxis: {
-            title: 'Ikäjakauma',
+            title: 'Ikä',
             format: 'string',
+            titleTextStyle: { color: '#dbdbdb' },
+            gridlines: { color: 'white', count: -1},
+            textStyle: { color: '#dbdbdb'},
         },
         vAxis: {
-            title: 'Lukumäärä'
+            title: 'Lukumäärä',
+            titleTextStyle: { color: '#dbdbdb' },
+            baselineColor: '#dbdbdb',
+            textStyle: { color: '#dbdbdb'},
         },
-        backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { position: 'none'},
+        bar: {groupWidth: '80%'},
+        colors: ['#38d960'],
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_ikajakauma'));
@@ -115,8 +151,9 @@ function drawTuloluokatChart() {
 
     var options = {
         title: 'Tuloluokat',
-        backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tuloluokat'));
@@ -136,8 +173,9 @@ function drawKoulutusChart() {
 
     var options = {
         title: 'Koulutus',
-        backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_koulutus'));
@@ -158,7 +196,8 @@ function drawVaestoChart() {
     var options = {
         title: 'Väestön jakautuminen',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_vaesto'));
@@ -177,7 +216,8 @@ function drawAsuminenChart() {
     var options = {
         title: 'Asuminen',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_asuminen'));
@@ -185,7 +225,7 @@ function drawAsuminenChart() {
     chart.draw(data, options);
 }
 
-function drawTaloudetChart() {
+function drawTaloudet1Chart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
         [selitteet.Te_aik, aluedata.Te_aik],
@@ -195,6 +235,23 @@ function drawTaloudetChart() {
         [selitteet.Te_klap, aluedata.Te_klap],
         [selitteet.Te_laps, aluedata.Te_laps],
         [selitteet.Te_nuor, aluedata.Te_nuor],
+    ]);
+
+    var options = {
+        title: 'Taloudet',
+        backgroundColor: { fill: 'transparent' },
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_taloudet1'));
+
+    chart.draw(data, options);
+}
+
+function drawTaloudet2Chart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Tiedot', 'Määrä'],
         [selitteet.Te_omis_as, aluedata.Te_omis_as],
         [selitteet.Te_vuok_as, aluedata.Te_vuok_as],
     ]);
@@ -202,10 +259,11 @@ function drawTaloudetChart() {
     var options = {
         title: 'Taloudet',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}},
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('chart_taloudet'));
+    var chart = new google.visualization.PieChart(document.getElementById('chart_taloudet2'));
 
     chart.draw(data, options);
 }
@@ -221,7 +279,8 @@ function drawTyollisyysChart() {
     var options = {
         title: 'Työllisyys',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'white' }
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tyollisyys'));
