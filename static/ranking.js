@@ -1,5 +1,6 @@
 'use strict';
 let fields = ["He_kika","He_vakiy"];
+let headers = [selitteet.He_kika,selitteet.He_vakiy];
 
 createRankTable();
 createFieldSelector();
@@ -44,6 +45,8 @@ function sortRanking(n) {
       }
 }
 
+
+
 function createRankTable() {
   let table = document.getElementById("rankingTable");
   //console.log(selitteet);
@@ -56,13 +59,22 @@ function createRankTable() {
     table.appendChild(row);
   }
 }
+
+
 //tekee parametreina annetuista arvoista ranking -taulukkoon header rivin.
 function createTableHeaders(){
-  for (let i = 0; i < arguments.length; i++) {
-    let header = createHeader(i,arguments[i]); //i vastaa saraketta
+  let nimi = createHeader(0, "Alue");
+  let id = createHeader(1, "Postinumero");
+  document.getElementById("headers").appendChild(nimi);
+  document.getElementById("headers").appendChild(id);
+
+  for (let i = 0; i < headers.length; i++) {
+    let header = createHeader(i+2,headers[i]); //i vastaa saraketta
       document.getElementById("headers").appendChild(header);
   }
 }
+
+
 //tekee parametrina annetusta tekstistä yksittäisen headerin ja asettaa sille vastaavan rivin sorting.
 function createHeader(column, text) {
   let th = document.createElement("th");
@@ -86,9 +98,9 @@ function createTableField(text) {
     return td;
 }
 
-
   return row;
 }
+
 
 function createFieldSelector() {
   let container = document.getElementById("fieldSelector");
@@ -98,18 +110,22 @@ function createFieldSelector() {
     option.appendChild(document.createTextNode(selitteet[selite]));
     container.appendChild(option);
   }
+  /* Todo: Remove
   container.onchange = function() {
     changeField(container.value);
-  };
+  };*/
 
 }
+
+
 function changeField(selection) {
-  clearTable();
-  fields = [selection];
+  clearTable(true); //säilytetään headerit
+  fields.push(selection);
   createRankTable();
-  createTableHeaders("Nimi", "Postinumero", selitteet[selection]);
+  headers.push(selitteet[selection]);
+  createTableHeaders();
   console.log(selitteet[selection]);
-  
+
 }
 
 function addField() {
@@ -118,12 +134,18 @@ function addField() {
   changeField(selector.value);
 }
 
-function clearTable() {
+//Clearheaders määrittelee tyhjennetäänkö headerit
+function clearTable(keepHeaders) {
+  if (!keepHeaders) {
+    fields = [];
+    headers = [];
+  }
+
   let table = document.getElementById("rankingTable");
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
-  let headers = document.createElement("tr");
-  headers.id = "headers";
-  table.appendChild(headers);
+  let headerRow = document.createElement("tr");
+  headerRow.id = "headers";
+  table.appendChild(headerRow);
 }
