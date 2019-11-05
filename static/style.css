@@ -8,6 +8,14 @@
     --hover-highlight-text-colour: black;
 
 }
+#haku {
+    display: flex;
+}
+#suurennuslasi {
+    height: 1.5em;
+    width: 1.5em;
+    padding: 0.2em;
+}
 body {
     background-color: var(--main-bg-colour);
     color: var(--main-text-colour);

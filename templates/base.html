@@ -17,8 +17,8 @@
     <body>
     <header>
         <div id="bannerContainer">
-            <h1 id="mainTitle" class="mainTitle">JKLZip</h1>
-            <img src="{{ url_for('static', filename='banner.JPG') }}" id="bannerImg">
+            <!--<h1 id="mainTitle" class="mainTitle">JKLZip</h1>
+            <img src="{{ url_for('static', filename='banner.JPG') }}" id="bannerImg">-->
         </div>
         <div id="navbarContainer">
             <nav>
@@ -36,7 +36,10 @@
         <div id="postiNumeroLinkit" class="leftNav">
             <h4>Alue</h4>
             <!--<div class="hint"> Järjestetty postinumeron mukaan.</div>-->
-            <form><input type="text" id="input"></input></form>
+            <div id="haku">
+                <img id="suurennuslasi" src="{{ url_for("static", filename="suurennuslasi.svg") }}">
+                <form><input type="text" id="input" placeholder="Hae aluetta"></input></form>
+            </div>
             <div id="alueet"></div>
         </div>
     </div>
