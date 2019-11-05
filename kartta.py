@@ -69,11 +69,12 @@ def embed_map(m, file_name):
     return IFrame(file_name, width='100%', height='500px')
 def luo_kartta():
     #luo kaikista kentistä kartat
-    for i in dataa.columns[5:75]:
-        luomap(i)
-    for i in dataa.columns[100:107]:
-        luomap(i)
-
+    #for i in dataa.columns[5:75]:
+    #    luomap(i)
+    #for i in dataa.columns[100:107]:
+    #    luomap(i)
+    luomap("Hr_ktu")
+    luomap("He_vakiy")
     embed_map(m_1, 'templates/m_1.html')
 
 def luopnalue(i):
@@ -93,7 +94,14 @@ def luoalue(pk):
         if geodata["features"][i]["properties"]["id"] == pk:
             luopnalue(i)
             break
-    m_2.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
+    #m_2.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
+    return m_2
+
+def luojokaalue():
+    for i in range(len(geodata["features"])):
+        luopnalue(i)
+
+    #m_2.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
     return m_2
 
 

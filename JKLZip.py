@@ -21,6 +21,7 @@ def index():
 def alue():
     data = apidata.get_data()
     pnro = request.args.get('pnro', default = '40100', type = str)
+
     index = 0
     for i in range(0, len(data)):
         if data[i]['id'] == pnro:
@@ -47,5 +48,16 @@ def jklmap():
     return render_template('m_1.html')
 @app.route('/aluemap')
 def aluemap():
-    alue=kartta.luoalue("40740")
+    alue = kartta.luojokaalue()
     return alue._repr_html_()
+@app.route('/pnmap')
+def pnmap():
+    pnro = request.args.get('pnro', default = '40100', type = str)
+
+    alue2 = kartta.luoalue(pnro)
+    return alue2._repr_html_()
+
+
+
+
+
