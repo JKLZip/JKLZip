@@ -13,8 +13,11 @@ with open('jkldata.geojson', encoding='utf-8') as ff:
 with open('data.json') as json_file:
             selite = json.load(json_file)
 dataa['id'] = dataa['id'].astype(str)
-m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10)
-m_2 = folium.Map(location=[62.24147,25.72088], tiles='openstreetmap', zoom_start=10,max_bounds=True)
+m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #RANKING KARTTA
+m_2 = folium.Map(location=[62.24147,25.72088], tiles='openstreetmap', zoom_start=10,max_bounds=True) #ETUSIVI KARTTA
+m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, max_bounds=True) #ALUE KARTTA
+
+#VÄRIEN YHDISTYS RANKING KARTTAAN
 class BindColormap(MacroElement):
 
     def __init__(self, layer, colormap):
@@ -35,7 +38,7 @@ class BindColormap(MacroElement):
         {% endmacro %}
         """)
 
-
+#RANKING KARTTA
 def luomap(ominaisuus):
 
     colormap = linear.YlOrRd_09.scale(dataa[ominaisuus].min(), dataa[ominaisuus].max())
@@ -67,6 +70,7 @@ def embed_map(m, file_name):
     m.save(file_name)
 
     return IFrame(file_name, width='100%', height='500px')
+#LUO RANK MAP, VAIN OSA NYT
 def luo_kartta():
     #luo kaikista kentistä kartat
     #for i in dataa.columns[5:75]:
@@ -77,7 +81,8 @@ def luo_kartta():
     luomap("He_vakiy")
     embed_map(m_1, 'templates/m_1.html')
 
-def luopnalue(i):
+#ETUSIVUN MAP TYYLIT
+def luo_pntyyli(i):
 
     style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
     style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black', "opacity": 0.6}
@@ -88,20 +93,33 @@ def luopnalue(i):
                    tooltip=folium.features.GeoJsonTooltip(fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
 
                    ).add_to(m_2)
+#ALUE KARTTA TYYLIT
+def luo_ykstyyli(i):
 
-def luoalue(pk):
+    style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black', "opacity": 0.6}
+    folium.GeoJson(geodata["features"][i],
+                   name=geodata["features"][i]["properties"]["nimi"],
+                   highlight_function=lambda x: style,
+                   style_function=lambda x: style2,
+                   tooltip=folium.features.GeoJsonTooltip(fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
+
+                   ).add_to(m_3)
+
+#LUO YHDEN ALUEEN KARTAN
+def luo_yksalue(pk):
+    global m_3
+    m_3= folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, max_bounds=True)
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
-            luopnalue(i)
+            luo_ykstyyli(i)
             break
-    #m_2.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
-    return m_2
+    return m_3
 
-def luojokaalue():
+#LUO ETUSIVUN KARTAN
+def luo_jokaalue():
     for i in range(len(geodata["features"])):
-        luopnalue(i)
-
-    #m_2.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
+        luo_pntyyli(i)
     return m_2
 
 
