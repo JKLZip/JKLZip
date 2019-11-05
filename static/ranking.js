@@ -110,10 +110,10 @@ function createFieldSelector() {
     option.appendChild(document.createTextNode(selitteet[selite]));
     container.appendChild(option);
   }
-  /* Todo: Remove
   container.onchange = function() {
+    clearTable(false);
     changeField(container.value);
-  };*/
+  };
 
 }
 
