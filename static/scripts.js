@@ -4,7 +4,7 @@ document.getElementById('changeThemeButton').onclick = function() {
   let theme = document.getElementById('theme');
   let cookiesAllowed;
   if (document.cookie.trim().length === 0) {
-    let cookiePromptText = "Salli evästeet.";//todo: hyvä teksti
+    let cookiePromptText = "Sallitko evästeet(cookiet)? Sivu käyttää niitä ainoastaan halutun teeman tallentamiseen ja ne poistuvat, kun selain suljetaan.";//todo: hyvä teksti
     cookiesAllowed = confirm(cookiePromptText);
   }
   if (cookiesAllowed == null) {

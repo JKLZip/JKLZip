@@ -8,10 +8,13 @@ from branca.colormap import linear
 
 
 dataa = gpd.read_file("jkldata.geojson")
+with open('jkldata.geojson', encoding='utf-8') as ff:
+    geodata = json.load(ff)
 with open('data.json') as json_file:
             selite = json.load(json_file)
 dataa['id'] = dataa['id'].astype(str)
 m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10)
+m_2 = folium.Map(location=[62.24147,25.72088], tiles='openstreetmap', zoom_start=10,max_bounds=True)
 class BindColormap(MacroElement):
 
     def __init__(self, layer, colormap):
@@ -39,7 +42,7 @@ def luomap(ominaisuus):
     colormap.caption = "{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus])
     style = {'weight': 1, 'color': 'Black', "opacity": 0.6}
     dic = dataa.set_index('id')[ominaisuus]
-    jklmap = folium.GeoJson(open("jkldata.geojson",encoding = "utf-8").read(),
+    jklmap = folium.GeoJson(geodata,
                             name="{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus]),
                             tooltip=folium.features.GeoJsonTooltip(fields=[ominaisuus, 'nimi', "id"],
                                                                    aliases=["{}".format(
@@ -54,11 +57,15 @@ def luomap(ominaisuus):
                             smooth_factor=2.0,
                             show=False
                             ).add_to(m_1)
+
     m_1.add_child(colormap)
     m_1.add_child(BindColormap(jklmap, colormap))
+
 def embed_map(m, file_name):
     from IPython.display import IFrame
+    m_1.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
     m.save(file_name)
+
     return IFrame(file_name, width='100%', height='500px')
 def luo_kartta():
     #luo kaikista kentistä kartat
@@ -67,7 +74,29 @@ def luo_kartta():
     for i in dataa.columns[100:107]:
         luomap(i)
 
-
-
-    m_1.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
     embed_map(m_1, 'templates/m_1.html')
+
+def luopnalue(i):
+
+    style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black', "opacity": 0.6}
+    folium.GeoJson(geodata["features"][i],
+                   name=geodata["features"][i]["properties"]["nimi"],
+                   highlight_function=lambda x: style,
+                   style_function=lambda x: style2,
+                   tooltip=folium.features.GeoJsonTooltip(fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
+
+                   ).add_to(m_2)
+
+def luoalue(pk):
+    for i in range(len(geodata["features"])):
+        if geodata["features"][i]["properties"]["id"] == pk:
+            luopnalue(i)
+            break
+    m_2.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
+    return m_2
+
+
+
+
+

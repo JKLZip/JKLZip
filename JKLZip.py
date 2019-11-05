@@ -12,7 +12,7 @@ def index():
         alueet = apidata.get_alueet()
         return render_template('index.html', alueet=alueet)
     else:
-        jklkartta = kartta.luo_kartta()
+        kartta.luo_kartta()
         alueet = apidata.get_alueet()
         return render_template('index.html', alueet=alueet)
 
@@ -28,6 +28,7 @@ def alue():
             break
     alueet = apidata.get_alueet()
     selitteet = apidata.get_selitteet()
+
     return render_template('charts.html', alueet = alueet, selitteet = selitteet, data = data[index])
 
 @app.route('/about')
@@ -44,3 +45,7 @@ def ranking():
 @app.route('/map')
 def jklmap():
     return render_template('m_1.html')
+@app.route('/aluemap')
+def aluemap():
+    alue=kartta.luoalue("40740")
+    return alue._repr_html_()

@@ -151,10 +151,17 @@ th {
   overflow: hidden;
   transition: max-height 0.1s ease-out;
 }
-.h_iframe iframe {
-   position:absolute;
-   top:0;
-   left:0;
-   width:100%;
-   height:100%;
+.piechart{
+
+}
+.barchart{
+
+}
+.infopanel{
+  float: left;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid;
+  border-color: black;
+  border-width: 2px;
 }
