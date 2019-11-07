@@ -81,6 +81,7 @@ def get_data():
         return data
     else:
         data = sort_data(get_api_data())
+        data = laske_prosentit(data)
         data = lisaa_koulut(data)
         data = lisaa_yritykset(data)
         with open('data-sorted.json', 'w') as outfile:
@@ -120,6 +121,31 @@ def get_alueet():
 def get_selitteet():
     data = get_api_data()
     selitteet = data['dataset']['dimension']['Tiedot']['category']['label']
+    selitteet['He_naiset_pros'] = selitteet['He_naiset'] + " %"
+    selitteet['He_miehet_pros'] = selitteet['He_miehet'] + " %"
+    selitteet['Hr_pi_tul_pros'] = selitteet['Hr_pi_tul'] + " %"
+    selitteet['Hr_ke_tul_pros'] = selitteet['Hr_ke_tul'] + " %"
+    selitteet['Hr_hy_tul_pros'] = selitteet['Hr_hy_tul'] + " %"
+    selitteet['Ko_perus_pros'] = selitteet['Ko_perus'] + " %"
+    selitteet['Ko_koul_pros'] = selitteet['Ko_koul'] + " %"
+    selitteet['Ko_yliop_pros'] = selitteet['Ko_yliop'] + " %"
+    selitteet['Ko_ammat_pros'] = selitteet['Ko_ammat'] + " %"
+    selitteet['Ko_al_kork_pros'] = selitteet['Ko_al_kork'] + " %"
+    selitteet['Ko_yl_kork_pros'] = selitteet['Ko_yl_kork'] + " %"
+    selitteet['Pt_tyoll_pros'] = selitteet['Pt_tyoll'] + " %"
+    selitteet['Pt_tyott_pros'] = selitteet['Pt_tyott'] + " %"
+    selitteet['Pt_0_14_pros'] = selitteet['Pt_0_14'] + " %"
+    selitteet['Pt_opisk_pros'] = selitteet['Pt_opisk'] + " %"
+    selitteet['Pt_elakel_pros'] = selitteet['Pt_elakel'] + " %"
+    selitteet['Pt_muut_pros'] = selitteet['Pt_muut'] + " %"
+    selitteet['Ra_pt_as_pros'] = selitteet['Ra_pt_as'] + " %"
+    selitteet['Ra_kt_as_pros'] = selitteet['Ra_kt_as'] + " %"
+    selitteet['Te_omis_as_pros'] = selitteet['Te_omis_as'] + " %"
+    selitteet['Te_vuok_as_pros'] = selitteet['Te_vuok_as'] + " %"
+    selitteet['Te_muu_as_pros'] = selitteet['Te_muu_as'] + " %"
+    selitteet['Tp_alku_a_pros'] = selitteet['Tp_alku_a'] + " %"
+    selitteet['Tp_jalo_bf_pros'] = selitteet['Tp_jalo_bf'] + " %"
+    selitteet['Tp_palv_gu_pros'] = selitteet['Tp_palv_gu'] + " %"
     selitteet['koulut_ak_lkm'] = "Alakoulujen lukumäärä"
     selitteet['koulut_ak_oppilaat'] = "Alakoulujen oppilasmäärä yhteensä"
     selitteet['koulut_ak_ryhmat'] = "Alakoulujen opetusryhmien lukumäärä yhteensä"
@@ -130,6 +156,52 @@ def get_selitteet():
     selitteet['koulut_yk_ryhmakoko'] = "Yläkoulujen keskimääräinen ryhmäkoko"
     selitteet['yritykset_lkm'] = "Yritysten lukumäärä"
     return selitteet
+
+def laske_prosentit(data):
+    for i in range(0, len(data)):
+        # He_naiset + He_miehet = He_vakiy
+        data[i]['He_naiset_pros'] = data[i]['He_naiset'] / data[i]['He_vakiy'] * 100
+        data[i]['He_miehet_pros'] = data[i]['He_miehet'] / data[i]['He_vakiy'] * 100
+
+        # Hr_pi_tul + Hr_ke_tul + Hr_hy_tul = Hr_tuy
+        data[i]['Hr_pi_tul_pros'] = data[i]['Hr_pi_tul'] / data[i]['Hr_tuy'] * 100
+        data[i]['Hr_ke_tul_pros'] = data[i]['Hr_ke_tul'] / data[i]['Hr_tuy'] * 100
+        data[i]['Hr_hy_tul_pros'] = data[i]['Hr_hy_tul'] / data[i]['Hr_tuy'] * 100
+
+        # Ko_perus + Ko_yliop + Ko_ammat + Ko_al_kork + Ko_yl_kork = Ko_ika18y
+        # Ko_yliop + Ko_ammat + Ko_al_kork + Ko_yl_kork = Ko_koul
+        # Ko_perus + Ko_koul = Ko_ika18y
+        data[i]['Ko_perus_pros'] = data[i]['Ko_perus'] / data[i]['Ko_ika18y'] * 100
+        data[i]['Ko_koul_pros'] = data[i]['Ko_koul'] / data[i]['Ko_ika18y'] * 100
+        data[i]['Ko_yliop_pros'] = data[i]['Ko_yliop'] / data[i]['Ko_ika18y'] * 100
+        data[i]['Ko_ammat_pros'] = data[i]['Ko_ammat'] / data[i]['Ko_ika18y'] * 100
+        data[i]['Ko_al_kork_pros'] = data[i]['Ko_al_kork'] / data[i]['Ko_ika18y'] * 100
+        data[i]['Ko_yl_kork_pros'] = data[i]['Ko_yl_kork'] / data[i]['Ko_ika18y'] * 100
+
+        # Pt_tyoll + Pt_tyott + Pt_0_14 + Pt_opisk + Pt_elakel + Pt_muut = Pt_vakiy
+        data[i]['Pt_tyoll_pros'] = data[i]['Pt_tyoll'] / data[i]['Pt_vakiy'] * 100
+        data[i]['Pt_tyott_pros'] = data[i]['Pt_tyott'] / data[i]['Pt_vakiy'] * 100
+        data[i]['Pt_0_14_pros'] = data[i]['Pt_0_14'] / data[i]['Pt_vakiy'] * 100
+        data[i]['Pt_opisk_pros'] = data[i]['Pt_opisk'] / data[i]['Pt_vakiy'] * 100
+        data[i]['Pt_elakel_pros'] = data[i]['Pt_elakel'] / data[i]['Pt_vakiy'] * 100
+        data[i]['Pt_muut_pros'] = data[i]['Pt_muut'] / data[i]['Pt_vakiy'] * 100
+
+        # Ra_pt_as + Ra_kt_as = Ra_asunn
+        data[i]['Ra_pt_as_pros'] = data[i]['Ra_pt_as'] / data[i]['Ra_asunn'] * 100
+        data[i]['Ra_kt_as_pros'] = data[i]['Ra_kt_as'] / data[i]['Ra_asunn'] * 100
+
+        # Te_omis_as + Te_vuok_as + Te_muu_as = Te_taly
+        data[i]['Te_omis_as_pros'] = data[i]['Te_omis_as'] / data[i]['Te_taly'] * 100
+        data[i]['Te_vuok_as_pros'] = data[i]['Te_vuok_as'] / data[i]['Te_taly'] * 100
+        data[i]['Te_muu_as_pros'] = data[i]['Te_muu_as'] / data[i]['Te_taly'] * 100
+
+        # Tp_alku_a + Tp_jalo_bf + Tp_palv_gu + Tp_x_tunt = Tp_tyopy
+        if data[i]['Tp_palv_gu'] is not None: # TODO: korjaa Moksi 41840
+            data[i]['Tp_alku_a_pros'] = data[i]['Tp_alku_a'] / data[i]['Tp_tyopy'] * 100
+            data[i]['Tp_jalo_bf_pros'] = data[i]['Tp_jalo_bf'] / data[i]['Tp_tyopy'] * 100
+            data[i]['Tp_palv_gu_pros'] = data[i]['Tp_palv_gu'] / data[i]['Tp_tyopy'] * 100
+
+    return data
 
 def lisaa_koulut(data):
     with open('koulut.csv') as csv_file:
