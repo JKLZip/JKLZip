@@ -118,6 +118,14 @@ def get_alueet():
         alueet.append(alue)
     return alueet
 
+def get_index(data, pnro):
+    index = 0
+    for i in range(0, len(data)):
+        if data[i]['id'] == pnro:
+            index = i
+            break
+    return index
+
 def get_selitteet():
     data = get_api_data()
     selitteet = data['dataset']['dimension']['Tiedot']['category']['label']

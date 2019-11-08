@@ -16,21 +16,14 @@ def index():
         alueet = apidata.get_alueet()
         return render_template('index.html', alueet=alueet)
 
-
 @app.route('/alue')
 def alue():
-    data = apidata.get_data()
-    pnro = request.args.get('pnro', default = '40100', type = str)
-
-    index = 0
-    for i in range(0, len(data)):
-        if data[i]['id'] == pnro:
-            index = i
-            break
     alueet = apidata.get_alueet()
+    data = apidata.get_data()
     selitteet = apidata.get_selitteet()
-
-    return render_template('charts.html', alueet = alueet, selitteet = selitteet, data = data[index])
+    pnro = request.args.get('pnro', default = '40100', type = str)
+    index = apidata.get_index(data, pnro)
+    return render_template('charts.html', alueet = alueet, data = data[index], selitteet = selitteet)
 
 @app.route('/about')
 def about():
@@ -42,7 +35,7 @@ def ranking():
     alueet = apidata.get_alueet()
     data = apidata.get_data()
     selitteet = apidata.get_selitteet()
-    return render_template('ranking.html', alueet = alueet,data=data, selitteet = selitteet)
+    return render_template('ranking.html', alueet = alueet, data = data, selitteet = selitteet)
 
 @app.route('/map')
 def jklmap():
@@ -58,8 +51,3 @@ def pnmap():
     pnro = request.args.get('pnro', default = '40100', type = str)
     yksalue = kartta.luo_yksalue(pnro)
     return yksalue._repr_html_()
-
-
-
-
-
