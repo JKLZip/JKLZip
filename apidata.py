@@ -167,51 +167,52 @@ def get_selitteet():
     return selitteet
 
 def laske_prosentit(data):
+    tarkkuus = 2
     for i in range(0, len(data)):
         # asukastieheys = asukasmäärä / pinta-ala km^2
-        data[i]['He_as_tiheys'] = data[i]['He_vakiy'] / (data[i]['Pinta_ala'] / 1000000)
+        data[i]['He_as_tiheys'] = round(data[i]['He_vakiy'] / (data[i]['Pinta_ala'] / 1000000), tarkkuus)
 
         # He_naiset + He_miehet = He_vakiy
-        data[i]['He_naiset_pros'] = data[i]['He_naiset'] / data[i]['He_vakiy'] * 100
-        data[i]['He_miehet_pros'] = data[i]['He_miehet'] / data[i]['He_vakiy'] * 100
+        data[i]['He_naiset_pros'] = round(data[i]['He_naiset'] / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_miehet_pros'] = round(data[i]['He_miehet'] / data[i]['He_vakiy'] * 100, tarkkuus)
 
         # Hr_pi_tul + Hr_ke_tul + Hr_hy_tul = Hr_tuy
-        data[i]['Hr_pi_tul_pros'] = data[i]['Hr_pi_tul'] / data[i]['Hr_tuy'] * 100
-        data[i]['Hr_ke_tul_pros'] = data[i]['Hr_ke_tul'] / data[i]['Hr_tuy'] * 100
-        data[i]['Hr_hy_tul_pros'] = data[i]['Hr_hy_tul'] / data[i]['Hr_tuy'] * 100
+        data[i]['Hr_pi_tul_pros'] = round(data[i]['Hr_pi_tul'] / data[i]['Hr_tuy'] * 100, tarkkuus)
+        data[i]['Hr_ke_tul_pros'] = round(data[i]['Hr_ke_tul'] / data[i]['Hr_tuy'] * 100, tarkkuus)
+        data[i]['Hr_hy_tul_pros'] = round(data[i]['Hr_hy_tul'] / data[i]['Hr_tuy'] * 100, tarkkuus)
 
         # Ko_perus + Ko_yliop + Ko_ammat + Ko_al_kork + Ko_yl_kork = Ko_ika18y
         # Ko_yliop + Ko_ammat + Ko_al_kork + Ko_yl_kork = Ko_koul
         # Ko_perus + Ko_koul = Ko_ika18y
-        data[i]['Ko_perus_pros'] = data[i]['Ko_perus'] / data[i]['Ko_ika18y'] * 100
-        data[i]['Ko_koul_pros'] = data[i]['Ko_koul'] / data[i]['Ko_ika18y'] * 100
-        data[i]['Ko_yliop_pros'] = data[i]['Ko_yliop'] / data[i]['Ko_ika18y'] * 100
-        data[i]['Ko_ammat_pros'] = data[i]['Ko_ammat'] / data[i]['Ko_ika18y'] * 100
-        data[i]['Ko_al_kork_pros'] = data[i]['Ko_al_kork'] / data[i]['Ko_ika18y'] * 100
-        data[i]['Ko_yl_kork_pros'] = data[i]['Ko_yl_kork'] / data[i]['Ko_ika18y'] * 100
+        data[i]['Ko_perus_pros'] = round(data[i]['Ko_perus'] / data[i]['Ko_ika18y'] * 100, tarkkuus)
+        data[i]['Ko_koul_pros'] = round(data[i]['Ko_koul'] / data[i]['Ko_ika18y'] * 100, tarkkuus)
+        data[i]['Ko_yliop_pros'] = round(data[i]['Ko_yliop'] / data[i]['Ko_ika18y'] * 100, tarkkuus)
+        data[i]['Ko_ammat_pros'] = round(data[i]['Ko_ammat'] / data[i]['Ko_ika18y'] * 100, tarkkuus)
+        data[i]['Ko_al_kork_pros'] = round(data[i]['Ko_al_kork'] / data[i]['Ko_ika18y'] * 100, tarkkuus)
+        data[i]['Ko_yl_kork_pros'] = round(data[i]['Ko_yl_kork'] / data[i]['Ko_ika18y'] * 100, tarkkuus)
 
         # Pt_tyoll + Pt_tyott + Pt_0_14 + Pt_opisk + Pt_elakel + Pt_muut = Pt_vakiy
-        data[i]['Pt_tyoll_pros'] = data[i]['Pt_tyoll'] / data[i]['Pt_vakiy'] * 100
-        data[i]['Pt_tyott_pros'] = data[i]['Pt_tyott'] / data[i]['Pt_vakiy'] * 100
-        data[i]['Pt_0_14_pros'] = data[i]['Pt_0_14'] / data[i]['Pt_vakiy'] * 100
-        data[i]['Pt_opisk_pros'] = data[i]['Pt_opisk'] / data[i]['Pt_vakiy'] * 100
-        data[i]['Pt_elakel_pros'] = data[i]['Pt_elakel'] / data[i]['Pt_vakiy'] * 100
-        data[i]['Pt_muut_pros'] = data[i]['Pt_muut'] / data[i]['Pt_vakiy'] * 100
+        data[i]['Pt_tyoll_pros'] = round(data[i]['Pt_tyoll'] / data[i]['Pt_vakiy'] * 100, tarkkuus)
+        data[i]['Pt_tyott_pros'] = round(data[i]['Pt_tyott'] / data[i]['Pt_vakiy'] * 100, tarkkuus)
+        data[i]['Pt_0_14_pros'] = round(data[i]['Pt_0_14'] / data[i]['Pt_vakiy'] * 100, tarkkuus)
+        data[i]['Pt_opisk_pros'] = round(data[i]['Pt_opisk'] / data[i]['Pt_vakiy'] * 100, tarkkuus)
+        data[i]['Pt_elakel_pros'] = round(data[i]['Pt_elakel'] / data[i]['Pt_vakiy'] * 100, tarkkuus)
+        data[i]['Pt_muut_pros'] = round(data[i]['Pt_muut'] / data[i]['Pt_vakiy'] * 100, tarkkuus)
 
         # Ra_pt_as + Ra_kt_as = Ra_asunn
-        data[i]['Ra_pt_as_pros'] = data[i]['Ra_pt_as'] / data[i]['Ra_asunn'] * 100
-        data[i]['Ra_kt_as_pros'] = data[i]['Ra_kt_as'] / data[i]['Ra_asunn'] * 100
+        data[i]['Ra_pt_as_pros'] = round(data[i]['Ra_pt_as'] / data[i]['Ra_asunn'] * 100, tarkkuus)
+        data[i]['Ra_kt_as_pros'] = round(data[i]['Ra_kt_as'] / data[i]['Ra_asunn'] * 100, tarkkuus)
 
         # Te_omis_as + Te_vuok_as + Te_muu_as = Te_taly
-        data[i]['Te_omis_as_pros'] = data[i]['Te_omis_as'] / data[i]['Te_taly'] * 100
-        data[i]['Te_vuok_as_pros'] = data[i]['Te_vuok_as'] / data[i]['Te_taly'] * 100
-        data[i]['Te_muu_as_pros'] = data[i]['Te_muu_as'] / data[i]['Te_taly'] * 100
+        data[i]['Te_omis_as_pros'] = round(data[i]['Te_omis_as'] / data[i]['Te_taly'] * 100, tarkkuus)
+        data[i]['Te_vuok_as_pros'] = round(data[i]['Te_vuok_as'] / data[i]['Te_taly'] * 100, tarkkuus)
+        data[i]['Te_muu_as_pros'] = round(data[i]['Te_muu_as'] / data[i]['Te_taly'] * 100, tarkkuus)
 
         # Tp_alku_a + Tp_jalo_bf + Tp_palv_gu + Tp_x_tunt = Tp_tyopy
         if data[i]['Tp_palv_gu'] is not None: # TODO: korjaa Moksi 41840
-            data[i]['Tp_alku_a_pros'] = data[i]['Tp_alku_a'] / data[i]['Tp_tyopy'] * 100
-            data[i]['Tp_jalo_bf_pros'] = data[i]['Tp_jalo_bf'] / data[i]['Tp_tyopy'] * 100
-            data[i]['Tp_palv_gu_pros'] = data[i]['Tp_palv_gu'] / data[i]['Tp_tyopy'] * 100
+            data[i]['Tp_alku_a_pros'] = round(data[i]['Tp_alku_a'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
+            data[i]['Tp_jalo_bf_pros'] = round(data[i]['Tp_jalo_bf'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
+            data[i]['Tp_palv_gu_pros'] = round(data[i]['Tp_palv_gu'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
 
     return data
 
