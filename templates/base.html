@@ -9,7 +9,7 @@
         <script type="text/javascript">
            var alueet = {{ alueet|tojson }};
         </script>
-        <script type="text/javascript" src="{{ url_for('static', filename='search.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='search.js') }}"></script>
 
         <title>JKLZip : {% block title %} {% endblock %}</title>
     </head>

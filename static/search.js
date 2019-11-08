@@ -1,9 +1,7 @@
 //console.log(alueet);
 
-window.onload = function () {
-    createSearch();
-    listAlueet(alueet);
-}
+createSearch();
+listAlueet(alueet);
 
 function listAlueet(al) {
     var div = document.getElementById("alueet");
