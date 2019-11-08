@@ -129,6 +129,7 @@ def get_index(data, pnro):
 def get_selitteet():
     data = get_api_data()
     selitteet = data['dataset']['dimension']['Tiedot']['category']['label']
+    selitteet['He_as_tiheys'] = "Asukastiheys, asukas/km^2"
     selitteet['He_naiset_pros'] = selitteet['He_naiset'] + " %"
     selitteet['He_miehet_pros'] = selitteet['He_miehet'] + " %"
     selitteet['Hr_pi_tul_pros'] = selitteet['Hr_pi_tul'] + " %"
@@ -167,6 +168,9 @@ def get_selitteet():
 
 def laske_prosentit(data):
     for i in range(0, len(data)):
+        # asukastieheys = asukasmäärä / pinta-ala km^2
+        data[i]['He_as_tiheys'] = data[i]['He_vakiy'] / (data[i]['Pinta_ala'] / 1000000)
+
         # He_naiset + He_miehet = He_vakiy
         data[i]['He_naiset_pros'] = data[i]['He_naiset'] / data[i]['He_vakiy'] * 100
         data[i]['He_miehet_pros'] = data[i]['He_miehet'] / data[i]['He_vakiy'] * 100
