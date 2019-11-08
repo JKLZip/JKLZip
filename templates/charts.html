@@ -47,22 +47,24 @@
                     <h4>Alueen koulutettujen asukkaiden määrä</h4>
                     <p id="koulutetut">Koulutetut yhteensä: </p>
                 </div>
-                <div id="koulut">
-                    {% if data['koulut_ak_lkm'] > 0 %}
-                    <table>
-                    <tr><th colspan="4">Alakoulut</th></tr>
-                    <tr><th>Lukumäärä</th><th>Oppilaat</th><th>Opetusryhmät</th><th>Keskimääräinen ryhmäkoko</th></tr>
-                    <tr><td>{{ data['koulut_ak_lkm'] }}</td><td>{{ data['koulut_ak_oppilaat'] }}</td><td>{{ data['koulut_ak_ryhmat'] }}</td><td>{{ data['koulut_ak_ryhmakoko'] }}</td></tr>
-                    </table>
-                    {% endif %}
-                    {% if data['koulut_yk_lkm'] > 0 %}
-                    <table>
-                    <tr><th colspan="4">Yläkoulut</th></tr>
-                    <tr><th>Lukumäärä</th><th>Oppilaat</th><th>Opetusryhmät</th><th>Keskimääräinen ryhmäkoko</th></tr>
-                    <tr><td>{{ data['koulut_yk_lkm'] }}</td><td>{{ data['koulut_yk_oppilaat'] }}</td><td>{{ data['koulut_yk_ryhmat'] }}</td><td>{{ data['koulut_yk_ryhmakoko'] }}</td></tr>
-                    </table>
-                    {% endif %}
+                {% if data['koulut_ak_lkm'] > 0 %}
+                <div class="infopanel">
+                    <h4>Alueen alakoulut</h4>
+                    <p id="koulut_ak_lkm">Lukumäärä: {{ data['koulut_ak_lkm'] }}</p>
+                    <p id="koulut_ak_oppilaat">Oppilaat: {{ data['koulut_ak_oppilaat'] }}</p>
+                    <p id="koulut_ak_ryhmat">Opetusryhmät: {{ data['koulut_ak_ryhmat'] }}</p>
+                    <p id="koulut_ak_lkm">Keskimääräinen ryhmäkoko: {{ data['koulut_ak_ryhmakoko'] }}</p>
                 </div>
+                {% endif %}
+                {% if data['koulut_yk_lkm'] > 0 %}
+                <div class="infopanel">
+                    <h4>Alueen yläkoulut</h4>
+                    <p id="koulut_yk_lkm">Lukumäärä: {{ data['koulut_yk_lkm'] }}</p>
+                    <p id="koulut_yk_oppilaat">Oppilaat: {{ data['koulut_yk_oppilaat'] }}</p>
+                    <p id="koulut_yk_ryhmat">Opetusryhmät: {{ data['koulut_yk_ryhmat'] }}</p>
+                    <p id="koulut_yk_lkm">Keskimääräinen ryhmäkoko: {{ data['koulut_yk_ryhmakoko'] }}</p>
+                </div>
+                {% endif %}
             </div>
 
             <button type="button" class="collapsible">Väestön jakautuminen</button>

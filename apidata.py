@@ -238,9 +238,9 @@ def lisaa_koulut(data):
                     data[i]['koulut_yk_ryhmat'] += koulut[j]['opetusryhmat']
 
         if data[i]['koulut_ak_ryhmat'] != 0:
-            data[i]['koulut_ak_ryhmakoko'] = data[i]['koulut_ak_oppilaat'] / data[i]['koulut_ak_ryhmat']
+            data[i]['koulut_ak_ryhmakoko'] = round(data[i]['koulut_ak_oppilaat'] / data[i]['koulut_ak_ryhmat'], 2)
         if data[i]['koulut_yk_ryhmat'] != 0:
-            data[i]['koulut_yk_ryhmakoko'] = data[i]['koulut_yk_oppilaat'] / data[i]['koulut_yk_ryhmat']
+            data[i]['koulut_yk_ryhmakoko'] = round(data[i]['koulut_yk_oppilaat'] / data[i]['koulut_yk_ryhmat'], 2)
 
     return data
 
