@@ -14,10 +14,15 @@
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
 
-            <button type="button" class="collapsible">Alueen kartta</button>
+            <button type="button" class="collapsible">Perustiedot</button>
             <div class="kaaviot">
-                 <iframe src="/pnmap?pnro={{ data['id'] }}" style="border:none;height:500px;width:800px;"></iframe>
-
+                <iframe src="/pnmap?pnro={{ data['id'] }}" style="border:none;height:500px;width:800px;float:left;"></iframe>
+                <div class="infopanel">
+                    <h4>Alueen pinta-ala, asukkaiden lukumäärä ja asukastiheys</h4>
+                    <p id="pinta_ala">Pinta-ala: {{ data['Pinta_ala'] }} m²</p>
+                    <p id="as_lkm">Asukkaita yhteensä: {{ data['He_vakiy'] }}</p>
+                    <p id="as_tiheys">Asukastiheys: {{ data['He_as_tiheys'] }} asukasta/km²</p>
+                </div>
             </div>
 
             <button type="button" class="collapsible">Ikärakenne</button>
@@ -25,8 +30,7 @@
                 <div class="piechart" id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
                 <div class="barchart" id="chart_ikajakauma" style="width:40em; height:20em; float:left;"></div>
                 <div class="infopanel">
-                    <h4>Alueen asukkaiden lukumäärä ja keski-ikä</h4>
-                    <p id="as_lkm">Asukkaita yhteensä: </p>
+                    <h4>Alueen asukkaiden keski-ikä</h4>
                     <p id="keski_ika">Asukkaiden keski-ikä: </p>
                 </div>
             </div>

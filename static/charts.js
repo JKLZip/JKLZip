@@ -43,12 +43,9 @@ function collapse(){
 
 function panels(){
     var keski_ika = aluedata.He_kika;
-	document.getElementById("keski_ika").textContent += keski_ika + " vuotta.";
+    document.getElementById("keski_ika").textContent += keski_ika + " vuotta.";
 
-	var as_lkm = aluedata.He_vakiy;
-	document.getElementById("as_lkm").textContent += as_lkm + ".";
-
-	var as_tulot = aluedata.Hr_ktu;
+    var as_tulot = aluedata.Hr_ktu;
     document.getElementById("as_tulot").textContent += as_tulot + " €.";
 
     var koulutetut = aluedata.Ko_koul;
