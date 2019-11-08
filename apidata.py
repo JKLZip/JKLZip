@@ -130,6 +130,17 @@ def get_selitteet():
     data = get_api_data()
     selitteet = data['dataset']['dimension']['Tiedot']['category']['label']
     selitteet['He_as_tiheys'] = "Asukastiheys, asukas/km^2"
+    selitteet['He_0_2_pros'] = "0-2-vuotiaat, 2017 (HE) %"
+    selitteet['He_3_6_pros'] = "3-6-vuotiaat, 2017 (HE) %"
+    selitteet['He_7_12_pros'] = "7-12-vuotiaat, 2017 (HE) %"
+    selitteet['He_13_19_pros'] = "13-19-vuotiaat, 2017 (HE) %"
+    selitteet['He_20_29_pros'] = "20-29-vuotiaat, 2017 (HE) %"
+    selitteet['He_30_39_pros'] = "30-39-vuotiaat, 2017 (HE) %"
+    selitteet['He_40_49_pros'] = "40-49-vuotiaat, 2017 (HE) %"
+    selitteet['He_50_59_pros'] = "50-59-vuotiaat, 2017 (HE) %"
+    selitteet['He_60_69_pros'] = "60-69-vuotiaat, 2017 (HE) %"
+    selitteet['He_70_79_pros'] = "70-79-vuotiaat, 2017 (HE) %"
+    selitteet['He_80_pros'] = "80 vuotta täyttäneet, 2017 (HE) %"
     selitteet['He_naiset_pros'] = selitteet['He_naiset'] + " %"
     selitteet['He_miehet_pros'] = selitteet['He_miehet'] + " %"
     selitteet['Hr_pi_tul_pros'] = selitteet['Hr_pi_tul'] + " %"
@@ -171,6 +182,19 @@ def laske_prosentit(data):
     for i in range(0, len(data)):
         # asukastieheys = asukasmäärä / pinta-ala km^2
         data[i]['He_as_tiheys'] = round(data[i]['He_vakiy'] / (data[i]['Pinta_ala'] / 1000000), tarkkuus)
+
+        # ikärakenne
+        data[i]['He_0_2_pros'] = round(data[i]['He_0_2'] / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_3_6_pros'] = round(data[i]['He_3_6'] / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_7_12_pros'] = round(data[i]['He_7_12'] / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_13_19_pros'] = round((data[i]['He_13_15'] + data[i]['He_16_17'] + data[i]['He_18_19']) / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_20_29_pros'] = round((data[i]['He_20_24'] + data[i]['He_25_29']) / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_30_39_pros'] = round((data[i]['He_30_34'] + data[i]['He_35_39']) / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_40_49_pros'] = round((data[i]['He_40_44'] + data[i]['He_45_49']) / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_50_59_pros'] = round((data[i]['He_50_54'] + data[i]['He_55_59']) / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_60_69_pros'] = round((data[i]['He_60_64'] + data[i]['He_65_69']) / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_70_79_pros'] = round((data[i]['He_70_74'] + data[i]['He_75_79']) / data[i]['He_vakiy'] * 100, tarkkuus)
+        data[i]['He_80_pros'] = round((data[i]['He_80_84'] + data[i]['He_85_']) / data[i]['He_vakiy'] * 100, tarkkuus)
 
         # He_naiset + He_miehet = He_vakiy
         data[i]['He_naiset_pros'] = round(data[i]['He_naiset'] / data[i]['He_vakiy'] * 100, tarkkuus)
