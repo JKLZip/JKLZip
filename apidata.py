@@ -180,6 +180,12 @@ def get_selitteet():
 def laske_prosentit(data):
     tarkkuus = 2
     for i in range(0, len(data)):
+        # korjaa Moksin tyhjät kentät
+        if data[i]['id'] == "41840":
+            for kentta in data[i]:
+                if data[i][kentta] == None:
+                    data[i][kentta] = 0
+
         # asukastieheys = asukasmäärä / pinta-ala km^2
         data[i]['He_as_tiheys'] = round(data[i]['He_vakiy'] / (data[i]['Pinta_ala'] / 1000000), tarkkuus)
 
@@ -233,10 +239,9 @@ def laske_prosentit(data):
         data[i]['Te_muu_as_pros'] = round(data[i]['Te_muu_as'] / data[i]['Te_taly'] * 100, tarkkuus)
 
         # Tp_alku_a + Tp_jalo_bf + Tp_palv_gu + Tp_x_tunt = Tp_tyopy
-        if data[i]['Tp_palv_gu'] is not None: # TODO: korjaa Moksi 41840
-            data[i]['Tp_alku_a_pros'] = round(data[i]['Tp_alku_a'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
-            data[i]['Tp_jalo_bf_pros'] = round(data[i]['Tp_jalo_bf'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
-            data[i]['Tp_palv_gu_pros'] = round(data[i]['Tp_palv_gu'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
+        data[i]['Tp_alku_a_pros'] = round(data[i]['Tp_alku_a'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
+        data[i]['Tp_jalo_bf_pros'] = round(data[i]['Tp_jalo_bf'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
+        data[i]['Tp_palv_gu_pros'] = round(data[i]['Tp_palv_gu'] / data[i]['Tp_tyopy'] * 100, tarkkuus)
 
     return data
 
