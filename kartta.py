@@ -18,8 +18,7 @@ luodata()
 dataa = gpd.read_file("jkldata.geojson")
 with open('jkldata.geojson', encoding='utf-8') as ff:
     geodata = json.load(ff)
-with open('data.json') as json_file:
-            selite = json.load(json_file)
+selite = apidata.get_selitteet()
 dataa['id'] = dataa['id'].astype(str)
 m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #RANKING KARTTA
 m_2 = folium.Map(location=[62.24147,25.72088], tiles='openstreetmap', zoom_start=10,max_bounds=True) #ETUSIVI KARTTA
@@ -50,16 +49,14 @@ class BindColormap(MacroElement):
 def luomap(ominaisuus):
 
     colormap = linear.YlOrRd_09.scale(dataa[ominaisuus].min(), dataa[ominaisuus].max())
-    colormap.caption = "{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus])
+    colormap.caption = "{}".format(selite[ominaisuus])
     style = {'weight': 1, 'color': 'Black', "opacity": 0.6}
     dic = dataa.set_index('id')[ominaisuus]
     jklmap = folium.GeoJson(geodata,
-                            name="{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus]),
+                            name="{}".format(selite[ominaisuus]),
                             tooltip=folium.features.GeoJsonTooltip(fields=[ominaisuus, 'nimi', "id"],
-                                                                   aliases=["{}".format(
-                                                                       selite['dataset']['dimension']['Tiedot'][
-                                                                           'category']['label'][ominaisuus]), "Alue",
-                                                                            "Postinumero"]),
+                                                                   aliases=["{}".format(selite[ominaisuus]),
+                                                                   "Alue", "Postinumero"]),
                             style_function=lambda feature: {'fillColor': colormap(dic[feature["properties"]["id"]]),
                                                             'color': 'black',
                                                             'fillOpacity': 0.7,
