@@ -4,10 +4,12 @@ from branca.element import MacroElement
 from jinja2 import Template
 import geopandas as gpd, folium,json, pandas as pd
 from branca.colormap import linear
+import apidata
 
 def luodata():
     jklgeo = gpd.read_file("jklgeo.geojson")
-    data=pd.read_json(('data-sorted.json'))
+    apidata.get_data() # varmista, että data-sorted.json on olemassa
+    data = pd.read_json('data-sorted.json') # TODO: lataa apidata.get_data() pandas dataframeen
     data['id'] = data['id'].astype(str)
     newdata=jklgeo.merge(data)
     newdata.to_file("jkldata.geojson", driver="GeoJSON",encoding="utf-8")
