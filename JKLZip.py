@@ -8,13 +8,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    if os.path.isfile('templates/m_1.html'):
-        alueet = apidata.get_alueet()
-        return render_template('index.html', alueet=alueet)
-    else:
-        kartta.luo_kartta()
-        alueet = apidata.get_alueet()
-        return render_template('index.html', alueet=alueet)
+    alueet = apidata.get_alueet()
+    return render_template('index.html', alueet=alueet)
 
 @app.route('/alue')
 def alue():
@@ -32,6 +27,8 @@ def about():
 
 @app.route('/ranking')
 def ranking():
+    if not os.path.isfile('templates/m_1.html'):
+        kartta.luo_kartta()
     alueet = apidata.get_alueet()
     data = apidata.get_data()
     selitteet = apidata.get_selitteet()
