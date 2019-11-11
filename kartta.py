@@ -5,6 +5,7 @@ from jinja2 import Template
 import geopandas as gpd, folium,json, pandas as pd
 from branca.colormap import linear
 import apidata
+import os
 
 def luodata():
     jklgeo = gpd.read_file("jklgeo.geojson")
@@ -13,7 +14,9 @@ def luodata():
     data['id'] = data['id'].astype(str)
     newdata=jklgeo.merge(data)
     newdata.to_file("jkldata.geojson", driver="GeoJSON",encoding="utf-8")
-luodata()
+
+if not os.path.isfile('jkldata.geojson'):
+    luodata()
 
 dataa = gpd.read_file("jkldata.geojson")
 with open('jkldata.geojson', encoding='utf-8') as ff:
