@@ -8,18 +8,18 @@ import apidata
 import os
 
 def luodata():
-    jklgeo = gpd.read_file("jklgeo.geojson")
+    jklgeo = gpd.read_file('data/jklgeo.geojson')
     apidata.get_data() # varmista, että data-sorted.json on olemassa
-    data = pd.read_json('data-sorted.json') # TODO: lataa apidata.get_data() pandas dataframeen
+    data = pd.read_json('data/data-sorted.json') # TODO: lataa apidata.get_data() pandas dataframeen
     data['id'] = data['id'].astype(str)
     newdata=jklgeo.merge(data)
-    newdata.to_file("jkldata.geojson", driver="GeoJSON",encoding="utf-8")
+    newdata.to_file('data/jkldata.geojson', driver="GeoJSON",encoding="utf-8")
 
-if not os.path.isfile('jkldata.geojson'):
+if not os.path.isfile('data/jkldata.geojson'):
     luodata()
 
-dataa = gpd.read_file("jkldata.geojson")
-with open('jkldata.geojson', encoding='utf-8') as ff:
+dataa = gpd.read_file('data/jkldata.geojson')
+with open('data/jkldata.geojson', encoding='utf-8') as ff:
     geodata = json.load(ff)
 selite = apidata.get_selitteet()
 dataa['id'] = dataa['id'].astype(str)
