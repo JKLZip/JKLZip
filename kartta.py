@@ -117,14 +117,14 @@ def luo_ykstyyli(i):
 #LUO YHDEN ALUEEN KARTAN
 def luo_yksalue(pk):
     global m_3
-    m_3= folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, max_bounds=True)
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
+            m_3 = folium.Map(location=geodata["features"][i]["geometry"]["coordinates"][0][11][::-1], tiles='openstreetmap', zoom_start=12, max_bounds=True)
             luo_ykstyyli(i)
             break
     return m_3
 
-#LUO ETUSIVUN KARTAN
+#LUO ETUSIVUN KARTAN=
 def luo_jokaalue():
     for i in range(len(geodata["features"])):
         luo_pntyyli(i)
