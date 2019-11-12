@@ -127,7 +127,7 @@ function createFieldSelector() {
 
 }
 
-
+//Kutsutaan kun dropdown valikon arvo muuttuu
 function changeField(selection) {
   clearTable(true); //säilytetään headerit
   fields.push(selection);
@@ -144,7 +144,7 @@ function addField() {
   changeField(selector.value);
 }
 
-//Clearheaders määrittelee tyhjennetäänkö headerit
+//keepheaders määrittelee säilytetäänkö headerit, jos true säilytetään, jos false kaikki poistetaan.
 function clearTable(keepHeaders) {
   if (!keepHeaders) {
     fields = [];
@@ -158,4 +158,15 @@ function clearTable(keepHeaders) {
   let headerRow = document.createElement("tr");
   headerRow.id = "headers";
   table.appendChild(headerRow);
+}
+
+function getMap() {
+  let iframe = document.getElementById('mapFrame');
+  let innerDoc = iframe.contentDocument || iframe.contentWindow.document; //iframen dokumentti
+
+  let overlays = innerDoc.getElementsByClassName("leaflet-control-layers-overlays");
+  for (let label in overlays[0].childNodes) {
+    console.log(label);
+    console.log(overlays);
+  }
 }
