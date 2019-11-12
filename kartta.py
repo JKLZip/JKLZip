@@ -74,7 +74,7 @@ def luomap(ominaisuus):
 
 def embed_map(m, file_name):
     from IPython.display import IFrame
-    m_1.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=False))
+    m_1.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=True))
     m.save(file_name)
 
     return IFrame(file_name, width='100%', height='500px')
@@ -119,7 +119,7 @@ def luo_yksalue(pk):
     global m_3
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
-            m_3 = folium.Map(location=geodata["features"][i]["geometry"]["coordinates"][0][11][::-1], tiles='openstreetmap', zoom_start=12, max_bounds=True)
+            m_3 = folium.Map(location=geodata["features"][i]["geometry"]["coordinates"][0][3][::-1], tiles='openstreetmap', zoom_start=12, max_bounds=True)
             luo_ykstyyli(i)
             break
     return m_3
