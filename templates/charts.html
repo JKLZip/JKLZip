@@ -111,5 +111,16 @@
                 </div>
                 <div class="barchart" id="chart_palvelutyopaikat" style="width:70em; height:50em; float:left;"></div>
             </div>
+
+            {% if data['linkit']|length > 0 %}
+            <button type="button" class="collapsible">Lisätietoja</button>
+            <div class="kaaviot">
+                <ul>
+                    {% for linkki in data['linkit'] %}
+                    <li><a href="{{ linkki }}">{{ linkki }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
 {% endblock %}
