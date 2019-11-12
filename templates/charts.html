@@ -4,6 +4,7 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='chartsStyle.css') }}">
         <script type="text/javascript">
             var selitteet = {{ selitteet|tojson }};
             var aluedata = {{ data|tojson }};
@@ -79,20 +80,26 @@
             <button type="button" class="collapsible">Asuminen</button>
             <div class="kaaviot">
                 <div id="chart_asuminen" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_taloudet2" class="piechart" style="width:40em; height:20em; float:left;"></div>
                 <div class="infopanel">
                     <h4>Alueen asuntojen keskipinta-ala</h4>
                     <p id="as_kpinta_ala">Asuntojen keskipinta-ala: </p>
                 </div>
+                {% if data['Ra_ke'] > 0 %}
+                <div class="infopanel">
+                    <h4>Alueen Kesämökit</h4>
+                    <p id="kesamokit">Lukumäärä: {{ data['Ra_ke'] }}</p>
+                </div>
+                {% endif %}
             </div>
 
             <button type="button" class="collapsible">Taloudet</button>
             <div class="kaaviot">
                 <div id="chart_taloudet1" class="piechart" style="width:40em; height:20em; float:left;"></div>
-                <div id="chart_taloudet2" class="piechart" style="width:40em; height:20em; float:left;"></div>
                 <div class="infopanel">
                     <h4>Alueen taloudet</h4>
-                    <p id="t_lkm">Taloudet yhteensä: </p>
-                    <p id="t_keskikoko">Talouksien keskikoko: </p>
+                    <p id="t_lkm">Yhteensä: </p>
+                    <p id="t_keskikoko">Keskikoko: </p>
                 </div>
             </div>
 
@@ -103,6 +110,7 @@
                     <h4>Alueen yritykset</h4>
                     <p id="yritykset">Yritysten lukumäärä: {{ data['yritykset_lkm'] }}</p>
                 </div>
+                <div class="barchart" id="chart_palvelutyopaikat" style="width:70em; height:50em; float:left;"></div>
             </div>
         </div>
 {% endblock %}

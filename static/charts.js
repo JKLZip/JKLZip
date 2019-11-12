@@ -12,10 +12,29 @@ google.charts.setOnLoadCallback(drawAsuminenChart);
 google.charts.setOnLoadCallback(drawTaloudet1Chart);
 google.charts.setOnLoadCallback(drawTaloudet2Chart);
 google.charts.setOnLoadCallback(drawTyollisyysChart);
+google.charts.setOnLoadCallback(drawPalvelutyopaikatChart);
+
 
 collapse();
 panels();
 
+function collapse(){
+    var coll = document.getElementsByClassName("collapsible");
+
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+}
+
+/*
 function collapse(){
     var coll = document.getElementsByClassName("collapsible");
 
@@ -40,7 +59,7 @@ function collapse(){
         });
     }
 }
-
+*/
 function panels(){
     var keski_ika = aluedata.He_kika;
     document.getElementById("keski_ika").textContent += keski_ika + " vuotta.";
@@ -160,7 +179,6 @@ function drawTuloluokatChart() {
 function drawKoulutusChart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
-        [selitteet.Ko_perus, aluedata.Ko_perus],
         [selitteet.Ko_ammat, aluedata.Ko_ammat],
         [selitteet.Ko_yliop, aluedata.Ko_yliop],
         [selitteet.Ko_al_kork, aluedata.Ko_al_kork],
@@ -187,6 +205,7 @@ function drawVaestoChart() {
         [selitteet.Pt_tyoll, aluedata.Pt_tyoll],
         [selitteet.Pt_tyott, aluedata.Pt_tyott],
         [selitteet.Pt_elakel, aluedata.Pt_elakel],
+        [selitteet.Pt_muut, aluedata.Pt_muut]
     ]);
 
     var options = {
@@ -204,13 +223,12 @@ function drawVaestoChart() {
 function drawAsuminenChart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
-        [selitteet.Ra_ke, aluedata.Ra_ke],
         [selitteet.Ra_kt_as, aluedata.Ra_kt_as],
         [selitteet.Ra_pt_as, aluedata.Ra_pt_as],
     ]);
 
     var options = {
-        title: 'Asuminen',
+        title: 'Asunnot',
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'white' },
         legend: { textStyle: {color: 'white'}}
@@ -220,7 +238,7 @@ function drawAsuminenChart() {
 
     chart.draw(data, options);
 }
-
+//TODO: Korjaa tilastovirhe
 function drawTaloudet1Chart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
@@ -250,6 +268,7 @@ function drawTaloudet2Chart() {
         ['Tiedot', 'Määrä'],
         [selitteet.Te_omis_as, aluedata.Te_omis_as],
         [selitteet.Te_vuok_as, aluedata.Te_vuok_as],
+        [selitteet.Te_muu_as, aluedata.Te_muu_as],
     ]);
 
     var options = {
@@ -268,7 +287,7 @@ function drawTyollisyysChart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
         [selitteet.Tp_alku_a, aluedata.Tp_alku_a],
-        [selitteet.Tp_c_teol, aluedata.Tp_c_teol],
+        [selitteet.Tp_jalo_bf, aluedata.Tp_jalo_bf],
         [selitteet.Tp_palv_gu, aluedata.Tp_palv_gu],
     ]);
 
@@ -280,6 +299,55 @@ function drawTyollisyysChart() {
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tyollisyys'));
+
+    chart.draw(data, options);
+}
+
+function drawPalvelutyopaikatChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Ala', 'Työpaikkoja'],
+        [selitteet.Tp_a_maat, aluedata.Tp_a_maat],
+        [selitteet.Tp_b_kaiv, aluedata.Tp_b_kaiv],
+        [selitteet.Tp_c_teol, aluedata.Tp_c_teol],
+        [selitteet.Tp_d_ener, aluedata.Tp_d_ener],
+        [selitteet.Tp_e_vesi, aluedata.Tp_e_vesi],
+        [selitteet.Tp_f_rake, aluedata.Tp_f_rake],
+        [selitteet.Tp_g_kaup, aluedata.Tp_g_kaup],
+        [selitteet.Tp_h_kulj, aluedata.Tp_h_kulj],
+        [selitteet.Tp_i_majo, aluedata.Tp_i_majo],
+        [selitteet.Tp_j_info, aluedata.Tp_j_info],
+        [selitteet.Tp_k_raho, aluedata.Tp_k_raho],
+        [selitteet.Tp_l_kiin, aluedata.Tp_l_kiin],
+        [selitteet.Tp_m_erik, aluedata.Tp_m_erik],
+        [selitteet.Tp_n_hall, aluedata.Tp_n_hall],
+        [selitteet.Tp_o_julk, aluedata.Tp_o_julk],
+        [selitteet.Tp_p_koul, aluedata.Tp_p_koul],
+        [selitteet.Tp_q_terv, aluedata.Tp_q_terv],
+        [selitteet.Tp_r_taid, aluedata.Tp_r_taid],
+        [selitteet.Tp_s_muup, aluedata.Tp_s_muup],
+        [selitteet.Tp_t_koti, aluedata.Tp_t_koti],
+        [selitteet.Tp_u_kans, aluedata.Tp_u_kans],
+        [selitteet.Tp_x_tunt, aluedata.Tp_x_tunt],
+   ]);
+
+    var options = {
+        title: 'Palveluiden työpaikat aloittain',
+        hAxis: {
+            gridlines: { color: 'white', count: -1},
+            textStyle: { color: '#dbdbdb'},
+        },
+        vAxis: {
+            baselineColor: '#dbdbdb',
+            textStyle: { color: '#dbdbdb'},
+        },
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { position: 'none'},
+        bar: {groupWidth: '80%'},
+        colors: ['#38d960'],
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart_palvelutyopaikat'));
 
     chart.draw(data, options);
 }
