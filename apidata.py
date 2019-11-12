@@ -64,19 +64,19 @@ def query_api():
     return json.loads(response.read())
 
 def get_api_data():
-    if os.path.isfile('data.json'):
-        with open('data.json') as json_file:
+    if os.path.isfile('data/data.json'):
+        with open('data/data.json') as json_file:
             data = json.load(json_file)
         return data
     else:
         data = query_api()
-        with open('data.json', 'w') as outfile:
+        with open('data/data.json', 'w') as outfile:
             json.dump(data, outfile)
         return data
 
 def get_data():
-    if os.path.isfile('data-sorted.json'):
-        with open('data-sorted.json') as json_file:
+    if os.path.isfile('data/data-sorted.json'):
+        with open('data/data-sorted.json') as json_file:
             data = json.load(json_file)
         return data
     else:
@@ -84,7 +84,7 @@ def get_data():
         data = laske_prosentit(data)
         data = lisaa_koulut(data)
         data = lisaa_yritykset(data)
-        with open('data-sorted.json', 'w') as outfile:
+        with open('data/data-sorted.json', 'w') as outfile:
             json.dump(data, outfile)
         return data
 
@@ -246,7 +246,7 @@ def laske_prosentit(data):
     return data
 
 def lisaa_koulut(data):
-    with open('koulut.csv') as csv_file:
+    with open('data/koulut.csv') as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',')
         koulut = []
         for row in csv_reader:
@@ -287,7 +287,7 @@ def lisaa_koulut(data):
     return data
 
 def lisaa_yritykset(data):
-    with open('fullprhdata.csv') as csv_file:
+    with open('data/fullprhdata.csv') as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=';')
         yritykset = []
         for row in csv_reader:

@@ -4,20 +4,24 @@ from branca.element import MacroElement
 from jinja2 import Template
 import geopandas as gpd, folium,json, pandas as pd
 from branca.colormap import linear
+import apidata
+import os
 
 def luodata():
-    jklgeo = gpd.read_file("jklgeo.geojson")
-    data=pd.read_json(('data-sorted.json'))
+    jklgeo = gpd.read_file('data/jklgeo.geojson')
+    apidata.get_data() # varmista, että data-sorted.json on olemassa
+    data = pd.read_json('data/data-sorted.json') # TODO: lataa apidata.get_data() pandas dataframeen
     data['id'] = data['id'].astype(str)
     newdata=jklgeo.merge(data)
-    newdata.to_file("jkldata.geojson", driver="GeoJSON",encoding="utf-8")
-luodata()
+    newdata.to_file('data/jkldata.geojson', driver="GeoJSON",encoding="utf-8")
 
-dataa = gpd.read_file("jkldata.geojson")
-with open('jkldata.geojson', encoding='utf-8') as ff:
+if not os.path.isfile('data/jkldata.geojson'):
+    luodata()
+
+dataa = gpd.read_file('data/jkldata.geojson')
+with open('data/jkldata.geojson', encoding='utf-8') as ff:
     geodata = json.load(ff)
-with open('data.json') as json_file:
-            selite = json.load(json_file)
+selite = apidata.get_selitteet()
 dataa['id'] = dataa['id'].astype(str)
 m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #RANKING KARTTA
 m_2 = folium.Map(location=[62.24147,25.72088], tiles='openstreetmap', zoom_start=10,max_bounds=True) #ETUSIVI KARTTA
@@ -48,16 +52,14 @@ class BindColormap(MacroElement):
 def luomap(ominaisuus):
 
     colormap = linear.YlOrRd_09.scale(dataa[ominaisuus].min(), dataa[ominaisuus].max())
-    colormap.caption = "{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus])
+    colormap.caption = "{}".format(selite[ominaisuus])
     style = {'weight': 1, 'color': 'Black', "opacity": 0.6}
     dic = dataa.set_index('id')[ominaisuus]
     jklmap = folium.GeoJson(geodata,
-                            name="{}".format(selite['dataset']['dimension']['Tiedot']['category']['label'][ominaisuus]),
+                            name="{}".format(selite[ominaisuus]),
                             tooltip=folium.features.GeoJsonTooltip(fields=[ominaisuus, 'nimi', "id"],
-                                                                   aliases=["{}".format(
-                                                                       selite['dataset']['dimension']['Tiedot'][
-                                                                           'category']['label'][ominaisuus]), "Alue",
-                                                                            "Postinumero"]),
+                                                                   aliases=["{}".format(selite[ominaisuus]),
+                                                                   "Alue", "Postinumero"]),
                             style_function=lambda feature: {'fillColor': colormap(dic[feature["properties"]["id"]]),
                                                             'color': 'black',
                                                             'fillOpacity': 0.7,
