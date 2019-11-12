@@ -1,15 +1,16 @@
 :root {
-    --main-bg-colour: #E1F5FE;
-    --main-text-colour: ghostwhite;
-    --container-colour: #0277bd;
-    --border-colour: ghostwhite;
+    --main-bg-colour: lightblue;
+    --main-text-colour: black;
+    --container-colour: white;
+    --border-colour: darkgray;
     --hover-colour: #f1f1f1;
-    --hover-highlight-colour: #29b6f6;
+    --hover-highlight-colour: lightgray;
     --hover-highlight-text-colour: black;
 
 }
 #haku {
     display: flex;
+    max-width: available;
 }
 #suurennuslasi {
     height: 1.5em;
@@ -60,6 +61,7 @@ nav a:hover{
     padding-right: 2em;
     padding-left: 1em;
     border-radius: 1em;
+    max-width: 100%;
 }
 #leftNav {
     margin-right: 0.5em;
@@ -120,7 +122,7 @@ th {
     text-align: left;
 }
  table, th, td {
-    border: 1px solid ghostwhite;
+    border: 1px solid var(--border-colour);
     border-collapse: collapse;
     padding: 0.25em;
  }
