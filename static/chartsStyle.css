@@ -1,11 +1,10 @@
 /*kaavioiden ulkoasu*/
 
-/* piechart:
-        backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'white' },
-        legend: { textStyle: {color: 'white'}}
-
-   columnchart:
+.pieChart{
+        background-color: transparent;
+        color: 'white';
+}
+  /* columnchart:
         hAxis: {
             title: 'Ikä',
             format: 'string',

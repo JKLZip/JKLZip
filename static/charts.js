@@ -96,8 +96,8 @@ function drawSukupuoliChart() {
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
-
-    chart.draw(data, options);
+    //chart.draw(data, options);
+    chart.draw(data, chartsStyle: { title: 'Sukupuolijakauma',backgroundColor: 'pieChart',titleTextStyle: 'pieChart',legend: 'pieChart'});
 }
 
 function drawIkarakenneChart() {
