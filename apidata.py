@@ -129,18 +129,24 @@ def get_index(data, pnro):
 def get_selitteet():
     data = get_api_data()
     selitteet = data['dataset']['dimension']['Tiedot']['category']['label']
+
+    # poista datan tunniste selitteen lopusta
+    for kentta in selitteet:
+        if not (kentta == "Euref_x" or kentta == "Euref_y" or kentta == "Pinta_ala"):
+            selitteet[kentta] = selitteet[kentta][:-5]
+
     selitteet['He_as_tiheys'] = "Asukastiheys, asukasta/km^2"
-    selitteet['He_0_2_pros'] = "0-2-vuotiaat, 2017 (HE) %"
-    selitteet['He_3_6_pros'] = "3-6-vuotiaat, 2017 (HE) %"
-    selitteet['He_7_12_pros'] = "7-12-vuotiaat, 2017 (HE) %"
-    selitteet['He_13_19_pros'] = "13-19-vuotiaat, 2017 (HE) %"
-    selitteet['He_20_29_pros'] = "20-29-vuotiaat, 2017 (HE) %"
-    selitteet['He_30_39_pros'] = "30-39-vuotiaat, 2017 (HE) %"
-    selitteet['He_40_49_pros'] = "40-49-vuotiaat, 2017 (HE) %"
-    selitteet['He_50_59_pros'] = "50-59-vuotiaat, 2017 (HE) %"
-    selitteet['He_60_69_pros'] = "60-69-vuotiaat, 2017 (HE) %"
-    selitteet['He_70_79_pros'] = "70-79-vuotiaat, 2017 (HE) %"
-    selitteet['He_80_pros'] = "80 vuotta täyttäneet, 2017 (HE) %"
+    selitteet['He_0_2_pros'] = "0-2-vuotiaat, 2017 %"
+    selitteet['He_3_6_pros'] = "3-6-vuotiaat, 2017 %"
+    selitteet['He_7_12_pros'] = "7-12-vuotiaat, 2017 %"
+    selitteet['He_13_19_pros'] = "13-19-vuotiaat, 2017 %"
+    selitteet['He_20_29_pros'] = "20-29-vuotiaat, 2017 %"
+    selitteet['He_30_39_pros'] = "30-39-vuotiaat, 2017 %"
+    selitteet['He_40_49_pros'] = "40-49-vuotiaat, 2017 %"
+    selitteet['He_50_59_pros'] = "50-59-vuotiaat, 2017 %"
+    selitteet['He_60_69_pros'] = "60-69-vuotiaat, 2017 %"
+    selitteet['He_70_79_pros'] = "70-79-vuotiaat, 2017 %"
+    selitteet['He_80_pros'] = "80 vuotta täyttäneet, 2017 %"
     selitteet['He_naiset_pros'] = selitteet['He_naiset'] + " %"
     selitteet['He_miehet_pros'] = selitteet['He_miehet'] + " %"
     selitteet['Hr_pi_tul_pros'] = selitteet['Hr_pi_tul'] + " %"
