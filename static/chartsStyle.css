@@ -1,49 +1,43 @@
-.collapsible {
-  text-indent: 10px;
-  background-color: #808b96;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
-  cursor: pointer;
-  padding: 0.3em;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  color: white;
-  font-size: 1em;
+/*kaavioiden ulkoasu*/
 
-}
-.active, .collapsible:hover {
-  background-color: #a4aab3;
-  color: #e6e6e6;
-}
-.collapsible:after {
-  content: "\23F5";
-  float: left;
-}
+/* piechart:
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { textStyle: {color: 'white'}}
 
-.active:after {
-  content: "\23F7";
-}
-.kaaviot {
-  padding: 0 18px;
-  background-color: transparent;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.1s ease-out;
-}
-.piechart{
+   columnchart:
+        hAxis: {
+            title: 'Ikä',
+            format: 'string',
+            titleTextStyle: { color: '#dbdbdb' },
+            gridlines: { color: 'white', count: -1},
+            textStyle: { color: '#dbdbdb'},
+        },
+        vAxis: {
+            title: 'Lukumäärä',
+            titleTextStyle: { color: '#dbdbdb' },
+            baselineColor: '#dbdbdb',
+            textStyle: { color: '#dbdbdb'},
+        },
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { position: 'none'},
+        bar: {groupWidth: '80%'},
+        colors: ['#38d960'],
 
-}
-.barchart{
+   barchart:
+        hAxis: {
+            gridlines: { color: 'white', count: -1},
+            textStyle: { color: '#dbdbdb'},
+        },
+        vAxis: {
+            baselineColor: '#dbdbdb',
+            textStyle: { color: '#dbdbdb'},
+        },
+        backgroundColor: { fill: 'transparent'},
+        titleTextStyle: { color: 'white' },
+        legend: { position: 'none'},
+        bar: {groupWidth: '80%'},
+        colors: ['#38d960'],
 
-}
-.infopanel{
-  float: left;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin: 1em;
-  border: solid;
-  border-color: black;
-  border-width: 2px;
-}
+*/

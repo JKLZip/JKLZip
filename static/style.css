@@ -124,3 +124,54 @@ th {
     border-collapse: collapse;
     padding: 0.25em;
  }
+
+/*kaavioiden listan ulkoasu*/
+.collapsible {
+  text-indent: 10px;
+  background-color: #808b96;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  cursor: pointer;
+  padding: 0.3em;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  color: white;
+  font-size: 1em;
+
+}
+.active, .collapsible:hover {
+  background-color: #a4aab3;
+  color: #e6e6e6;
+}
+.collapsible:after {
+  content: "\23F5";
+  float: left;
+}
+
+.active:after {
+  content: "\23F7";
+}
+.kaaviot {
+  padding: 0 18px;
+  background-color: transparent;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.1s ease-out;
+}
+.piechart{
+
+}
+.barchart{
+
+}
+.infopanel{
+  float: left;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin: 1em;
+  border: solid;
+  border-color: black;
+  border-width: 2px;
+}
