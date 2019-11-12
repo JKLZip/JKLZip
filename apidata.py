@@ -129,7 +129,7 @@ def get_index(data, pnro):
 def get_selitteet():
     data = get_api_data()
     selitteet = data['dataset']['dimension']['Tiedot']['category']['label']
-    selitteet['He_as_tiheys'] = "Asukastiheys, asukas/km^2"
+    selitteet['He_as_tiheys'] = "Asukastiheys, asukasta/km^2"
     selitteet['He_0_2_pros'] = "0-2-vuotiaat, 2017 (HE) %"
     selitteet['He_3_6_pros'] = "3-6-vuotiaat, 2017 (HE) %"
     selitteet['He_7_12_pros'] = "7-12-vuotiaat, 2017 (HE) %"
