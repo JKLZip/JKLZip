@@ -19,7 +19,7 @@
                 <iframe src="/pnmap?pnro={{ data['id'] }}" style="border:none;height:500px;width:800px;float:left;"></iframe>
                 <div class="infopanel">
                     <h4>Alueen pinta-ala, asukkaiden lukumäärä ja asukastiheys</h4>
-                    <p id="pinta_ala">Pinta-ala: {{ data['Pinta_ala'] / 1000000 }} km²</p>
+                    <p id="pinta_ala">Pinta-ala: {{ (data['Pinta_ala'] / 1000000)|round(2) }} km²</p>
                     <p id="as_lkm">Asukkaita yhteensä: {{ data['He_vakiy'] }}</p>
                     <p id="as_tiheys">Asukastiheys: {{ data['He_as_tiheys'] }} asukasta/km²</p>
                 </div>
