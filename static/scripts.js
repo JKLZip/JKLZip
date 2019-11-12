@@ -41,4 +41,4 @@ function setThemeOnload() {
   }else if (theme === "light") {
     applyTheme("light");
   }
-} //todo: refaktoroi
+}

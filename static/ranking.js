@@ -86,8 +86,8 @@ function createHeader(column, text) {
 }
 function createTableRow(name, id, text) {
   let row = document.createElement("tr");
-  row.appendChild(createTableField(name));
-  row.appendChild(createTableField(id));
+  row.appendChild(createLinkField(name, id));
+  row.appendChild(createLinkField(id, id));
   for (let i = 0; i < text.length; i++) {
     row.appendChild(createTableField(text[i]));
   }
@@ -99,6 +99,16 @@ function createTableField(text) {
 }
 
   return row;
+}
+
+function createLinkField(region, id) {
+  let td = document.createElement("td");
+    let nimi = document.createElement("a");
+    nimi.textContent = region;
+    nimi.href = "/alue?pnro=" + id;
+    td.appendChild(nimi);
+    return td;
+
 }
 
 
