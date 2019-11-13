@@ -184,6 +184,11 @@ function setActiveLayer(layer) {
       label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
       console.log(label.childNodes[0]);
       console.log(("layer: " + layer));
+    }else if(label.childNodes[0].childNodes[0].checked == true) {
+
+      label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
     }
+
+
   }
 }
