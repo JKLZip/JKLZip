@@ -136,6 +136,7 @@ function changeField(selection) {
   createTableHeaders();
   console.log(selitteet[selection]);
 
+  setActiveLayer(selitteet[selection]); //TODO: korjaa kun karttaa muutettu
 }
 
 function addField() {
@@ -165,8 +166,24 @@ function getMap() {
   let innerDoc = iframe.contentDocument || iframe.contentWindow.document; //iframen dokumentti
 
   let overlays = innerDoc.getElementsByClassName("leaflet-control-layers-overlays");
-  for (let label in overlays[0].childNodes) {
-    console.log(label);
-    console.log(overlays);
+  for (let label of overlays[0].childNodes) {
+    console.log(label.textContent);
+  }
+}
+
+//Asettaa aktiivisen layerin iframessa olevalle kartalle
+function setActiveLayer(layer) {
+  let iframe = document.getElementById('mapFrame');
+  let innerDoc = iframe.contentDocument || iframe.contentWindow.document; //iframen dokumentti
+
+  let overlays = innerDoc.getElementsByClassName("leaflet-control-layers-overlays");
+  for (let label of overlays[0].childNodes) {
+    console.log("label oli: " + label.textContent);
+    console.log("layer oli : " + layer);
+    if (label.textContent.includes(layer) ) {
+      label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
+      console.log(label.childNodes[0]);
+      console.log(("layer: " + layer));
+    }
   }
 }
