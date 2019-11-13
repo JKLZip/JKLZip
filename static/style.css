@@ -64,6 +64,9 @@ nav a:hover{
 }
 #leftNav {
     margin-right: 0.5em;
+    width: 15em;
+    max-width: 15em;
+    min-width: 15em;
 }
 .leftNav a {
     border-top: 1px;
