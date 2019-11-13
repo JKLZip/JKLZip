@@ -23,6 +23,7 @@ body {
 }
 a {
     color: var(--main-text-colour);
+    text-decoration: none;
 }
 nav {
     color: var(--main-text-colour);
