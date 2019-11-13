@@ -87,17 +87,16 @@ function drawSukupuoliChart() {
         [selitteet.He_miehet, aluedata.He_miehet],
         [selitteet.He_naiset, aluedata.He_naiset],
     ]);
-
+    var c = document.getElementById('chart_sukupuoli');
     var options = {
         title: 'Sukupuolijakauma',
-        backgroundColor: { fill: 'transparent'},
+        backgroundColor: 'transparent',
         titleTextStyle: { color: 'white' },
-        legend: { textStyle: {color: 'white'}}
+        legend: { textStyle: {color: 'white'}},
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
-    //chart.draw(data, options);
-    chart.draw(data, chartsStyle: { title: 'Sukupuolijakauma',backgroundColor: 'pieChart',titleTextStyle: 'pieChart',legend: 'pieChart'});
+    var chart = new google.visualization.PieChart(c);
+    chart.draw(data, options);
 }
 
 function drawIkarakenneChart() {
@@ -148,7 +147,7 @@ function drawIkarakenneChart() {
         titleTextStyle: { color: 'white' },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
-        colors: ['#38d960'],
+        chartArea: { backgroundColor: '#dbdbdb' },
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_ikajakauma'));
@@ -183,6 +182,7 @@ function drawKoulutusChart() {
         [selitteet.Ko_yliop, aluedata.Ko_yliop],
         [selitteet.Ko_al_kork, aluedata.Ko_al_kork],
         [selitteet.Ko_yl_kork, aluedata.Ko_yl_kork],
+        [selitteet.Ko_perus, aluedata.Ko_perus],
     ]);
 
     var options = {
@@ -344,7 +344,7 @@ function drawPalvelutyopaikatChart() {
         titleTextStyle: { color: 'white' },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
-        colors: ['#38d960'],
+        chartArea: { backgroundColor: '#dbdbdb'},
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart_palvelutyopaikat'));

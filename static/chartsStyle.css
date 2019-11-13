@@ -1,8 +1,8 @@
 /*kaavioiden ulkoasu*/
 
 .pieChart{
-        background-color: transparent;
-        color: 'white';
+        background-color: 'green';
+        color: 'blue';
 }
   /* columnchart:
         hAxis: {

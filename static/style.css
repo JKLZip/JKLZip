@@ -127,29 +127,27 @@ th {
 
 /*kaavioiden listan ulkoasu*/
 .collapsible {
-  text-indent: 10px;
-  background-color: #808b96;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
+  text-indent: 2%;
+  font-size: 1em;
+  background-color: var(--container-colour);
+  margin-top: 0.6em;
   cursor: pointer;
   padding: 0.3em;
-  width: 100%;
-  border: none;
+  width: 90%;
   text-align: left;
   outline: none;
-  color: white;
-  font-size: 1em;
-
+  color: var(--main-text-colour);
+  border: 2px solid var(--border-colour);
+  border-radius: 5px;
 }
 .active, .collapsible:hover {
-  background-color: #a4aab3;
-  color: #e6e6e6;
+  background-color: var(--hover-highlight-colour);
+  color: var(--hover-highlight-text-colour);
 }
 .collapsible:after {
   content: "\23F5";
   float: left;
 }
-
 .active:after {
   content: "\23F7";
 }
@@ -161,17 +159,28 @@ th {
   transition: max-height 0.1s ease-out;
 }
 .piechart{
-
+  width: 40em;
+  height: 20em;
+  float: left;
+}
+.columnchart{
+  width: 40em;
+  height: 20em;
+  float: left;
 }
 .barchart{
-
+  width: 60em;
+  height: 50em;
+  float: left;
 }
 .infopanel{
   float: left;
   padding-left: 1em;
   padding-right: 1em;
   margin: 1em;
-  border: solid;
-  border-color: black;
-  border-width: 2px;
+  background-color: var(--container-colour);
+  color: var(--main-text-colour);
+  border: 2px solid var(--border-colour);
+  border-radius: 5px;
 }
+
