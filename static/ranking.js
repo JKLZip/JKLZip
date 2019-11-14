@@ -202,15 +202,14 @@ function setActiveLayer(layer) {
   for (let label of overlays[0].childNodes) {
     console.log("label oli: " + label.textContent);
     console.log("layer oli : " + layer);
-    if (label.textContent.includes(layer) ) {
-      label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
+    if (label.textContent.includes(layer)) {
+      if (label.childNodes[0].childNodes[0].checked == false) {
+        label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
+      }
       console.log(label.childNodes[0]);
       console.log(("layer: " + layer));
-    }else if(label.childNodes[0].childNodes[0].checked == true) {
-
+    } else if (label.childNodes[0].childNodes[0].checked == true) {
       label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
     }
-
-
   }
 }
