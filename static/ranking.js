@@ -6,6 +6,7 @@ let headers = [selitteet[oletus]];
 createRankTable();
 createFieldSelector();
 createTableHeaders();
+sortRanking(2, true, false);
 
 function sortRanking(column, number, ascending) {
     //koodi: https://www.w3schools.com/howto/howto_js_sort_table.asp
@@ -60,7 +61,6 @@ function createRankTable() {
     let row = createTableRow(alue.nimi, alue.id, values);
     table.appendChild(row);
   }
-  sortRanking(2, true, false);
 }
 
 
