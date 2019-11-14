@@ -78,7 +78,7 @@ def luomap(ominaisuus):
 
 def embed_map(m, file_name):
     from IPython.display import IFrame
-    m_1.add_child(folium.map.LayerControl(position="topright", collapsed=True, autoZIndex=True))
+    m_1.add_child(folium.map.LayerControl(position="bottomright", collapsed=True, autoZIndex=True))
     m.save(file_name)
 
     return IFrame(file_name, width='100%', height='500px')
