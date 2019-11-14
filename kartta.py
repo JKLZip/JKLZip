@@ -9,8 +9,11 @@ import os
 
 def luodata():
     jklgeo = gpd.read_file('data/jklgeo.geojson')
-    apidata.get_data() # varmista, että data-sorted.json on olemassa
-    data = pd.read_json('data/data-sorted.json') # TODO: lataa apidata.get_data() pandas dataframeen
+    apid = apidata.get_data()
+    # poista linkit, data ei voi sisältää taulukoita
+    for alue in apid:
+        del alue['linkit']
+    data = pd.read_json(json.dumps(apid))
     data['id'] = data['id'].astype(str)
     newdata=jklgeo.merge(data)
     newdata.to_file('data/jkldata.geojson', driver="GeoJSON",encoding="utf-8")

@@ -84,6 +84,7 @@ def get_data():
         data = laske_prosentit(data)
         data = lisaa_koulut(data)
         data = lisaa_yritykset(data)
+        data = lisaa_linkit(data)
         with open('data/data-sorted.json', 'w') as outfile:
             json.dump(data, outfile)
         return data
@@ -181,6 +182,7 @@ def get_selitteet():
     selitteet['koulut_yk_ryhmat'] = "Yläkoulujen opetusryhmien lukumäärä yhteensä"
     selitteet['koulut_yk_ryhmakoko'] = "Yläkoulujen keskimääräinen ryhmäkoko"
     selitteet['yritykset_lkm'] = "Yritysten lukumäärä"
+
     return selitteet
 
 def laske_prosentit(data):
@@ -320,5 +322,24 @@ def lisaa_yritykset(data):
         for j in range(0, len(yritykset)):
             if (data[i]['id'] == yritykset[j]['postal_post_code'] or data[i]['id'] == yritykset[j]['street_post_code']) and not yritykset[j]['company_form'] == "AOY":
                 data[i]['yritykset_lkm'] += 1
+
+    return data
+
+def lisaa_linkit(data):
+    with open('data/linkit.csv') as csv_file:
+        csv_reader = csv.DictReader(csv_file, delimiter=',')
+        linkit = []
+        for row in csv_reader:
+            linkki = {
+                "postinumero": row['postinumero'],
+                "linkki": row['linkki']
+            }
+            linkit.append(linkki)
+
+    for i in range(0, len(data)):
+        data[i]['linkit'] = []
+        for j in range(0, len(linkit)):
+            if (data[i]['id'] == linkit[j]['postinumero']):
+                data[i]['linkit'].append(linkit[j]['linkki'])
 
     return data
