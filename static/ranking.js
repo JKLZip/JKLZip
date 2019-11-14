@@ -2,6 +2,11 @@
 let oletus = "He_vakiy";
 let fields = [oletus];
 let headers = [selitteet[oletus]];
+let layers = ["He_vakiy", "He_as_tiheys", "He_naiset_pros", "He_miehet_pros", "He_kika", "Hr_ktu", "Hr_pi_tul_pros", "Hr_ke_tul_pros",
+              "Hr_hy_tul_pros", "Pt_opisk_pros", "Pt_tyott_pros", "Pt_tyoll_pros", "Pt_elakel_pros", "Pt_0_14_pros", "Ko_perus_pros",
+              "Ko_yliop_pros", "Ko_ammat_pros", "Ko_al_kork_pros", "Ko_yl_kork_pros", "Ra_pt_as_pros", "Ra_kt_as_pros", "Ra_as_kpa",
+              "Ra_ke", "Te_takk", "Te_omis_as_pros", "Te_vuok_as_pros", "Tp_alku_a_pros", "Tp_jalo_bf_pros", "Tp_palv_gu_pros",
+              "yritykset_lkm"];
 
 createRankTable();
 createFieldSelector();
@@ -126,10 +131,14 @@ function createLinkField(region, id) {
 function createFieldSelector() {
   let container = document.getElementById("fieldSelector");
   for (let selite in selitteet) {
-    let option = document.createElement("option");
-    option.value = selite;
-    option.appendChild(document.createTextNode(selitteet[selite]));
-    container.appendChild(option);
+    for (let layer of layers) {
+      if (selite == layer) {
+        let option = document.createElement("option");
+        option.value = selite;
+        option.appendChild(document.createTextNode(selitteet[selite]));
+        container.appendChild(option);
+      }
+    }
   }
   container.value = oletus;
   container.onchange = function() {

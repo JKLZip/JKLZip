@@ -84,26 +84,14 @@ def embed_map(m, file_name):
     return IFrame(file_name, width='100%', height='500px')
 #LUO RANK MAP, VAIN OSA NYT
 def luo_kartta():
-    #luo kaikista kentistä kartat
-    #for i in dataa.columns[5:75]:
-    #    luomap(i)
-    #for i in dataa.columns[100:107]:
-    #    luomap(i)
-    luomap("Hr_ktu")
-    luomap("He_vakiy")
-    luomap("He_naiset")
-    luomap("He_miehet")
-    luomap("yritykset_lkm")
-    luomap("He_kika")
-    luomap("Pt_tyoll")
-    luomap("Pt_tyott")
-    luomap("Hr_pi_tul")
-    luomap("Hr_ke_tul")
-    luomap("Hr_hy_tul")
-    luomap("Pt_elakel")
-    luomap("Ra_asunn")
-    luomap("Pt_opisk")
-    luomap("He_as_tiheys")
+    layers = ["He_vakiy", "He_as_tiheys", "He_naiset_pros", "He_miehet_pros", "He_kika", "Hr_ktu", "Hr_pi_tul_pros", "Hr_ke_tul_pros",
+              "Hr_hy_tul_pros", "Pt_opisk_pros", "Pt_tyott_pros", "Pt_tyoll_pros", "Pt_elakel_pros", "Pt_0_14_pros", "Ko_perus_pros",
+              "Ko_yliop_pros", "Ko_ammat_pros", "Ko_al_kork_pros", "Ko_yl_kork_pros", "Ra_pt_as_pros", "Ra_kt_as_pros", "Ra_as_kpa",
+              "Ra_ke", "Te_takk", "Te_omis_as_pros", "Te_vuok_as_pros", "Tp_alku_a_pros", "Tp_jalo_bf_pros", "Tp_palv_gu_pros",
+              "yritykset_lkm"]
+
+    for layer in layers:
+        luomap(layer)
 
     embed_map(m_1, 'templates/m_1.html')
 
