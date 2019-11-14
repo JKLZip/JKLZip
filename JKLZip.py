@@ -40,8 +40,11 @@ def jklmap():
 
 @app.route('/aluemap')
 def aluemap():
-    alue = kartta.luo_jokaalue()
-    return alue._repr_html_()
+    if os.path.isfile('templates/m_2.html'):
+        return render_template('m_2.html')
+    else:
+        alue = kartta.luo_jokaalue()
+        return alue._repr_html_()
 
 @app.route('/pnmap')
 def pnmap():

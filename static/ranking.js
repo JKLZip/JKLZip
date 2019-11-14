@@ -1,32 +1,33 @@
 'use strict';
-let fields = ["He_kika","He_vakiy"];
-let headers = [selitteet.He_kika,selitteet.He_vakiy];
+let fields = [];
+let headers = [];
 
 createRankTable();
 createFieldSelector();
-createTableHeaders("Alue", "Postinumero", selitteet.He_kika,selitteet.He_vakiy);
+createTableHeaders();
 
-//TODO: korjaa sorting numeroilla
-function sortRanking(n) {
+function sortRanking(column, number, ascending) {
     //koodi: https://www.w3schools.com/howto/howto_js_sort_table.asp
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("rankingTable");
     switching = true;
-      dir = "asc";
+      dir = (ascending ? "asc" : "desc");
       while (switching) {
         switching = false;
         rows = table.rows;
         for (i = 1; i < (rows.length - 1); i++) {
           shouldSwitch = false;
-          x = rows[i].getElementsByTagName("TD")[n];
-          y = rows[i + 1].getElementsByTagName("TD")[n];
+          x = rows[i].getElementsByTagName("td")[column];
+          y = rows[i + 1].getElementsByTagName("td")[column];
           if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            if ((number ? parseFloat(x.innerText) : x.innerText.toLowerCase())
+                > (number ? parseFloat(y.innerText) : y.innerText.toLowerCase())) {
               shouldSwitch = true;
               break;
             }
           } else if (dir == "desc") {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            if ((number ? parseFloat(x.innerText) : x.innerText.toLowerCase())
+                < (number ? parseFloat(y.innerText) : y.innerText.toLowerCase())) {
               shouldSwitch = true;
               break;
             }
@@ -37,8 +38,8 @@ function sortRanking(n) {
           switching = true;
           switchcount ++;
         } else {
-          if (switchcount == 0 && dir == "asc") {
-            dir = "desc";
+          if (switchcount == 0 && dir == (ascending ? "asc" : "desc")) {
+            dir = (ascending ? "desc" : "asc");
             switching = true;
           }
         }
@@ -79,7 +80,15 @@ function createTableHeaders(){
 function createHeader(column, text) {
   let th = document.createElement("th");
   th.onclick = function (){
-      sortRanking(column);
+    if (column == 0) {
+      sortRanking(column, false, true);
+    }
+    if (column == 1) {
+      sortRanking(column, true, true);
+    }
+    if (column == 2) {
+      sortRanking(column, true, false);
+    }
   };
   th.appendChild(document.createTextNode(text));
   return th;
@@ -123,6 +132,7 @@ function createFieldSelector() {
   container.onchange = function() {
     clearTable(false);
     changeField(container.value);
+    sortRanking(2, true, false);
   };
 
 }

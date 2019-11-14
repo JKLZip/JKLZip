@@ -131,6 +131,7 @@ def luo_yksalue(pk):
 def luo_jokaalue():
     for i in range(len(geodata["features"])):
         luo_pntyyli(i)
+    m_2.save('templates/m_2.html')
     return m_2
 
 
