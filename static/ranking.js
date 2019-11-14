@@ -185,6 +185,8 @@ function clearTable(keepHeaders) {
 function getMap() {
   let iframe = document.getElementById('mapFrame');
   let innerDoc = iframe.contentDocument || iframe.contentWindow.document; //iframen dokumentti
+  let lc=innerDoc.getElementsByClassName('leaflet-control-layers');
+  lc[0].style.visibility = 'hidden';//layer control piiloon
 
   let overlays = innerDoc.getElementsByClassName("leaflet-control-layers-overlays");
   for (let label of overlays[0].childNodes) {
