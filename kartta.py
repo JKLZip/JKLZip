@@ -54,7 +54,7 @@ class BindColormap(MacroElement):
 #RANKING KARTTA
 def luomap(ominaisuus):
 
-    colormap = linear.YlOrRd_09.scale(dataa[ominaisuus].min(), dataa[ominaisuus].max())
+    colormap = linear.YlGnBu_09.scale(dataa[ominaisuus].min(), dataa[ominaisuus].max())
     colormap.caption = "{}".format(selite[ominaisuus])
     style = {'weight': 1, 'color': 'Black', "opacity": 0.6}
     dic = dataa.set_index('id')[ominaisuus]
@@ -65,7 +65,7 @@ def luomap(ominaisuus):
                                                                    "Alue", "Postinumero"]),
                             style_function=lambda feature: {'fillColor': colormap(dic[feature["properties"]["id"]]),
                                                             'color': 'black',
-                                                            'fillOpacity': 0.7,
+                                                            'fillOpacity': 0.6,
                                                             'weight': 0.1},
                             highlight_function=lambda x: style,
                             smooth_factor=2.0,
@@ -74,6 +74,7 @@ def luomap(ominaisuus):
 
     m_1.add_child(colormap)
     m_1.add_child(BindColormap(jklmap, colormap))
+
 
 def embed_map(m, file_name):
     from IPython.display import IFrame
@@ -90,6 +91,20 @@ def luo_kartta():
     #    luomap(i)
     luomap("Hr_ktu")
     luomap("He_vakiy")
+    luomap("He_naiset")
+    luomap("He_miehet")
+    luomap("yritykset_lkm")
+    luomap("He_kika")
+    luomap("Pt_tyoll")
+    luomap("Pt_tyott")
+    luomap("Hr_pi_tul")
+    luomap("Hr_ke_tul")
+    luomap("Hr_hy_tul")
+    luomap("Pt_elakel")
+    luomap("Ra_asunn")
+    luomap("Pt_opisk")
+    luomap("He_as_tiheys")
+
     embed_map(m_1, 'templates/m_1.html')
 
 #ETUSIVUN MAP TYYLIT
