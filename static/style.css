@@ -51,6 +51,36 @@ nav a:hover{
     display: flex;
     flex-direction: row;
 }
+@media screen and (max-width: 600px) {
+  .flexContainer {
+      display: flex;
+    flex-direction: column;
+      max-width: 100%;
+      width: 100%;
+      min-width: 100%;
+      padding-right: 0.5em;
+  }
+    .flexUnit {
+        width: 100%;
+        max-width: 100%;
+    }
+    #leftNav {
+        max-width: 100%;
+        width: 100%;
+    }
+    nav a {
+        margin: 0.1em;
+    }
+    select {
+        max-width: 100%;
+    }
+    #content {
+        padding-right: 0.5rem;
+    }
+    button {
+        margin: 0.5em;
+    }
+}
 .flexUnit {
     background-color: var(--container-colour);
     border-radius: 1em;
