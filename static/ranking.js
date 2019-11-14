@@ -1,6 +1,7 @@
 'use strict';
-let fields = [];
-let headers = [];
+let oletus = "He_vakiy";
+let fields = [oletus];
+let headers = [selitteet[oletus]];
 
 createRankTable();
 createFieldSelector();
@@ -59,6 +60,7 @@ function createRankTable() {
     let row = createTableRow(alue.nimi, alue.id, values);
     table.appendChild(row);
   }
+  sortRanking(2, true, false);
 }
 
 
@@ -129,12 +131,12 @@ function createFieldSelector() {
     option.appendChild(document.createTextNode(selitteet[selite]));
     container.appendChild(option);
   }
+  container.value = oletus;
   container.onchange = function() {
     clearTable(false);
     changeField(container.value);
     sortRanking(2, true, false);
   };
-
 }
 
 //Kutsutaan kun dropdown valikon arvo muuttuu
@@ -179,6 +181,7 @@ function getMap() {
   for (let label of overlays[0].childNodes) {
     console.log(label.textContent);
   }
+  setActiveLayer(selitteet[oletus]);
 }
 
 //Asettaa aktiivisen layerin iframessa olevalle kartalle
