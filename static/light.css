@@ -6,7 +6,8 @@
     --hover-colour: #f1f1f1;
     --hover-highlight-colour: lightgray;
     --hover-highlight-text-colour: black;
-
+    --nav-colour: #3f51b5;
+    --nav-link-colour: white;
 }
 #haku {
     display: flex;
@@ -28,8 +29,8 @@ a {
 
 }
 nav {
-    color: #3f51b5;
-    background-color: #3f51b5;
+    color: var(--nav-colour);
+    background-color: var(--nav-colour);
     border: 1px solid var(--border-colour);
     border-radius: 0.2em;
     padding: 0.7em;
@@ -40,8 +41,8 @@ nav a {
     padding: 0.4em;
     transition: 0.3s;
     font-size: 1.2em;
-    font-weight:750;
-    color: #ffffff;
+    font-weight:bold;
+    color: var(--nav-link-colour);
 
 }
 nav a:hover{
@@ -75,9 +76,6 @@ nav a:hover{
 
 }
 .leftNav a {
-    border-top: 1px;
-    border-bottom: 1px;
-    border-color: red;
     text-decoration: none;
     margin-bottom: 0.2em;
     padding: 0.5em;
