@@ -28,25 +28,26 @@ a {
 
 }
 nav {
-    color: var(--main-text-colour);
-    background-color: var(--container-colour);
-    border:1px;
-    border-color: var(--border-colour);
-    border-radius: 1em;
-    padding: 1em;
+    color: #3f51b5;
+    background-color: #3f51b5;
+    border: 1px solid var(--border-colour);
+    border-radius: 0.2em;
+    padding: 0.7em;
+    padding-bottom: 0.5em;
 }
 nav a {
     margin: 0.5em;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    padding: 0.5em;
+    padding: 0.4em;
     transition: 0.3s;
     font-size: 1.2em;
+    font-weight:750;
+    color: #ffffff;
+
 }
 nav a:hover{
     color: var(--hover-highlight-text-colour);
     background-color: var(--hover-highlight-colour);
-    border-radius: 5px;
+    border-radius: 0.2em;
     transition: 0.3s;
 }
 .flexContainer {
@@ -55,8 +56,9 @@ nav a:hover{
 }
 .flexUnit {
     background-color: var(--container-colour);
-    border-radius: 1em;
+    border-radius: 0.2em;
     margin-top: 0.5em;
+    border: solid var(--border-colour) 1px;
 }
 #postiNumeroLinkit {
     background-color: var(--container-colour);
@@ -118,11 +120,12 @@ h1 {
 }
 footer {
     background-color: var(--container-colour);
-    border-radius: 1em;
+    border-radius: 0.2em;
     margin-top: 0.5em;
     padding: 0.5em;
     padding-bottom: 0.3em;
     text-align: center;
+    border: solid 1px var(--border-colour);
 }
 th {
     text-align: left;
