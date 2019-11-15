@@ -14,8 +14,8 @@
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
 
-            <button type="button" class="collapsible">Perustiedot</button>
-            <div class="kaaviot">
+            <button type="button" class="collapsible active">Perustiedot</button>
+            <div class="kaaviot" id="first_collapsible">
                 <iframe src="/pnmap?pnro={{ data['id'] }}" style="border:none;height:500px;width:800px;float:left;"></iframe>
                 <div class="infopanel">
                     <h4>Alueen pinta-ala, asukkaiden lukumäärä ja asukastiheys</h4>
@@ -27,8 +27,8 @@
 
             <button type="button" class="collapsible">Ikärakenne</button>
             <div class="kaaviot">
-                <div class="piechart" id="chart_sukupuoli" style="width:40em; height:20em; float:left;"></div>
-                <div class="barchart" id="chart_ikajakauma" style="width:40em; height:20em; float:left;"></div>
+                <div class="piechart" id="chart_sukupuoli"></div>
+                <div class="columnchart" id="chart_ikajakauma"></div>
                 <div class="infopanel">
                     <h4>Alueen asukkaiden keski-ikä</h4>
                     <p id="keski_ika">Asukkaiden keski-ikä: </p>
@@ -37,7 +37,7 @@
 
              <button type="button" class="collapsible">Tuloluokat</button>
             <div class="kaaviot">
-                <div id="chart_tuloluokat" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_tuloluokat" class="piechart"></div>
                 <div class="infopanel">
                     <h4>Alueen asukkaiden keskitulot</h4>
                     <p id="as_tulot">Asukkaiden keskitulot: </p>
@@ -46,7 +46,7 @@
 
             <button type="button" class="collapsible">Koulutus</button>
             <div class="kaaviot">
-                <div id="chart_koulutus" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_koulutus" class="piechart"></div>
                 <div class="infopanel">
                     <h4>Alueen koulutettujen asukkaiden määrä</h4>
                     <p id="koulutetut">Koulutetut yhteensä: </p>
@@ -73,13 +73,13 @@
 
             <button type="button" class="collapsible">Väestön jakautuminen</button>
             <div class="kaaviot">
-                <div id="chart_vaesto" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_vaesto" class="piechart"></div>
             </div>
 
             <button type="button" class="collapsible">Asuminen</button>
             <div class="kaaviot">
-                <div id="chart_asuminen" class="piechart" style="width:40em; height:20em; float:left;"></div>
-                <div id="chart_taloudet2" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_asuminen" class="piechart"></div>
+                <div id="chart_taloudet2" class="piechart"></div>
                 <div class="infopanel">
                     <h4>Alueen asuntojen keskipinta-ala</h4>
                     <p id="as_kpinta_ala">Asuntojen keskipinta-ala: </p>
@@ -94,22 +94,24 @@
 
             <button type="button" class="collapsible">Taloudet</button>
             <div class="kaaviot">
-                <div id="chart_taloudet1" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                <div id="chart_taloudet1" class="columnchart"></div>
                 <div class="infopanel">
                     <h4>Alueen taloudet</h4>
-                    <p id="t_lkm">Yhteensä: </p>
-                    <p id="t_keskikoko">Keskikoko: </p>
+                    <p id="t_lkm">Talouksia yhteensä: </p>
+                    <p id="t_keskikoko">Talouksien keskikoko: </p>
                 </div>
             </div>
 
             <button type="button" class="collapsible">Työpaikat</button>
             <div class="kaaviot">
-                <div id="chart_tyollisyys" class="piechart" style="width:40em; height:20em; float:left;"></div>
+                {% if data['Tp_alku_a'] or data['Tp_jalo_bf'] or data['Tp_palv_gu'] > 0 %}
+                <div id="chart_tyollisyys" class="piechart"></div>
+                {% endif %}
                 <div class="infopanel">
                     <h4>Alueen yritykset</h4>
                     <p id="yritykset">Yritysten lukumäärä: {{ data['yritykset_lkm'] }}</p>
                 </div>
-                <div class="barchart" id="chart_palvelutyopaikat" style="width:70em; height:50em; float:left;"></div>
+                <div class="barchart" id="chart_palvelutyopaikat"></div>
             </div>
 
             {% if data['linkit']|length > 0 %}
