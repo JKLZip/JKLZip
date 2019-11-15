@@ -95,7 +95,7 @@ function drawSukupuoliChart() {
         title: 'Sukupuolijakauma',
         backgroundColor: 'transparent',
         titleTextStyle: { color: 'orange' },
-        legend: { textStyle: {color: 'white'}},
+        legend: { textStyle: { color: 'orange'}},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
@@ -170,7 +170,7 @@ function drawTuloluokatChart() {
         title: 'Tuloluokat',
         backgroundColor: { fill: 'transparent'},
         titleTextStyle: { color: 'orange' },
-        legend: { textStyle: {color: 'white'}}
+        legend: { textStyle: { color: 'orange'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tuloluokat'));
@@ -192,7 +192,7 @@ function drawKoulutusChart() {
         title: 'Koulutus',
         backgroundColor: { fill: 'transparent'},
         titleTextStyle: { color: 'orange' },
-        legend: { textStyle: {color: 'white'}}
+        legend: { textStyle: { color: 'orange'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_koulutus'));
@@ -215,7 +215,7 @@ function drawVaestoChart() {
         title: 'Väestön jakautuminen',
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'orange' },
-        legend: { textStyle: {color: 'white'}}
+        legend: { textStyle: { color: 'orange'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_vaesto'));
@@ -234,7 +234,7 @@ function drawAsuminenChart() {
         title: 'Asunnot',
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'orange' },
-        legend: { textStyle: {color: 'white'}}
+        legend: { textStyle: { color: 'orange'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_asuminen'));
@@ -289,7 +289,7 @@ function drawTaloudet2Chart() {
         title: 'Taloudet',
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'orange' },
-        legend: { textStyle: {color: 'white'}},
+        legend: { textStyle: { color: 'orange'}},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_taloudet2'));
@@ -309,7 +309,7 @@ function drawTyollisyysChart() {
         title: 'Työllisyys',
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'orange' },
-        legend: { textStyle: {color: 'white'}}
+        legend: { textStyle: { color: 'orange'}}
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tyollisyys'));
