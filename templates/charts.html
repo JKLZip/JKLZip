@@ -14,8 +14,8 @@
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
 
-            <button type="button" class="collapsible">Perustiedot</button>
-            <div class="kaaviot">
+            <button type="button" class="collapsible active">Perustiedot</button>
+            <div class="kaaviot" id="first_collapsible">
                 <iframe src="/pnmap?pnro={{ data['id'] }}" style="border:none;height:500px;width:800px;float:left;"></iframe>
                 <div class="infopanel">
                     <h4>Alueen pinta-ala, asukkaiden lukumäärä ja asukastiheys</h4>
@@ -94,11 +94,11 @@
 
             <button type="button" class="collapsible">Taloudet</button>
             <div class="kaaviot">
-                <div id="chart_taloudet1" class="piechart"></div>
+                <div id="chart_taloudet1" class="columnchart"></div>
                 <div class="infopanel">
                     <h4>Alueen taloudet</h4>
-                    <p id="t_lkm">Yhteensä: </p>
-                    <p id="t_keskikoko">Keskikoko: </p>
+                    <p id="t_lkm">Talouksia yhteensä: </p>
+                    <p id="t_keskikoko">Talouksien keskikoko: </p>
                 </div>
             </div>
 
