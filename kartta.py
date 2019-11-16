@@ -27,7 +27,7 @@ with open('data/jkldata.geojson', encoding='utf-8') as ff:
 selite = apidata.get_selitteet()
 dataa['id'] = dataa['id'].astype(str)
 m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #RANKING KARTTA
-m_2 = folium.Map(location=[62.24147,25.72088], tiles='openstreetmap', zoom_start=10,max_bounds=True) #ETUSIVI KARTTA
+m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, max_bounds=True) #ETUSIVI KARTTA
 m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, max_bounds=True) #ALUE KARTTA
 
 #VÄRIEN YHDISTYS RANKING KARTTAAN
@@ -125,7 +125,8 @@ def luo_yksalue(pk):
     global m_3
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
-            m_3 = folium.Map(location=geodata["features"][i]["geometry"]["coordinates"][0][3][::-1], tiles='openstreetmap', zoom_start=12, max_bounds=True)
+            lat, lon, zoom = get_coords(geodata["features"][i]["geometry"]["coordinates"][0])
+            m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap', zoom_start=zoom, max_bounds=True)
             luo_ykstyyli(i)
             break
     return m_3
@@ -137,7 +138,33 @@ def luo_jokaalue():
     m_2.save('templates/m_2.html')
     return m_2
 
+def get_coords(area):
+    lat_min = lon_min = float('inf')
+    lat_max = lon_max = float('-inf')
 
+    # etsi alueen äärimmäiset kohdat
+    for coords in area:
+        if coords[1] < lat_min:
+            lat_min = coords[1]
+        if coords[1] > lat_max:
+            lat_max = coords[1]
+        if coords[0] < lon_min:
+            lon_min = coords[0]
+        if coords[0] > lon_max:
+            lon_max = coords[0]
 
+    # alueen keskikohta
+    lat = (lat_min + lat_max) / 2
+    lon = (lon_min + lon_max) / 2
 
+    # kartan zoomaus alueen koon perusteella. TODO: muokkaa arvoja?
+    lat_diff = lat_max - lat_min
+    lon_diff = lon_max - lon_min
+    zoom = 12
+    if lat_diff > 0.075 or lon_diff > 0.2:
+        zoom = 11
+    if lat_diff > 0.15 or lon_diff > 0.4:
+        zoom = 10
+    #print("{0} {1} {2} {3} {4}".format(lat, lon, lat_diff, lon_diff, zoom))
 
+    return lat, lon, zoom
