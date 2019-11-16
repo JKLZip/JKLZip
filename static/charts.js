@@ -129,7 +129,7 @@ function drawIkarakenneChart() {
         [selitteet.He_75_79, aluedata.He_75_79],
         [selitteet.He_80_84, aluedata.He_80_84],
         [selitteet.He_85_, aluedata.He_85_],
-   ]);
+    ]);
 
     var options = {
         title: 'Ikäjakauma',
@@ -161,9 +161,9 @@ function drawIkarakenneChart() {
 function drawTuloluokatChart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
-        [selitteet.Hr_hy_tul, aluedata.Hr_hy_tul],
-        [selitteet.Hr_ke_tul, aluedata.Hr_ke_tul],
         [selitteet.Hr_pi_tul, aluedata.Hr_pi_tul],
+        [selitteet.Hr_ke_tul, aluedata.Hr_ke_tul],
+        [selitteet.Hr_hy_tul, aluedata.Hr_hy_tul],
     ]);
 
     var options = {
@@ -181,11 +181,11 @@ function drawTuloluokatChart() {
 function drawKoulutusChart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
+        [selitteet.Ko_perus, aluedata.Ko_perus],
         [selitteet.Ko_ammat, aluedata.Ko_ammat],
         [selitteet.Ko_yliop, aluedata.Ko_yliop],
         [selitteet.Ko_al_kork, aluedata.Ko_al_kork],
         [selitteet.Ko_yl_kork, aluedata.Ko_yl_kork],
-        [selitteet.Ko_perus, aluedata.Ko_perus],
     ]);
 
     var options = {
