@@ -86,7 +86,7 @@
                 </div>
                 {% if data['Ra_ke'] > 0 %}
                 <div class="infopanel">
-                    <h4>Alueen Kesämökit</h4>
+                    <h4>Alueen kesämökit</h4>
                     <p id="kesamokit">Lukumäärä: {{ data['Ra_ke'] }}</p>
                 </div>
                 {% endif %}
@@ -107,6 +107,10 @@
                 {% if data['Tp_alku_a'] or data['Tp_jalo_bf'] or data['Tp_palv_gu'] > 0 %}
                 <div id="chart_tyollisyys" class="piechart"></div>
                 {% endif %}
+                <div class="infopanel">
+                    <h4>Alueen työpaikat</h4>
+                    <p id="tp_lkm">Työpaikat yhteensä: {{ data['Tp_tyopy'] }}</p>
+                </div>
                 <div class="infopanel">
                     <h4>Alueen yritykset</h4>
                     <p id="yritykset">Yritysten lukumäärä: {{ data['yritykset_lkm'] }}</p>
