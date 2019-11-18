@@ -125,8 +125,9 @@ def luo_yksalue(pk):
     global m_3
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
-            lat, lon, zoom = get_coords(geodata["features"][i]["geometry"]["coordinates"][0])
-            m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap', zoom_start=zoom, max_bounds=True)
+            lat, lon, zoom, lat_min, lat_max, lon_min, lon_max = get_coords(geodata["features"][i]["geometry"]["coordinates"][0])
+            m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap', max_bounds=True)
+            m_3.fit_bounds([[lat_min, lon_min], [lat_max, lon_max]])
             luo_ykstyyli(i)
             break
     return m_3
@@ -167,4 +168,4 @@ def get_coords(area):
         zoom = 10
     #print("{0} {1} {2} {3} {4}".format(lat, lon, lat_diff, lon_diff, zoom))
 
-    return lat, lon, zoom
+    return lat, lon, zoom, lat_min, lat_max, lon_min, lon_max
