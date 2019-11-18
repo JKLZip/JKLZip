@@ -125,7 +125,7 @@ def luo_yksalue(pk):
     global m_3
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
-            lat, lon, zoom, lat_min, lat_max, lon_min, lon_max = get_coords(geodata["features"][i]["geometry"]["coordinates"][0])
+            lat, lon, lat_min, lat_max, lon_min, lon_max = get_coords(geodata["features"][i]["geometry"]["coordinates"][0])
             m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap', max_bounds=True)
             m_3.fit_bounds([[lat_min, lon_min], [lat_max, lon_max]])
             luo_ykstyyli(i)
@@ -158,14 +158,4 @@ def get_coords(area):
     lat = (lat_min + lat_max) / 2
     lon = (lon_min + lon_max) / 2
 
-    # kartan zoomaus alueen koon perusteella. TODO: muokkaa arvoja?
-    lat_diff = lat_max - lat_min
-    lon_diff = lon_max - lon_min
-    zoom = 12
-    if lat_diff > 0.075 or lon_diff > 0.2:
-        zoom = 11
-    if lat_diff > 0.15 or lon_diff > 0.4:
-        zoom = 10
-    #print("{0} {1} {2} {3} {4}".format(lat, lon, lat_diff, lon_diff, zoom))
-
-    return lat, lon, zoom, lat_min, lat_max, lon_min, lon_max
+    return lat, lon, lat_min, lat_max, lon_min, lon_max
