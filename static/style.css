@@ -179,3 +179,39 @@ th {
   border-color: black;
   border-width: 2px;
 }
+@media screen and (max-width: 600px) {
+    /*teema pienille näytöille*/
+  .flexContainer {
+      display: flex;
+    flex-direction: column;
+      max-width: 100%;
+      width: 100%;
+      min-width: 100%;
+      padding-right: 0.5em;
+  }
+    .flexUnit {
+        width: 100%;
+        max-width: 100%;
+        padding-right: 1em;
+        margin-right: 1em;
+    }
+    #leftNav {
+        max-width: 100%;
+        width: 90%;
+        min-width: 90%;
+    }
+    nav a {
+        margin: 0.1em;
+    }
+    select {
+        max-width: 100%;
+    }
+    #content {
+        padding-right: 1em;
+        margin-right: 1em;
+        width: 96%;
+    }
+    button {
+        margin: 0.5em;
+    }
+}
