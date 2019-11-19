@@ -26,9 +26,9 @@ with open('data/jkldata.geojson', encoding='utf-8') as ff:
     geodata = json.load(ff)
 selite = apidata.get_selitteet()
 dataa['id'] = dataa['id'].astype(str)
-m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #RANKING KARTTA
-m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, max_bounds=True) #ETUSIVI KARTTA
-m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, max_bounds=True) #ALUE KARTTA
+m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', min_zoom=8,zoom_start=10,maxBounds=[[63.075861,  23.651368], [61.414596  , 27.769043]]) #RANKING KARTTA
+m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10,maxBounds=[[63.075861,  23.651368], [61.414596  , 27.769043]]) #ETUSIVI KARTTA
+m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #ALUE KARTTA
 
 #VÄRIEN YHDISTYS RANKING KARTTAAN
 class BindColormap(MacroElement):
@@ -65,7 +65,7 @@ def luomap(ominaisuus):
                                                                    "Alue", "Postinumero"]),
                             style_function=lambda feature: {'fillColor': colormap(dic[feature["properties"]["id"]]),
                                                             'color': 'black',
-                                                            'fillOpacity': 0.6,
+                                                            'fillOpacity': 0.7,
                                                             'weight': 0.1},
                             highlight_function=lambda x: style,
                             smooth_factor=2.0,
@@ -126,7 +126,7 @@ def luo_yksalue(pk):
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
             lat, lon, lat_min, lat_max, lon_min, lon_max = get_coords(geodata["features"][i]["geometry"]["coordinates"][0])
-            m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap', max_bounds=True)
+            m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap', maxBounds=([[lat_min, lon_min], [lat_max, lon_max]]))
             m_3.fit_bounds([[lat_min, lon_min], [lat_max, lon_max]])
             luo_ykstyyli(i)
             break
