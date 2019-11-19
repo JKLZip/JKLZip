@@ -1,13 +1,17 @@
 :root {
-    --main-bg-colour: lightblue;
+    --main-bg-colour: #9fa8da;
     --main-text-colour: black;
     --container-colour: white;
     --border-colour: darkgray;
-    --hover-colour: #f1f1f1;
-    --hover-highlight-colour: lightgray;
+    --hover-colour: #757de8;
+    --hover-highlight-colour: #757de8;
     --hover-highlight-text-colour: black;
     --nav-colour: #3f51b5;
     --nav-link-colour: white;
+}
+
+h2 {
+    display: inline;
 }
 #haku {
     display: flex;
@@ -25,7 +29,6 @@ body {
 }
 a {
     color: var(--main-text-colour);
-    text-decoration: none;
 
 }
 nav {
@@ -43,6 +46,7 @@ nav a {
     font-size: 1.2em;
     font-weight:bold;
     color: var(--nav-link-colour);
+    text-decoration: none;
 
 }
 nav a:hover{
@@ -83,6 +87,8 @@ nav a:hover{
     display: block;
     transition: 0.3s;
     font-size: 0.9em;
+    text-decoration: none;
+
 }
 .leftNav a:hover {
     color: var(--hover-highlight-text-colour);
@@ -167,4 +173,42 @@ th {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.1s ease-out;
+}
+
+
+@media screen and (max-width: 600px) {
+    /*teema pienille näytöille*/
+  .flexContainer {
+      display: flex;
+    flex-direction: column;
+      max-width: 100%;
+      width: 100%;
+      min-width: 100%;
+      padding-right: 0.5em;
+  }
+    .flexUnit {
+        width: 100%;
+        max-width: 100%;
+        padding-right: 1em;
+        margin-right: 1em;
+    }
+    #leftNav {
+        max-width: 100%;
+        width: 90%;
+        min-width: 90%;
+    }
+    nav a {
+        margin: 0.1em;
+    }
+    select {
+        max-width: 100%;
+    }
+    #content {
+        padding-right: 1em;
+        margin-right: 1em;
+        width: 96%;
+    }
+    button {
+        margin: 0.5em;
+    }
 }
