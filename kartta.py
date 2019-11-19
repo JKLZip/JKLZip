@@ -105,7 +105,7 @@ def luo_kartta():
 # ETUSIVUN MAP TYYLIT
 def luo_pntyyli(i):
     style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
-    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black', "opacity": 0.6}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black'}
     folium.GeoJson(geodata["features"][i],
                    name=geodata["features"][i]["properties"]["nimi"],
                    highlight_function=lambda x: style,
@@ -117,7 +117,7 @@ def luo_pntyyli(i):
 # ALUE KARTTA TYYLIT
 def luo_ykstyyli(i):
     style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
-    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black', "opacity": 0.6}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black'}
     folium.GeoJson(geodata["features"][i],
                    name=geodata["features"][i]["properties"]["nimi"],
                    highlight_function=lambda x: style,
