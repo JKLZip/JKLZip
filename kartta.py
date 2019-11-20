@@ -31,9 +31,6 @@ with open('data/jkldata.geojson', encoding='utf-8') as ff:
     geodata = json.load(ff)
 selite = apidata.get_selitteet()
 dataa['id'] = dataa['id'].astype(str)
-m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', min_zoom=8,zoom_start=10,maxBounds=[[63.075861,  23.651368], [61.414596  , 27.769043]]) #RANKING KARTTA
-m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10,maxBounds=[[63.075861,  23.651368], [61.414596  , 27.769043]]) #ETUSIVI KARTTA
-m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #ALUE KARTTA
 m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', min_zoom=8, zoom_start=10, maxBounds=[[63.075861, 23.651368], [61.414596, 27.769043]])  # RANKING KARTTA
 m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, maxBounds=[[63.075861, 23.651368], [61.414596, 27.769043]])  # ETUSIVU KARTTA
 m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10)  # ALUE KARTTA
@@ -148,6 +145,7 @@ def luo_jokaalue():
         luo_pntyyli(i)
     m_2.save('templates/m_2.html')
     return m_2
+
 
 def get_coords(area):
     lat_min = lon_min = float('inf')
