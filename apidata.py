@@ -3,6 +3,7 @@ import json
 import os
 import urllib.request
 
+
 def query_api():
     api = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/Postinumeroalueittainen_avoin_tieto/2019/paavo_9_koko_2019.px"
 
@@ -63,6 +64,7 @@ def query_api():
     response = urllib.request.urlopen(req)
     return json.loads(response.read())
 
+
 def get_api_data():
     if os.path.isfile('data/data.json'):
         with open('data/data.json') as json_file:
@@ -73,6 +75,7 @@ def get_api_data():
         with open('data/data.json', 'w') as outfile:
             json.dump(data, outfile)
         return data
+
 
 def get_data():
     if os.path.isfile('data/data-sorted.json'):
@@ -89,6 +92,7 @@ def get_data():
             json.dump(data, outfile)
         return data
 
+
 def sort_data(data):
     alueet = data['dataset']['dimension']['Postinumeroalue']['category']['label']
     tiedot = data['dataset']['dimension']['Tiedot']['category']['index']
@@ -100,24 +104,28 @@ def sort_data(data):
 
     data_sorted = []
     for i in range(0, len(alueet_taulu)):
-        data_alue = {}
-        data_alue['id'] = alueet_taulu[i]
-        data_alue['nimi'] = alueet[alueet_taulu[i]][6:-15]
+        data_alue = {
+            'id': alueet_taulu[i],
+            'nimi': alueet[alueet_taulu[i]][6:-15]
+        }
         for j in range(0, len(tiedot_taulu)):
             data_alue[tiedot_taulu[j]] = alue_arvot[i][j]
         data_sorted.append(data_alue)
 
     return data_sorted
 
+
 def get_alueet():
     data = get_data()
     alueet = []
     for i in range(0, len(data)):
-        alue = {}
-        alue['id'] = data[i]['id']
-        alue['nimi'] = data[i]['nimi']
+        alue = {
+            'id': data[i]['id'],
+            'nimi': data[i]['nimi']
+        }
         alueet.append(alue)
     return alueet
+
 
 def get_index(data, pnro):
     index = 0
@@ -126,6 +134,7 @@ def get_index(data, pnro):
             index = i
             break
     return index
+
 
 def get_selitteet():
     data = get_api_data()
@@ -185,13 +194,14 @@ def get_selitteet():
 
     return selitteet
 
+
 def laske_prosentit(data):
     tarkkuus = 2
     for i in range(0, len(data)):
         # korjaa Moksin tyhjät kentät
         if data[i]['id'] == "41840":
             for kentta in data[i]:
-                if data[i][kentta] == None:
+                if data[i][kentta] is None:
                     data[i][kentta] = 0
 
         # asukastieheys = asukasmäärä / pinta-ala km^2
@@ -253,6 +263,7 @@ def laske_prosentit(data):
 
     return data
 
+
 def lisaa_koulut(data):
     with open('data/koulut.csv') as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -294,6 +305,7 @@ def lisaa_koulut(data):
 
     return data
 
+
 def lisaa_yritykset(data):
     with open('data/fullprhdata.csv') as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=';')
@@ -324,6 +336,7 @@ def lisaa_yritykset(data):
                 data[i]['yritykset_lkm'] += 1
 
     return data
+
 
 def lisaa_linkit(data):
     with open('data/linkit.csv') as csv_file:

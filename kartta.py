@@ -1,11 +1,15 @@
+import os
 
-
+import folium
+import geopandas as gpd
+import json
+import pandas as pd
+from branca.colormap import linear
 from branca.element import MacroElement
 from jinja2 import Template
-import geopandas as gpd, folium,json, pandas as pd
-from branca.colormap import linear
+
 import apidata
-import os
+
 
 def luodata():
     jklgeo = gpd.read_file('data/jklgeo.geojson')
@@ -15,8 +19,9 @@ def luodata():
         del alue['linkit']
     data = pd.read_json(json.dumps(apid))
     data['id'] = data['id'].astype(str)
-    newdata=jklgeo.merge(data)
-    newdata.to_file('data/jkldata.geojson', driver="GeoJSON",encoding="utf-8")
+    newdata = jklgeo.merge(data)
+    newdata.to_file('data/jkldata.geojson', driver="GeoJSON", encoding="utf-8")
+
 
 if not os.path.isfile('data/jkldata.geojson'):
     luodata()
@@ -29,10 +34,13 @@ dataa['id'] = dataa['id'].astype(str)
 m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', min_zoom=8,zoom_start=10,maxBounds=[[63.075861,  23.651368], [61.414596  , 27.769043]]) #RANKING KARTTA
 m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10,maxBounds=[[63.075861,  23.651368], [61.414596  , 27.769043]]) #ETUSIVI KARTTA
 m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10) #ALUE KARTTA
+m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', min_zoom=8, zoom_start=10, maxBounds=[[63.075861, 23.651368], [61.414596, 27.769043]])  # RANKING KARTTA
+m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, maxBounds=[[63.075861, 23.651368], [61.414596, 27.769043]])  # ETUSIVU KARTTA
+m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10)  # ALUE KARTTA
 
-#VÄRIEN YHDISTYS RANKING KARTTAAN
+
+# VÄRIEN YHDISTYS RANKING KARTTAAN
 class BindColormap(MacroElement):
-
     def __init__(self, layer, colormap):
         super(BindColormap, self).__init__()
         self.layer = layer
@@ -51,9 +59,9 @@ class BindColormap(MacroElement):
         {% endmacro %}
         """)
 
-#RANKING KARTTA
-def luomap(ominaisuus):
 
+# RANKING KARTTA
+def luomap(ominaisuus):
     colormap = linear.YlGnBu_09.scale(dataa[ominaisuus].min(), dataa[ominaisuus].max())
     colormap.caption = "{}".format(selite[ominaisuus])
     style = {'weight': 1, 'color': 'Black', "opacity": 0.6}
@@ -80,9 +88,10 @@ def embed_map(m, file_name):
     from IPython.display import IFrame
     m_1.add_child(folium.map.LayerControl(position="bottomright", collapsed=True, autoZIndex=True))
     m.save(file_name)
-
     return IFrame(file_name, width='100%', height='500px')
-#LUO RANK MAP, VAIN OSA NYT
+
+
+# LUO RANK MAP, VAIN OSA NYT
 def luo_kartta():
     layers = ["He_vakiy", "He_as_tiheys", "He_naiset_pros", "He_miehet_pros", "He_kika", "Hr_ktu", "Hr_pi_tul_pros", "Hr_ke_tul_pros",
               "Hr_hy_tul_pros", "Pt_opisk_pros", "Pt_tyott_pros", "Pt_tyoll_pros", "Pt_elakel_pros", "Pt_0_14_pros", "Ko_perus_pros",
@@ -95,32 +104,32 @@ def luo_kartta():
 
     embed_map(m_1, 'templates/m_1.html')
 
-#ETUSIVUN MAP TYYLIT
+
+# ETUSIVUN MAP TYYLIT
 def luo_pntyyli(i):
-
     style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
-    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black', "opacity": 0.6}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black'}
     folium.GeoJson(geodata["features"][i],
                    name=geodata["features"][i]["properties"]["nimi"],
                    highlight_function=lambda x: style,
                    style_function=lambda x: style2,
                    tooltip=folium.features.GeoJsonTooltip(fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
-
                    ).add_to(m_2)
-#ALUE KARTTA TYYLIT
-def luo_ykstyyli(i):
 
+
+# ALUE KARTTA TYYLIT
+def luo_ykstyyli(i):
     style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
-    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black', "opacity": 0.6}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black'}
     folium.GeoJson(geodata["features"][i],
                    name=geodata["features"][i]["properties"]["nimi"],
                    highlight_function=lambda x: style,
                    style_function=lambda x: style2,
                    tooltip=folium.features.GeoJsonTooltip(fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
-
                    ).add_to(m_3)
 
-#LUO YHDEN ALUEEN KARTAN
+
+# LUO YHDEN ALUEEN KARTAN
 def luo_yksalue(pk):
     global m_3
     for i in range(len(geodata["features"])):
@@ -132,7 +141,8 @@ def luo_yksalue(pk):
             break
     return m_3
 
-#LUO ETUSIVUN KARTAN=
+
+# LUO ETUSIVUN KARTAN
 def luo_jokaalue():
     for i in range(len(geodata["features"])):
         luo_pntyyli(i)

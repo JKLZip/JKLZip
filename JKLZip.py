@@ -6,10 +6,12 @@ import kartta
 import os
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     alueet = apidata.get_alueet()
     return render_template('index.html', alueet=alueet)
+
 
 @app.route('/alue')
 def alue():
@@ -18,12 +20,14 @@ def alue():
     selitteet = apidata.get_selitteet()
     pnro = request.args.get('pnro', default = '40100', type = str)
     index = apidata.get_index(data, pnro)
-    return render_template('charts.html', alueet = alueet, data = data[index], selitteet = selitteet)
+    return render_template('charts.html', alueet=alueet, data=data[index], selitteet=selitteet)
+
 
 @app.route('/about')
 def about():
     alueet = apidata.get_alueet()
-    return render_template('about.html', alueet = alueet)
+    return render_template('about.html', alueet=alueet)
+
 
 @app.route('/ranking')
 def ranking():
@@ -32,11 +36,13 @@ def ranking():
     alueet = apidata.get_alueet()
     data = apidata.get_data()
     selitteet = apidata.get_selitteet()
-    return render_template('ranking.html', alueet = alueet, data = data, selitteet = selitteet)
+    return render_template('ranking.html', alueet=alueet, data=data, selitteet=selitteet)
+
 
 @app.route('/map')
 def jklmap():
     return render_template('m_1.html')
+
 
 @app.route('/aluemap')
 def aluemap():
@@ -46,8 +52,9 @@ def aluemap():
         alue = kartta.luo_jokaalue()
         return alue._repr_html_()
 
+
 @app.route('/pnmap')
 def pnmap():
-    pnro = request.args.get('pnro', default = '40100', type = str)
+    pnro = request.args.get('pnro', default='40100', type=str)
     yksalue = kartta.luo_yksalue(pnro)
     return yksalue._repr_html_()
