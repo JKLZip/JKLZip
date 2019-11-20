@@ -27,7 +27,7 @@ h2 {
 body {
     background-color: var(--main-bg-colour);
     color: var(--main-text-colour);
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', "Roboto Regular";
 }
 a {
     color: var(--main-text-colour);
@@ -38,8 +38,8 @@ nav {
     background-color: var(--nav-colour);
     border: 1px solid var(--border-colour);
     border-radius: 0.2em;
-    padding: 0.7em;
-    padding-bottom: 0.5em;
+    padding: 0.7rem;
+    padding-bottom: 0.5rem;
 }
 nav a {
     margin: 0.5em;
@@ -280,8 +280,6 @@ th {
     color: var(--nav-link-colour);
     display: block;
     margin-block: 0; !important;
-    margin-left: -1em;
-    margin-right: -2.5em;
     padding: 3%;
     margin-bottom: 1em;
 }
@@ -290,7 +288,8 @@ th {
     background-color: var(--nav-colour);
     color: var(--nav-link-colour);
     margin: 0; !important;
-    padding: 0.2em; !important;
+    padding: 0.3rem; !important;
+    padding-left: 1rem;
     position: relative;
     top: -1rem;
     left: -1rem;
