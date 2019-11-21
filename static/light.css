@@ -172,6 +172,12 @@ th {
   overflow: hidden;
   transition: max-height 0.1s ease-out;
 }
+.asc:after {
+  content: " \23F6";
+}
+.desc:after {
+  content: " \23F7";
+}
 
 
 @media screen and (max-width: 600px) {
