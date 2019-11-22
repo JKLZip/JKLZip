@@ -8,17 +8,16 @@
             var selitteet = {{ selitteet|tojson }};
             var aluedata = {{ data|tojson }};
         </script>
-        <script type="module" src="{{ url_for("static", filename="charts.js") }}"></script>
+        <script type="module" src="{{ url_for('static', filename='charts.js') }}"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="root"></div>
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
-
+            <div>
             <button type="button" class="collapsible active">Perustiedot</button>
             <div class="kaaviot" id="first_collapsible">
-                <iframe src="/pnmap?pnro={{ data['id'] }}" style="border:none;height:500px;width:800px;float:left;"></iframe>
+                <iframe id="kartta" src="/pnmap?pnro={{ data['id'] }}"></iframe>
                 <div class="infopanel">
-                    <h4>Alueen pinta-ala, asukkaiden lukumäärä ja asukastiheys</h4>
                     <p id="pinta_ala">Pinta-ala: {{ (data['Pinta_ala'] / 1000000)|round(2) }} km²</p>
                     <p id="as_lkm">Asukkaita yhteensä: {{ data['He_vakiy'] }}</p>
                     <p id="as_tiheys">Asukastiheys: {{ data['He_as_tiheys'] }} asukasta/km²</p>
@@ -30,8 +29,7 @@
                 <div class="piechart" id="chart_sukupuoli"></div>
                 <div class="columnchart" id="chart_ikajakauma"></div>
                 <div class="infopanel">
-                    <h4>Alueen asukkaiden keski-ikä</h4>
-                    <p id="keski_ika">Asukkaiden keski-ikä: </p>
+                    <p id="keski_ika">Asukkaiden keski-ikä: {{ data['He_kika'] }} vuotta</p>
                 </div>
             </div>
 
@@ -39,8 +37,7 @@
             <div class="kaaviot">
                 <div id="chart_tuloluokat" class="piechart"></div>
                 <div class="infopanel">
-                    <h4>Alueen asukkaiden keskitulot</h4>
-                    <p id="as_tulot">Asukkaiden keskitulot: </p>
+                    <p id="as_tulot">Asukkaiden keskitulot: {{ data['Hr_ktu'] }} €</p>
                 </div>
             </div>
 
@@ -48,8 +45,7 @@
             <div class="kaaviot">
                 <div id="chart_koulutus" class="piechart"></div>
                 <div class="infopanel">
-                    <h4>Alueen koulutettujen asukkaiden määrä</h4>
-                    <p id="koulutetut">Koulutetut yhteensä: </p>
+                    <p id="koulutetut">Koulutetut asukkaat: {{ data['Ko_koul'] }} </p>
                 </div>
                 {% if data['koulut_ak_lkm'] > 0 %}
                 <div class="infopanel">
@@ -81,24 +77,19 @@
                 <div id="chart_asuminen" class="piechart"></div>
                 <div id="chart_taloudet2" class="piechart"></div>
                 <div class="infopanel">
-                    <h4>Alueen asuntojen keskipinta-ala</h4>
-                    <p id="as_kpinta_ala">Asuntojen keskipinta-ala: </p>
+                    <p id="as_kpinta_ala">Asuntojen keskipinta-ala: {{ data['Ra_as_kpa'] }} neliötä </p>
+                    {% if data['Ra_ke'] > 0 %}
+                    <p id="kesamokit">Alueen kesämökit: {{ data['Ra_ke'] }}</p>
+                    {% endif %}
                 </div>
-                {% if data['Ra_ke'] > 0 %}
-                <div class="infopanel">
-                    <h4>Alueen kesämökit</h4>
-                    <p id="kesamokit">Lukumäärä: {{ data['Ra_ke'] }}</p>
-                </div>
-                {% endif %}
             </div>
 
             <button type="button" class="collapsible">Taloudet</button>
             <div class="kaaviot">
                 <div id="chart_taloudet1" class="columnchart"></div>
                 <div class="infopanel">
-                    <h4>Alueen taloudet</h4>
-                    <p id="t_lkm">Talouksia yhteensä: </p>
-                    <p id="t_keskikoko">Talouksien keskikoko: </p>
+                    <p id="t_lkm">Talouksia yhteensä: {{ data['Te_taly'] }} </p>
+                    <p id="t_keskikoko">Talouksien keskikoko: {{ data['Te_takk'] }} asukasta</p>
                 </div>
             </div>
 
@@ -108,14 +99,12 @@
                 <div id="chart_tyollisyys" class="piechart"></div>
                 {% endif %}
                 <div class="infopanel">
-                    <h4>Alueen työpaikat</h4>
                     <p id="tp_lkm">Työpaikat yhteensä: {{ data['Tp_tyopy'] }}</p>
-                </div>
-                <div class="infopanel">
-                    <h4>Alueen yritykset</h4>
                     <p id="yritykset">Yritysten lukumäärä: {{ data['yritykset_lkm'] }}</p>
                 </div>
+                {% if data['Tp_alku_a'] or data['Tp_jalo_bf'] or data['Tp_palv_gu'] > 0 %}
                 <div class="barchart" id="chart_palvelutyopaikat"></div>
+                {% endif %}
             </div>
 
             {% if data['linkit']|length > 0 %}
@@ -128,5 +117,6 @@
                 </ul>
             </div>
             {% endif %}
+            </div>
         </div>
 {% endblock %}

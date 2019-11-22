@@ -14,9 +14,11 @@ google.charts.setOnLoadCallback(drawTaloudet2Chart);
 google.charts.setOnLoadCallback(drawTyollisyysChart);
 google.charts.setOnLoadCallback(drawPalvelutyopaikatChart);
 
+window.onload = function() {
+    firstCollapsible();
+}
 collapse();
-panels();
-firstCollapsible();
+
 
 function firstCollapsible(){
     var el = document.getElementById('first_collapsible');
@@ -39,51 +41,6 @@ function collapse(){
         });
     }
 }
-/*
-function collapse(){
-    var coll = document.getElementsByClassName("collapsible");
-
-    for (var i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-		    for (var j = 0; j < coll.length; j++){
-			    if(coll[j].classList.length == 2) {
-				    var clicked = coll[j];
-					coll[j].classList.remove("active");
-					coll[j].nextElementSibling.style.maxHeight = null;
-				}
-			}
-			if (clicked != this){
-			    this.classList.add("active");
-				var content = this.nextElementSibling;
-				if (content.style.maxHeight){
-				    content.style.maxHeight = null;
-				} else {
-				    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            }
-        });
-    }
-}
-*/
-function panels(){
-    var keski_ika = aluedata.He_kika;
-    document.getElementById("keski_ika").textContent += keski_ika + " vuotta.";
-
-    var as_tulot = aluedata.Hr_ktu;
-    document.getElementById("as_tulot").textContent += as_tulot + " €.";
-
-    var koulutetut = aluedata.Ko_koul;
-    document.getElementById("koulutetut").textContent += koulutetut +".";
-
-    var as_kpinta_ala = aluedata.Ra_as_kpa;
-    document.getElementById("as_kpinta_ala").textContent += as_kpinta_ala + " neliötä.";
-
-    var t_lkm = aluedata.Te_taly;
-    document.getElementById("t_lkm").textContent += t_lkm + ".";
-
-    var t_keskikoko = aluedata.Te_takk;
-    document.getElementById("t_keskikoko").textContent += t_keskikoko + " asukasta.";
-}
 
 function drawSukupuoliChart() {
     var data = google.visualization.arrayToDataTable([
@@ -96,6 +53,7 @@ function drawSukupuoliChart() {
         backgroundColor: 'transparent',
         titleTextStyle: { color: 'orange' },
         legend: { textStyle: { color: 'orange'}},
+        chartArea: { left: '0', top: '10%', bottom: '5%', right: '0%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
@@ -136,21 +94,21 @@ function drawIkarakenneChart() {
         hAxis: {
             title: 'Ikä',
             format: 'string',
-            titleTextStyle: { color: 'orange' },
+            titleTextStyle: { color: 'black' },
             gridlines: { color: 'white', count: -1},
-            textStyle: { color: 'orange'},
+            textStyle: { color: 'black'},
         },
         vAxis: {
             title: 'Lukumäärä',
-            titleTextStyle: { color: 'orange' },
+            titleTextStyle: { color: 'black' },
             baselineColor: '#dbdbdb',
-            textStyle: { color: 'orange'},
+            textStyle: { color: 'black'},
         },
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'orange' },
+        titleTextStyle: { color: 'black' },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
-        chartArea: { backgroundColor: '#dbdbdb' },
+        chartArea: { left: '15%', top: '10%', bottom: '30%', right: '2%', width: '85%', height: '50%', backgroundColor: '#dbdbdb'},
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_ikajakauma'));
@@ -259,17 +217,17 @@ function drawTaloudet1Chart() {
         title: 'Alueen taloudet',
         hAxis: {
             gridlines: { color: 'white', count: -1},
-            textStyle: { color: 'orange'},
+            textStyle: { color: 'black'},
         },
         vAxis: {
             baselineColor: '#dbdbdb',
-            textStyle: { color: 'orange', fontSize: 12},
+            textStyle: { color: 'black', fontSize: 12},
         },
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'orange' },
+        titleTextStyle: { color: 'black' },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
-        chartArea: { backgroundColor: '#dbdbdb'},
+        chartArea: { left: '25%', right: '2%', width: '70%', height: '80%', backgroundColor: '#dbdbdb'},
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart_taloudet1'));
@@ -320,45 +278,45 @@ function drawTyollisyysChart() {
 function drawPalvelutyopaikatChart() {
     var data = google.visualization.arrayToDataTable([
         ['Ala', 'Työpaikkoja'],
-        [selitteet.Tp_a_maat, aluedata.Tp_a_maat],
-        [selitteet.Tp_b_kaiv, aluedata.Tp_b_kaiv],
-        [selitteet.Tp_c_teol, aluedata.Tp_c_teol],
-        [selitteet.Tp_d_ener, aluedata.Tp_d_ener],
-        [selitteet.Tp_e_vesi, aluedata.Tp_e_vesi],
-        [selitteet.Tp_f_rake, aluedata.Tp_f_rake],
-        [selitteet.Tp_g_kaup, aluedata.Tp_g_kaup],
-        [selitteet.Tp_h_kulj, aluedata.Tp_h_kulj],
-        [selitteet.Tp_i_majo, aluedata.Tp_i_majo],
-        [selitteet.Tp_j_info, aluedata.Tp_j_info],
-        [selitteet.Tp_k_raho, aluedata.Tp_k_raho],
-        [selitteet.Tp_l_kiin, aluedata.Tp_l_kiin],
-        [selitteet.Tp_m_erik, aluedata.Tp_m_erik],
-        [selitteet.Tp_n_hall, aluedata.Tp_n_hall],
-        [selitteet.Tp_o_julk, aluedata.Tp_o_julk],
-        [selitteet.Tp_p_koul, aluedata.Tp_p_koul],
-        [selitteet.Tp_q_terv, aluedata.Tp_q_terv],
-        [selitteet.Tp_r_taid, aluedata.Tp_r_taid],
-        [selitteet.Tp_s_muup, aluedata.Tp_s_muup],
-        [selitteet.Tp_t_koti, aluedata.Tp_t_koti],
-        [selitteet.Tp_u_kans, aluedata.Tp_u_kans],
-        [selitteet.Tp_x_tunt, aluedata.Tp_x_tunt],
+        ['Maatalous, metsätalous ja kalatalous', aluedata.Tp_a_maat],
+        ['Kaivostoiminta ja louhinta', aluedata.Tp_b_kaiv],
+        ['Teollisuus', aluedata.Tp_c_teol],
+        ['Sähkö-, kaasu- ja lämpöhuolto, jäähdytysliiketoiminta', aluedata.Tp_d_ener],
+        ['Vesihuolto, viemäri- ja jätevesihuolto ja muu ympäristön puhtaanapito', aluedata.Tp_e_vesi],
+        ['Rakentaminen', aluedata.Tp_f_rake],
+        ['Tukku- ja vähittäiskauppa; moottoriajoneuvojen ja moottoripyörien korjaus', aluedata.Tp_g_kaup],
+        ['Kuljetus ja varastointi', aluedata.Tp_h_kulj],
+        ['Majoitus- ja ravitsemistoiminta', aluedata.Tp_i_majo],
+        ['Informaatio ja viestintä', aluedata.Tp_j_info],
+        ['Rahoitus- ja vakuutustoiminta', aluedata.Tp_k_raho],
+        ['Kiinteistöalan toiminta', aluedata.Tp_l_kiin],
+        ['Ammatillinen, tieteellinen ja tekninen toiminta', aluedata.Tp_m_erik],
+        ['Hallinto- ja tukipalvelutoiminta', aluedata.Tp_n_hall],
+        ['Julkinen hallinto ja maanpuolustus; pakollinen sosiaalivakuutus', aluedata.Tp_o_julk],
+        ['Koulutus', aluedata.Tp_p_koul],
+        ['Terveys- ja sosiaalipalvelut', aluedata.Tp_q_terv],
+        ['Taiteet, viihde ja virkistys', aluedata.Tp_r_taid],
+        ['Muu palvelutoiminta', aluedata.Tp_s_muup],
+        ['Kotitalouksien toiminta työnantajina; kotitalouksien eriyttämätön toiminta tavaroiden ja palveluiden tuottamiseksi omaan käyttöön', aluedata.Tp_t_koti],
+        ['Kansainvälisten organisaatioiden ja toimielinten toiminta', aluedata.Tp_u_kans],
+        ['Toimiala tuntematon', aluedata.Tp_x_tunt],
    ]);
 
     var options = {
-        title: 'Palveluiden työpaikat aloittain',
+        title: 'Työpaikat aloittain, 2016',
         hAxis: {
             gridlines: { color: 'white', count: -1},
-            textStyle: { color: 'orange'},
+            textStyle: { color: 'black'},
         },
         vAxis: {
             baselineColor: '#dbdbdb',
-            textStyle: { color: 'orange'},
+            textStyle: { color: 'black', fontSize: 11},
         },
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'orange' },
+        titleTextStyle: { color: 'black' },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
-        chartArea: { backgroundColor: '#dbdbdb'},
+        chartArea: { left: '25%', right: '2%', width: '70%', height: '80%', backgroundColor: '#dbdbdb'},
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart_palvelutyopaikat'));
