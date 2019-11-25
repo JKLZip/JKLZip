@@ -47,24 +47,23 @@
                 <div class="infopanel">
                     <p id="koulutetut">Koulutetut asukkaat: {{ data['Ko_koul'] }} </p>
                 </div>
-                {% if data['koulut_ak_lkm'] > 0 %}
                 <div class="infopanel">
+                    {% if data['koulut_ak_lkm'] > 0%}
                     <h4>Alueen alakoulut</h4>
                     <p id="koulut_ak_lkm">Lukumäärä: {{ data['koulut_ak_lkm'] }}</p>
                     <p id="koulut_ak_oppilaat">Oppilaat: {{ data['koulut_ak_oppilaat'] }}</p>
                     <p id="koulut_ak_ryhmat">Opetusryhmät: {{ data['koulut_ak_ryhmat'] }}</p>
                     <p id="koulut_ak_lkm">Keskimääräinen ryhmäkoko: {{ data['koulut_ak_ryhmakoko'] }}</p>
-                </div>
-                {% endif %}
-                {% if data['koulut_yk_lkm'] > 0 %}
-                <div class="infopanel">
+                    {% endif %}
+                    {% if data['koulut_yk_lkm'] > 0 %}
+                    <hr/>
                     <h4>Alueen yläkoulut</h4>
                     <p id="koulut_yk_lkm">Lukumäärä: {{ data['koulut_yk_lkm'] }}</p>
                     <p id="koulut_yk_oppilaat">Oppilaat: {{ data['koulut_yk_oppilaat'] }}</p>
                     <p id="koulut_yk_ryhmat">Opetusryhmät: {{ data['koulut_yk_ryhmat'] }}</p>
                     <p id="koulut_yk_lkm">Keskimääräinen ryhmäkoko: {{ data['koulut_yk_ryhmakoko'] }}</p>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
 
             <button type="button" class="collapsible">Väestön jakautuminen</button>
@@ -86,7 +85,7 @@
 
             <button type="button" class="collapsible">Taloudet</button>
             <div class="kaaviot">
-                <div id="chart_taloudet1" class="columnchart"></div>
+                <div id="chart_taloudet1"></div>
                 <div class="infopanel">
                     <p id="t_lkm">Talouksia yhteensä: {{ data['Te_taly'] }} </p>
                     <p id="t_keskikoko">Talouksien keskikoko: {{ data['Te_takk'] }} asukasta</p>

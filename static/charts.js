@@ -51,9 +51,9 @@ function drawSukupuoliChart() {
     var options = {
         title: 'Sukupuolijakauma',
         backgroundColor: 'transparent',
-        titleTextStyle: { color: 'orange' },
-        legend: { textStyle: { color: 'orange'}},
-        chartArea: { left: '0', top: '10%', bottom: '5%', right: '0%', width: '100%', height: '70%'},
+        titleTextStyle: { color: 'black' },
+        legend: { width: 30},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
@@ -67,30 +67,30 @@ function drawIkarakenneChart() {
     data.addColumn('number', 'Määrä');
 
     data.addRows([
-        [selitteet.He_0_2, aluedata.He_0_2],
-        [selitteet.He_3_6, aluedata.He_3_6],
-        [selitteet.He_7_12, aluedata.He_7_12],
-        [selitteet.He_13_15, aluedata.He_13_15],
-        [selitteet.He_16_17, aluedata.He_16_17],
-        [selitteet.He_18_19, aluedata.He_18_19],
-        [selitteet.He_20_24, aluedata.He_20_24],
-        [selitteet.He_25_29, aluedata.He_25_29],
-        [selitteet.He_30_34, aluedata.He_30_34],
-        [selitteet.He_35_39, aluedata.He_35_39],
-        [selitteet.He_40_44, aluedata.He_40_44],
-        [selitteet.He_45_49, aluedata.He_45_49],
-        [selitteet.He_50_54, aluedata.He_50_54],
-        [selitteet.He_55_59, aluedata.He_55_59],
-        [selitteet.He_60_64, aluedata.He_60_64],
-        [selitteet.He_65_69, aluedata.He_65_69],
-        [selitteet.He_70_74, aluedata.He_70_74],
-        [selitteet.He_75_79, aluedata.He_75_79],
-        [selitteet.He_80_84, aluedata.He_80_84],
-        [selitteet.He_85_, aluedata.He_85_],
+        ['0-2-vuotiaat', aluedata.He_0_2],
+        ['3-6-vuotiaat', aluedata.He_3_6],
+        ['7-12-vuotiaat', aluedata.He_7_12],
+        ['13-15-vuotiaat', aluedata.He_13_15],
+        ['16-17-vuotiaat', aluedata.He_16_17],
+        ['18-19-vuotiaat', aluedata.He_18_19],
+        ['20-24-vuotiaat', aluedata.He_20_24],
+        ['25-29-vuotiaat', aluedata.He_25_29],
+        ['30-34-vuotiaat', aluedata.He_30_34],
+        ['35-39-vuotiaat', aluedata.He_35_39],
+        ['40-44-vuotiaat', aluedata.He_40_44],
+        ['45-49-vuotiaat', aluedata.He_45_49],
+        ['50-54-vuotiaat', aluedata.He_50_54],
+        ['55-59-vuotiaat', aluedata.He_55_59],
+        ['60-64-vuotiaat', aluedata.He_60_64],
+        ['65-69-vuotiaat', aluedata.He_65_69],
+        ['70-74-vuotiaat', aluedata.He_70_74],
+        ['75-79-vuotiaat', aluedata.He_75_79],
+        ['80-84-vuotiaat', aluedata.He_80_84],
+        ['85 vuotta täyttäneet', aluedata.He_85_],
     ]);
 
     var options = {
-        title: 'Ikäjakauma',
+        title: 'Ikäjakauma, 2017',
         hAxis: {
             title: 'Ikä',
             format: 'string',
@@ -99,7 +99,7 @@ function drawIkarakenneChart() {
             textStyle: { color: 'black'},
         },
         vAxis: {
-            title: 'Lukumäärä',
+            title: 'Määrä',
             titleTextStyle: { color: 'black' },
             baselineColor: '#dbdbdb',
             textStyle: { color: 'black'},
@@ -127,8 +127,9 @@ function drawTuloluokatChart() {
     var options = {
         title: 'Tuloluokat',
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'orange' },
-        legend: { textStyle: { color: 'orange'}}
+        titleTextStyle: { color: 'black' },
+        legend: { textStyle: { color: 'black'}},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tuloluokat'));
@@ -149,8 +150,9 @@ function drawKoulutusChart() {
     var options = {
         title: 'Koulutus',
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'orange' },
-        legend: { textStyle: { color: 'orange'}}
+        titleTextStyle: { color: 'black' },
+        legend: { textStyle: { color: 'black'}},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_koulutus'));
@@ -172,8 +174,9 @@ function drawVaestoChart() {
     var options = {
         title: 'Väestön jakautuminen',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'orange' },
-        legend: { textStyle: { color: 'orange'}}
+        titleTextStyle: { color: 'black' },
+        legend: { textStyle: { color: 'black'}},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_vaesto'));
@@ -191,8 +194,9 @@ function drawAsuminenChart() {
     var options = {
         title: 'Asunnot',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'orange' },
-        legend: { textStyle: { color: 'orange'}}
+        titleTextStyle: { color: 'black' },
+        legend: { textStyle: { color: 'black'}},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_asuminen'));
@@ -246,8 +250,9 @@ function drawTaloudet2Chart() {
     var options = {
         title: 'Taloudet',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'orange' },
-        legend: { textStyle: { color: 'orange'}},
+        titleTextStyle: { color: 'black' },
+        legend: { textStyle: { color: 'black'}},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_taloudet2'));
@@ -266,8 +271,9 @@ function drawTyollisyysChart() {
     var options = {
         title: 'Työllisyys',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'orange' },
-        legend: { textStyle: { color: 'orange'}}
+        titleTextStyle: { color: 'black' },
+        legend: { textStyle: { color: 'black'}},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tyollisyys'));
