@@ -204,6 +204,7 @@ th {
 #kartta{
   border: none;
   width: 50em;
+  max-width: 98%;
   height: 31.25em;
   float: left;
 }
