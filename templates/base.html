@@ -34,13 +34,15 @@
     <div class="flexContainer">
     <div class="flexUnit" id="leftNav">
         <div id="postiNumeroLinkit" class="leftNav">
-            <h4>Aluekohtaiset tilastot</h4>
-            <!--<div class="hint"> Järjestetty postinumeron mukaan.</div>-->
-            <div id="haku">
-                <img id="suurennuslasi" src="{{ url_for("static", filename="suurennuslasi.svg") }}">
-                <form><input type="text" id="input" placeholder="Hae aluetta"></form>
+            <h4 class="collapsible">Aluekohtaiset tilastot</h4>
+            <div class="kaaviot">
+                <!--<div class="hint"> Järjestetty postinumeron mukaan.</div>-->
+                <div id="haku">
+                    <img id="suurennuslasi" src="{{ url_for("static", filename="suurennuslasi.svg") }}">
+                    <form><input type="text" id="input" placeholder="Hae aluetta"></form>
+                </div>
+                <div id="alueet"></div>
             </div>
-            <div id="alueet"></div>
         </div>
     </div>
             <div id="root"></div>
