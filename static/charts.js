@@ -14,34 +14,6 @@ google.charts.setOnLoadCallback(drawTaloudet2Chart);
 google.charts.setOnLoadCallback(drawTyollisyysChart);
 google.charts.setOnLoadCallback(drawPalvelutyopaikatChart);
 
-window.onload = function() {
-    firstCollapsible();
-}
-collapse();
-
-
-function firstCollapsible(){
-    var el = document.getElementById('first_collapsible');
-    el.style.maxHeight = el.scrollHeight + "px";
-}
-
-function collapse(){
-    var coll = document.getElementsByClassName("collapsible");
-
-    for (var i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            var content = this.nextElementSibling;
-	        if(this.classList.length == 2) {
-			    this.classList.remove("active");
-				content.style.maxHeight = null;
-			} else {
-                this.classList.add("active");
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-}
-
 function drawSukupuoliChart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
