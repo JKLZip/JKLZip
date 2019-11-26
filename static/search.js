@@ -25,6 +25,7 @@ function createSearch() {
         find();
     });
 
+    // estä enterin painaminen
     input.addEventListener("keypress", function (e) {
         if (e.keyCode == 13) {
              e.preventDefault();
@@ -36,7 +37,7 @@ function find() {
     var input = document.getElementById("input");
     var found = [];
     for (let i = 0; i < alueet.length; i++) {
-        if (alueet[i].nimi.toLowerCase().includes(input.value.toLowerCase()) || alueet[i].id.toLowerCase().includes(input.value.toLowerCase())) {
+        if (alueet[i].nimi.toLowerCase().includes(input.value.toLowerCase()) || alueet[i].id.includes(input.value)) {
             found.push(alueet[i]);
         }
     }
