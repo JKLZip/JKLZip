@@ -194,6 +194,12 @@ th {
   border: 2px solid var(--border-colour);
   border-radius: 5px;
 }
+.asc:after {
+  content: " \23F6";
+}
+.desc:after {
+  content: " \23F7";
+}
 
 
 @media screen and (max-width: 600px) {

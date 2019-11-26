@@ -51,8 +51,20 @@ function sortRanking(column, number, ascending) {
           }
         }
       }
+    sortArrow(column, dir);
 }
 
+function sortArrow(column, dir) {
+    var headers = document.getElementsByClassName("sort");
+    for (var i = 0; i < headers.length; i++) {
+        if (headers[i].classList.length == 2) {
+            headers[i].classList.remove("asc");
+            headers[i].classList.remove("desc");
+        }
+    }
+    headers[column].classList.add(dir);
+    //console.log(headers);
+}
 
 
 function createRankTable() {
@@ -97,7 +109,10 @@ function createHeader(column, text) {
       sortRanking(column, true, false);
     }
   };
-  th.appendChild(document.createTextNode(text));
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(text));
+  div.setAttribute("class", "sort");
+  th.appendChild(div);
   return th;
 }
 function createTableRow(name, id, text) {
