@@ -24,6 +24,12 @@ function createSearch() {
     input.addEventListener("input", function (e) {
         find();
     });
+
+    input.addEventListener("keypress", function (e) {
+        if (e.keyCode == 13) {
+             e.preventDefault();
+        }
+    });
 }
 
 function find() {
