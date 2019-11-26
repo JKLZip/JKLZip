@@ -146,7 +146,7 @@ th {
     border-collapse: collapse;
     padding: 0.25em;
  }
-tr:nth-of-type(even) {
+tr:nth-of-type(odd) {
     background-color: var(--main-bg-colour);
 }
 /*kaavioiden listan ulkoasu*/

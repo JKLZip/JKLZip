@@ -8,9 +8,9 @@ let layers = ["He_vakiy", "He_as_tiheys", "He_naiset_pros", "He_miehet_pros", "H
               "Ra_ke", "Te_takk", "Te_omis_as_pros", "Te_vuok_as_pros", "Tp_alku_a_pros", "Tp_jalo_bf_pros", "Tp_palv_gu_pros",
               "yritykset_lkm"];
 
+createTableHeaders();
 createRankTable();
 createFieldSelector();
-createTableHeaders();
 sortRanking(2, true, false);
 
 function sortRanking(column, number, ascending) {
@@ -82,16 +82,23 @@ function createRankTable() {
 
 
 //tekee parametreina annetuista arvoista ranking -taulukkoon header rivin.
-function createTableHeaders(){
+function createTableHeaders() {
+  let table = document.getElementById("rankingTable");
+
+  let headerRow = document.createElement("tr");
+  headerRow.id = "headers";
+
   let nimi = createHeader(0, "Alue");
   let id = createHeader(1, "Postinumero");
-  document.getElementById("headers").appendChild(nimi);
-  document.getElementById("headers").appendChild(id);
+  headerRow.appendChild(nimi);
+  headerRow.appendChild(id);
 
   for (let i = 0; i < headers.length; i++) {
     let header = createHeader(i+2,headers[i]); //i vastaa saraketta
-      document.getElementById("headers").appendChild(header);
+      headerRow.appendChild(header);
   }
+
+  table.appendChild(headerRow);
 }
 
 
@@ -157,7 +164,6 @@ function createFieldSelector() {
   }
   container.value = oletus;
   container.onchange = function() {
-    clearTable(false);
     changeField(container.value);
     sortRanking(2, true, false);
   };
@@ -165,11 +171,12 @@ function createFieldSelector() {
 
 //Kutsutaan kun dropdown valikon arvo muuttuu
 function changeField(selection) {
-  clearTable(true); //säilytetään headerit
+  clearTable();
   fields.push(selection);
-  createRankTable();
   headers.push(selitteet[selection]);
   createTableHeaders();
+  createRankTable();
+
   console.log(selitteet[selection]);
 
   setActiveLayer(selitteet[selection]); //TODO: korjaa kun karttaa muutettu
@@ -181,20 +188,14 @@ function addField() {
   changeField(selector.value);
 }
 
-//keepheaders määrittelee säilytetäänkö headerit, jos true säilytetään, jos false kaikki poistetaan.
-function clearTable(keepHeaders) {
-  if (!keepHeaders) {
-    fields = [];
-    headers = [];
-  }
+function clearTable() {
+  fields = [];
+  headers = [];
 
   let table = document.getElementById("rankingTable");
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
-  let headerRow = document.createElement("tr");
-  headerRow.id = "headers";
-  table.appendChild(headerRow);
 }
 
 function getMap() {
