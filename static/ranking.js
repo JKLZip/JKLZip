@@ -1,15 +1,13 @@
 'use strict';
 let oletus = "He_vakiy";
-let fields = [oletus];
-let headers = [selitteet[oletus]];
 let layers = ["He_vakiy", "He_as_tiheys", "He_naiset_pros", "He_miehet_pros", "He_kika", "Hr_ktu", "Hr_pi_tul_pros", "Hr_ke_tul_pros",
               "Hr_hy_tul_pros", "Pt_opisk_pros", "Pt_tyott_pros", "Pt_tyoll_pros", "Pt_elakel_pros", "Pt_0_14_pros", "Ko_perus_pros",
               "Ko_yliop_pros", "Ko_ammat_pros", "Ko_al_kork_pros", "Ko_yl_kork_pros", "Ra_pt_as_pros", "Ra_kt_as_pros", "Ra_as_kpa",
               "Ra_ke", "Te_takk", "Te_omis_as_pros", "Te_vuok_as_pros", "Tp_alku_a_pros", "Tp_jalo_bf_pros", "Tp_palv_gu_pros",
               "yritykset_lkm"];
 
-createTableHeaders();
-createRankTable();
+createTableHeaders(oletus);
+createRankTable(oletus);
 createFieldSelector();
 sortRanking(2, true, false);
 
@@ -67,22 +65,18 @@ function sortArrow(column, dir) {
 }
 
 
-function createRankTable() {
+function createRankTable(field) {
   let table = document.getElementById("rankingTable");
   //console.log(selitteet);
   for (let alue of data) {
-    let values = [];
-    for (let i = 0; i < fields.length; i++) {
-      values.push(alue[fields[i]]);
-    }
-    let row = createTableRow(alue.nimi, alue.id, values);
+    let row = createTableRow(alue.nimi, alue.id, alue[field]);
     table.appendChild(row);
   }
 }
 
 
 //tekee parametreina annetuista arvoista ranking -taulukkoon header rivin.
-function createTableHeaders() {
+function createTableHeaders(field) {
   let table = document.getElementById("rankingTable");
 
   let headerRow = document.createElement("tr");
@@ -90,13 +84,10 @@ function createTableHeaders() {
 
   let nimi = createHeader(0, "Alue");
   let id = createHeader(1, "Postinumero");
+  let header = createHeader(2, selitteet[field]);
   headerRow.appendChild(nimi);
   headerRow.appendChild(id);
-
-  for (let i = 0; i < headers.length; i++) {
-    let header = createHeader(i+2,headers[i]); //i vastaa saraketta
-      headerRow.appendChild(header);
-  }
+  headerRow.appendChild(header);
 
   table.appendChild(headerRow);
 }
@@ -126,16 +117,7 @@ function createTableRow(name, id, text) {
   let row = document.createElement("tr");
   row.appendChild(createLinkField(name, id));
   row.appendChild(createLinkField(id, id));
-  for (let i = 0; i < text.length; i++) {
-    row.appendChild(createTableField(text[i]));
-  }
-function createTableField(text) {
-    let td = document.createElement("td");
-    let nimi = document.createTextNode(text);
-    td.appendChild(nimi);
-    return td;
-}
-
+  row.appendChild(createTableField(text));
   return row;
 }
 
@@ -146,9 +128,14 @@ function createLinkField(region, id) {
     nimi.href = "/alue?pnro=" + id;
     td.appendChild(nimi);
     return td;
-
 }
 
+function createTableField(text) {
+    let td = document.createElement("td");
+    let nimi = document.createTextNode(text);
+    td.appendChild(nimi);
+    return td;
+}
 
 function createFieldSelector() {
   let container = document.getElementById("fieldSelector");
@@ -172,10 +159,8 @@ function createFieldSelector() {
 //Kutsutaan kun dropdown valikon arvo muuttuu
 function changeField(selection) {
   clearTable();
-  fields.push(selection);
-  headers.push(selitteet[selection]);
-  createTableHeaders();
-  createRankTable();
+  createTableHeaders(selection);
+  createRankTable(selection);
 
   console.log(selitteet[selection]);
 
@@ -189,9 +174,6 @@ function addField() {
 }
 
 function clearTable() {
-  fields = [];
-  headers = [];
-
   let table = document.getElementById("rankingTable");
   while (table.firstChild) {
     table.removeChild(table.firstChild);
