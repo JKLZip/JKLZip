@@ -295,4 +295,11 @@ th {
     left: -1rem;
     margin-right: -1rem;
 }
+#data h2 {
+    padding: 0; !important;
+    background-color: var(--nav-colour);
+    color: var(--nav-link-colour);
+    margin: 0; !important;
+    padding: 0.3rem; !important;
 
+}
