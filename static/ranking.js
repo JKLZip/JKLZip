@@ -202,16 +202,14 @@ function setActiveLayer(layer) {
 
   let overlays = innerDoc.getElementsByClassName("leaflet-control-layers-overlays");
   for (let label of overlays[0].childNodes) {
-    console.log("label oli: " + label.textContent);
-    console.log("layer oli : " + layer);
     if (label.textContent.includes(layer)) {
       if (label.childNodes[0].childNodes[0].checked == false) {
-        label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
+        label.childNodes[0].childNodes[0].click();
       }
       console.log(label.childNodes[0]);
       console.log(("layer: " + layer));
     } else if (label.childNodes[0].childNodes[0].checked == true) {
-      label.childNodes[0].childNodes[0].click(); //todo parempi ratkaisu
+      label.childNodes[0].childNodes[0].click();
     }
   }
 }
