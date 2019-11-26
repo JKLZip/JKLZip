@@ -138,12 +138,17 @@ footer {
 }
 th {
     text-align: left;
+    background-color: var(--nav-colour);
+    color: var(--nav-link-colour);
 }
  table, th, td {
     border: 1px solid var(--border-colour);
     border-collapse: collapse;
     padding: 0.25em;
  }
+tr:nth-of-type(even) {
+    background-color: var(--main-bg-colour);
+}
 /*kaavioiden listan ulkoasu*/
 .collapsible {
   text-indent: 1%;
