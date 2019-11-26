@@ -131,7 +131,7 @@ th {
 
 /*kaavioiden listan ulkoasu*/
 .collapsible {
-  text-indent: 2%;
+  text-indent: 1%;
   font-size: 1em;
   background-color: var(--container-colour);
   margin-top: 0.6em;
@@ -141,8 +141,8 @@ th {
   text-align: left;
   outline: none;
   color: var(--main-text-colour);
-  border: 2px solid var(--border-colour);
-  border-radius: 5px;
+  border: 0.1em solid var(--border-colour);
+  border-radius: 0.2em;
 }
 .active, .collapsible:hover {
   background-color: var(--hover-highlight-colour);
@@ -156,24 +156,29 @@ th {
   content: "\23F7";
 }
 .kaaviot {
-  padding: 0 18px;
+  width: 90%;
   background-color: transparent;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.1s ease-out;
 }
 .piechart{
-  width: 40em;
+  width: 40%;
   height: 20em;
   float: left;
 }
 .columnchart{
-  width: 50em;
+  width: 50%;
+  height: 30em;
+  float: right;
+}
+#chart_taloudet1{
+  width: 50%;
   height: 30em;
   float: left;
 }
 .barchart{
-  width: 60em;
+  width: 100%;
   height: 50em;
   float: left;
 }
@@ -181,14 +186,17 @@ th {
   float: left;
   padding-left: 1em;
   padding-right: 1em;
-  margin: 1em;
-  border: solid;
-  border-color: black;
-  border-width: 2px;
-    background-color: var(--container-colour);
+  background-color: var(--container-colour);
   color: var(--main-text-colour);
-  border: 2px solid var(--border-colour);
-  border-radius: 5px;
+  border: 0.1em solid var(--border-colour);
+  border-radius: 0.2em;
+}
+#kartta{
+  border: none;
+  width: 50em;
+  max-width: 98%;
+  height: 31.25em;
+  float: left;
 }
 
 
@@ -210,7 +218,7 @@ th {
     }
     #leftNav {
         max-width: 100%;
-        width: 90%;
+        width: 96%;
         min-width: 90%;
     }
     nav a {
@@ -226,5 +234,35 @@ th {
     }
     button {
         margin: 0.5em;
+    }
+    #kartta{
+        height: 15em;
+        width: 25em;
+        max-width: 100%;
+    }
+
+    .piechart{
+        width: 25em;
+        height: 15em;
+        max-width: 100%;
+    }
+    .columnchart{
+        width: 25em;
+        height: 20em;
+        float: left;
+        max-width: 100%;
+    }
+    #chart_taloudet1{
+        width: 25em;
+        height: 20em;
+        max-width: 100%;
+    }
+    .barchart{
+        width: 25em;
+        height: 30em;
+        max-width: 100%;
+    }
+    #alueet_menu{
+        width: 95%;
     }
 }
