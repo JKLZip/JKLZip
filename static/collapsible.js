@@ -1,14 +1,28 @@
 'use strict'
 window.onload = function() {
-    if(document.getElementById('first_collapsible')){
-        firstCollapsible();
+
+    if(document.cookie.trim().length != 0){
+        for(var i=0;i<9;i++){
+            var h = haeKeksi("id" + i);
+            console.log("onload " + h);
+            document.getElementById(h).classList.add("active");
+            document.getElementById(h).nextElementSibling.style.maxHeight = document.getElementById(h).nextElementSibling.scrollHeight + "px";;
+        }
+    } else{
+        if(document.getElementById('first_collapsible')){
+            firstCollapsible();
+        }
     }
+
+
 }
 collapse();
 
 function firstCollapsible(){
-    var el = document.getElementById('first_collapsible');
-    el.style.maxHeight = el.scrollHeight + "px";
+        var el = document.getElementById('first_collapsible');
+        el.previousElementSibling.classList.add("active");
+        el.style.maxHeight = el.scrollHeight + "px";
+        asetaKeksi();
 }
 
 function collapse(){
@@ -26,9 +40,11 @@ function collapse(){
 	        if(this.classList.length == 2) {
 			    this.classList.remove("active");
 				content.style.maxHeight = null;
+				asetaKeksi();
 			} else {
                 this.classList.add("active");
                 content.style.maxHeight = content.scrollHeight + "px";
+                asetaKeksi();
             }
         });
     }
@@ -39,4 +55,37 @@ function menu_collapse(s) {
     var e = document.getElementById('alueet_menu');
     e.classList.add("collapsible");
   }
+}
+
+//funktio on haettu https://www.w3schools.com/js/js_cookies.asp
+function haeKeksi(id){
+    var id = id +"=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var dc = decodedCookie.split(';');
+    console.log("dc: "+dc);
+    for(var i = 0; i < dc.length; i++) {
+        var c = dc[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(id) == 0) {
+            return c.substring(id.length, c.length);
+        }
+    }
+    return "";
+}
+
+function asetaKeksi(){
+    var lista = document.getElementsByClassName("collapsible active");
+    console.log(lista);
+    if(lista.length > 0){
+        for(var i=0; i<lista.length;i++){
+            var id = lista[i].id;
+            console.log(id);
+            document.cookie = "id" + i + "="+ id + ";path=/";
+        }
+    } else{
+        document.cookie = "id0=perustiedot; path=/";
+    }
+    console.log(document.cookie);
 }
