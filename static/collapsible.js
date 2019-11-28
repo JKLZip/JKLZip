@@ -1,18 +1,25 @@
 'use strict'
 window.onload = function() {
 
-    if(document.cookie.trim().length != 0){
+    if(sessionStorage.length != 0){
+        for(var i=0;i<sessionStorage.length;i++){
+            var h = getStorage("id" + i);
+            document.getElementById(h).classList.add("active");
+            document.getElementById(h).nextElementSibling.style.maxHeight = document.getElementById(h).nextElementSibling.scrollHeight + "px";
+        }
+
+  /*  if(document.cookie.trim().length != 0){
         for(var i=0;i<9;i++){
             var h = haeKeksi("id" + i);
             console.log("onload " + h);
             document.getElementById(h).classList.add("active");
             document.getElementById(h).nextElementSibling.style.maxHeight = document.getElementById(h).nextElementSibling.scrollHeight + "px";;
         }
-    } else{
+  */} else{
         if(document.getElementById('first_collapsible')){
             firstCollapsible();
         }
-    }
+      }
 
 
 }
@@ -22,7 +29,7 @@ function firstCollapsible(){
         var el = document.getElementById('first_collapsible');
         el.previousElementSibling.classList.add("active");
         el.style.maxHeight = el.scrollHeight + "px";
-        asetaKeksi();
+        //asetaKeksi();
 }
 
 function collapse(){
@@ -40,11 +47,13 @@ function collapse(){
 	        if(this.classList.length == 2) {
 			    this.classList.remove("active");
 				content.style.maxHeight = null;
-				asetaKeksi();
+				deleteStorage();
+				//asetaKeksi();
 			} else {
                 this.classList.add("active");
                 content.style.maxHeight = content.scrollHeight + "px";
-                asetaKeksi();
+                setStorage();
+                //asetaKeksi();
             }
         });
     }
@@ -57,6 +66,24 @@ function menu_collapse(s) {
   }
 }
 
+function setStorage(){
+    var lista = document.getElementsByClassName('collapsible active');
+
+    for(var i=0;i<lista.length;i++){
+
+        sessionStorage.setItem("id" + i, lista[i]);
+    }
+}
+
+function getStorage(cname){
+    sessionStorage.getItem(cname);
+}
+
+function deleteStorage(cname){
+    sessionStorage.removeItem(cname);
+}
+
+/*
 //funktio on haettu https://www.w3schools.com/js/js_cookies.asp
 function haeKeksi(id){
     var id = id +"=";
@@ -89,3 +116,4 @@ function asetaKeksi(){
     }
     console.log(document.cookie);
 }
+*/
