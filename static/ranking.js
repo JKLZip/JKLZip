@@ -157,7 +157,7 @@ function changeField(selection) {
   createTableHeaders();
   console.log(selitteet[selection]);
 
-  setActiveLayer(selitteet[selection]); //TODO: korjaa kun karttaa muutettu
+  setActiveLayer(selitteet[selection]);
 }
 
 function addField() {
