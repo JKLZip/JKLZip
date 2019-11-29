@@ -18,7 +18,7 @@ def alue():
     alueet = apidata.get_alueet()
     data = apidata.get_data()
     selitteet = apidata.get_selitteet()
-    pnro = request.args.get('pnro', default = '40100', type = str)
+    pnro = request.args.get('pnro', default='40100', type=str)
     index = apidata.get_index(data, pnro)
     return render_template('charts.html', alueet=alueet, data=data[index], selitteet=selitteet)
 

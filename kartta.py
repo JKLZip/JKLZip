@@ -31,9 +31,12 @@ with open('data/jkldata.geojson', encoding='utf-8') as ff:
     geodata = json.load(ff)
 selite = apidata.get_selitteet()
 dataa['id'] = dataa['id'].astype(str)
-m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', min_zoom=8, zoom_start=10, maxBounds=[[63.075861, 23.651368], [61.414596, 27.769043]])  # RANKING KARTTA
-m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, maxBounds=[[63.075861, 23.651368], [61.414596, 27.769043]])  # ETUSIVU KARTTA
-m_3 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10)  # ALUE KARTTA
+m_1 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', min_zoom=8, zoom_start=10, maxBounds=[
+                 [63.075861, 23.651368], [61.414596, 27.769043]])  # RANKING KARTTA
+m_2 = folium.Map(location=[62.24147, 25.72088], tiles='openstreetmap', zoom_start=10, maxBounds=[
+                 [63.075861, 23.651368], [61.414596, 27.769043]])  # ETUSIVU KARTTA
+m_3 = folium.Map(location=[62.24147, 25.72088],
+                 tiles='openstreetmap', zoom_start=10)  # ALUE KARTTA
 
 
 # VÄRIEN YHDISTYS RANKING KARTTAAN
@@ -59,7 +62,8 @@ class BindColormap(MacroElement):
 
 # RANKING KARTTA
 def luomap(ominaisuus):
-    colormap = linear.YlGnBu_09.scale(dataa[ominaisuus].min(), dataa[ominaisuus].max())
+    colormap = linear.YlGnBu_09.scale(
+        dataa[ominaisuus].min(), dataa[ominaisuus].max())
     colormap.caption = "{}".format(selite[ominaisuus])
     style = {'weight': 1, 'color': 'Black', "opacity": 0.6}
     dic = dataa.set_index('id')[ominaisuus]
@@ -67,7 +71,7 @@ def luomap(ominaisuus):
                             name="{}".format(selite[ominaisuus]),
                             tooltip=folium.features.GeoJsonTooltip(fields=[ominaisuus, 'nimi', "id"],
                                                                    aliases=["{}".format(selite[ominaisuus]),
-                                                                   "Alue", "Postinumero"]),
+                                                                            "Alue", "Postinumero"]),
                             style_function=lambda feature: {'fillColor': colormap(dic[feature["properties"]["id"]]),
                                                             'color': 'black',
                                                             'fillOpacity': 0.7,
@@ -83,7 +87,8 @@ def luomap(ominaisuus):
 
 def embed_map(m, file_name):
     from IPython.display import IFrame
-    m_1.add_child(folium.map.LayerControl(position="bottomright", collapsed=True, autoZIndex=True))
+    m_1.add_child(folium.map.LayerControl(
+        position="bottomright", collapsed=True, autoZIndex=True))
     m.save(file_name)
     return IFrame(file_name, width='100%', height='500px')
 
@@ -104,25 +109,31 @@ def luo_kartta():
 
 # ETUSIVUN MAP TYYLIT
 def luo_pntyyli(i):
-    style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
-    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black'}
+    style = {'weight': 3, 'color': 'Green',
+             "opacity": 0.6, 'fillColor': '#006400'}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6,
+              'weight': 1, 'color': 'Black'}
     folium.GeoJson(geodata["features"][i],
                    name=geodata["features"][i]["properties"]["nimi"],
                    highlight_function=lambda x: style,
                    style_function=lambda x: style2,
-                   tooltip=folium.features.GeoJsonTooltip(fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
+                   tooltip=folium.features.GeoJsonTooltip(
+                       fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
                    ).add_to(m_2)
 
 
 # ALUE KARTTA TYYLIT
 def luo_ykstyyli(i):
-    style = {'weight': 3, 'color': 'Green', "opacity": 0.6, 'fillColor': '#006400'}
-    style2 = {'fillColor': '#32CD32', "opacity": 0.6, 'weight': 1, 'color': 'Black'}
+    style = {'weight': 3, 'color': 'Green',
+             "opacity": 0.6, 'fillColor': '#006400'}
+    style2 = {'fillColor': '#32CD32', "opacity": 0.6,
+              'weight': 1, 'color': 'Black'}
     folium.GeoJson(geodata["features"][i],
                    name=geodata["features"][i]["properties"]["nimi"],
                    highlight_function=lambda x: style,
                    style_function=lambda x: style2,
-                   tooltip=folium.features.GeoJsonTooltip(fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
+                   tooltip=folium.features.GeoJsonTooltip(
+                       fields=['nimi', "id"], aliases=["Alue", "Postinumero"])
                    ).add_to(m_3)
 
 
@@ -131,8 +142,10 @@ def luo_yksalue(pk):
     global m_3
     for i in range(len(geodata["features"])):
         if geodata["features"][i]["properties"]["id"] == pk:
-            lat, lon, lat_min, lat_max, lon_min, lon_max = get_coords(geodata["features"][i]["geometry"]["coordinates"][0])
-            m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap', maxBounds=([[lat_min, lon_min], [lat_max, lon_max]]))
+            lat, lon, lat_min, lat_max, lon_min, lon_max = get_coords(
+                geodata["features"][i]["geometry"]["coordinates"][0])
+            m_3 = folium.Map(location=[lat, lon], tiles='openstreetmap',
+                             maxBounds=([[lat_min, lon_min], [lat_max, lon_max]]))
             m_3.fit_bounds([[lat_min, lon_min], [lat_max, lon_max]])
             luo_ykstyyli(i)
             break
