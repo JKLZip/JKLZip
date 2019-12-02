@@ -1,15 +1,13 @@
-</span>{% extends "base.html" %}
+{% extends "base.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
 {% block content %}
-    <p class="important">
     <p>
         Sivusto on tarkoitettu Jyväskylän eri postinumeroalueiden tilastojen vertailuun. Valitse vasemmasta valikosta haluamasi alue,
         jolloin pääset tutkimaan kyseisen alueen tilastoja. Alueiden välisiä eroja voit vertailla valitsemalla ylhäältä navigaatiopalkista
         kohdan "Vertailu".
     </p>
     <iframe src="/aluemap" style="border:none;height:500px;width:800px;"></iframe>
-    </p>
 {% endblock %}

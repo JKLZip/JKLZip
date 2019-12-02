@@ -6,7 +6,7 @@
         <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script type="text/javascript">
+        <script>
            var alueet = {{ alueet|tojson }};
         </script>
         <script type="module" src="{{ url_for('static', filename='search.js') }}"></script>
@@ -39,14 +39,13 @@
             <div id="menu_elements">
                 <!--<div class="hint"> Järjestetty postinumeron mukaan.</div>-->
                 <div id="haku">
-                    <img id="suurennuslasi" src="{{ url_for("static", filename="suurennuslasi.svg") }}">
+                    <img id="suurennuslasi" alt="suurennuslasi" src="{{ url_for("static", filename="suurennuslasi.svg") }}">
                     <form><input type="text" id="input" placeholder="Hae aluetta"></form>
                 </div>
                 <div id="alueet"></div>
             </div>
         </div>
     </div>
-            <div id="root"></div>
     <div class="flexUnit" id="content">
         <div id="content"> {% block content %} {% endblock %}</div>
     </div>
@@ -56,5 +55,4 @@
         <p>Projektin <a href="https://github.com/JKLZip/JKLZip">Github -sivu.</a></p>
     </footer>
     </body>
-</div>
 </html>
