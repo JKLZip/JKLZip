@@ -63,8 +63,10 @@ nav a:hover{
 }
 .flexUnit {
     background-color: var(--container-colour);
-    border-radius: 0.2em;
+    border-radius: 0.2em; !important;
     margin-top: 0.5em;
+    border: solid var(--container-colour) 1px;
+
 }
 #postiNumeroLinkit {
     background-color: var(--container-colour);
@@ -82,6 +84,7 @@ nav a:hover{
 }
 #leftNav {
     margin-right: 0.5em;
+    border-radius: 0.2em; !important;
 }
 .leftNav a {
     text-decoration: none;
