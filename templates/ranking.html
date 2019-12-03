@@ -5,10 +5,10 @@
 {% endblock %}
 {% block content %}
     <h1>Alueiden vertailu</h1>
-        <script>
+    <script>
         var data = {{ data|tojson }};
         var selitteet = {{ selitteet|tojson }};
-        </script>
+    </script>
 
     <div id="rankingContainer">
         <div class="selectorContainer">
@@ -17,8 +17,7 @@
         </div>
         <iframe onload="getMap()" id="mapFrame" src="/map" style="border:none;height:500px;width:800px;"></iframe>
         <div class="hint">Järjestä klikkaamalla otsikkoa.</div>
-        <table class="ranking" id="rankingTable">
-        </table>
+        <table class="ranking" id="rankingTable"></table>
         <script src="{{ url_for("static", filename="ranking.js") }}"></script>
     </div>
 {% endblock %}

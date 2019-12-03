@@ -4,10 +4,10 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" id="theme">
         <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script>
-           var alueet = {{ alueet|tojson }};
+            var alueet = {{ alueet|tojson }};
         </script>
         <script type="module" src="{{ url_for('static', filename='search.js') }}"></script>
         <script type="module" src="{{ url_for('static', filename='collapsible.js') }}"></script>
@@ -23,7 +23,7 @@
         <div id="navbarContainer">
             <nav>
                 <h2><a href="/">JKLZip</a></h2>
-                <a href="/ranking" >Vertailu</a>
+                <a href="/ranking">Vertailu</a>
                 <a href="/about">Tietoa</a>
                 <button id="changeThemeButton">Vaihda Teema</button>
                 <script src="{{ url_for("static", filename="scripts.js") }}"></script>
@@ -52,7 +52,7 @@
     </div>
     <footer id="footer">
         © JKLZip 2019
-        <p>Projektin <a href="https://github.com/JKLZip/JKLZip">Github -sivu.</a></p>
+        <p>Projektin <a href="https://github.com/JKLZip/JKLZip">Github -sivu</a>.</p>
     </footer>
     </body>
 </html>

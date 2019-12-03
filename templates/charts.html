@@ -44,7 +44,7 @@
             <div class="kaaviot">
                 <div id="chart_koulutus" class="piechart"></div>
                 <div class="infopanel">
-                    <p id="koulutetut">Koulutetut asukkaat: {{ data['Ko_koul'] }} </p>
+                    <p id="koulutetut">Koulutetut asukkaat: {{ data['Ko_koul'] }}</p>
                 </div>
                 <div class="infopanel">
                     {% if data['koulut_ak_lkm'] > 0%}
@@ -55,7 +55,7 @@
                     <p id="koulut_ak_ryhmakoko">Keskimääräinen ryhmäkoko: {{ data['koulut_ak_ryhmakoko'] }}</p>
                     {% endif %}
                     {% if data['koulut_yk_lkm'] > 0 %}
-                    <hr/>
+                    <hr>
                     <h4>Alueen yläkoulut</h4>
                     <p id="koulut_yk_lkm">Lukumäärä: {{ data['koulut_yk_lkm'] }}</p>
                     <p id="koulut_yk_oppilaat">Oppilaat: {{ data['koulut_yk_oppilaat'] }}</p>
@@ -75,7 +75,7 @@
                 <div id="chart_asuminen" class="piechart"></div>
                 <div id="chart_taloudet2" class="piechart"></div>
                 <div class="infopanel">
-                    <p id="as_kpinta_ala">Asuntojen keskipinta-ala: {{ data['Ra_as_kpa'] }} neliötä </p>
+                    <p id="as_kpinta_ala">Asuntojen keskipinta-ala: {{ data['Ra_as_kpa'] }} neliötä</p>
                     {% if data['Ra_ke'] > 0 %}
                     <p id="kesamokit">Alueen kesämökit: {{ data['Ra_ke'] }}</p>
                     {% endif %}
@@ -86,7 +86,7 @@
             <div class="kaaviot">
                 <div id="chart_taloudet1"></div>
                 <div class="infopanel">
-                    <p id="t_lkm">Talouksia yhteensä: {{ data['Te_taly'] }} </p>
+                    <p id="t_lkm">Talouksia yhteensä: {{ data['Te_taly'] }}</p>
                     <p id="t_keskikoko">Talouksien keskikoko: {{ data['Te_takk'] }} asukasta</p>
                 </div>
             </div>
