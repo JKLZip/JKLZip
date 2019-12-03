@@ -14,7 +14,7 @@
         <div id="data">
             <h2>{{ data['nimi'] }} ({{ data['id'] }})</h2>
             <div>
-            <button type="button" class="collapsible active">Perustiedot</button>
+            <button type="button" id="perustiedot" class="collapsible">Kartta ja perustiedot</button>
             <div class="kaaviot" id="first_collapsible">
                 <iframe id="kartta" src="/pnmap?pnro={{ data['id'] }}"></iframe>
                 <div class="infopanel">
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <button type="button" class="collapsible">Ikärakenne</button>
+            <button type="button" id="ikarakenne" class="collapsible">Ikärakenne</button>
             <div class="kaaviot">
                 <div class="piechart" id="chart_sukupuoli"></div>
                 <div class="columnchart" id="chart_ikajakauma"></div>
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-             <button type="button" class="collapsible">Tuloluokat</button>
+             <button type="button" id="tuloluokat" class="collapsible">Tuloluokat</button>
             <div class="kaaviot">
                 <div id="chart_tuloluokat" class="piechart"></div>
                 <div class="infopanel">
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <button type="button" class="collapsible">Koulutus</button>
+            <button type="button" id="koulutus" class="collapsible">Koulutus</button>
             <div class="kaaviot">
                 <div id="chart_koulutus" class="piechart"></div>
                 <div class="infopanel">
@@ -66,12 +66,12 @@
                 </div>
             </div>
 
-            <button type="button" class="collapsible">Väestön jakautuminen</button>
+            <button type="button" id="vaesto" class="collapsible">Väestön jakautuminen</button>
             <div class="kaaviot">
                 <div id="chart_vaesto" class="piechart"></div>
             </div>
 
-            <button type="button" class="collapsible">Asuminen</button>
+            <button type="button" id="asuminen" class="collapsible">Asuminen</button>
             <div class="kaaviot">
                 <div id="chart_asuminen" class="piechart"></div>
                 <div id="chart_taloudet2" class="piechart"></div>
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <button type="button" class="collapsible">Taloudet</button>
+            <button type="button" id="taloudet" class="collapsible">Taloudet</button>
             <div class="kaaviot">
                 <div id="chart_taloudet1"></div>
                 <div class="infopanel">
@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-            <button type="button" class="collapsible">Työpaikat</button>
+            <button type="button" id="tyopaikat" class="collapsible">Työpaikat</button>
             <div class="kaaviot">
                 {% if data['Tp_alku_a'] or data['Tp_jalo_bf'] or data['Tp_palv_gu'] > 0 %}
                 <div id="chart_tyollisyys" class="piechart"></div>
@@ -107,7 +107,7 @@
             </div>
 
             {% if data['linkit']|length > 0 %}
-            <button type="button" class="collapsible">Lisätietoja</button>
+            <button type="button" id="linkit" class="collapsible">Lisätietoja</button>
             <div class="kaaviot">
                 <ul>
                     {% for linkki in data['linkit'] %}

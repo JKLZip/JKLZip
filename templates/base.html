@@ -10,7 +10,7 @@
            var alueet = {{ alueet|tojson }};
         </script>
         <script type="module" src="{{ url_for('static', filename='search.js') }}"></script>
-
+        <script type="module" src="{{ url_for('static', filename='collapsible.js') }}"></script>
         <title>JKLZip : {% block title %} {% endblock %}</title>
     </head>
 
@@ -35,11 +35,15 @@
     <div class="flexUnit" id="leftNav">
         <h4>Aluekohtaiset tilastot</h4>
         <div id="postiNumeroLinkit" class="leftNav">
-            <div id="haku">
-                <img id="suurennuslasi" src="{{ url_for("static", filename="suurennuslasi.svg") }}">
-                <form><input type="text" id="input" placeholder="Hae aluetta"></form>
+            <h4 id="alueet_menu">Aluekohtaiset tilastot</h4>
+            <div id="menu_elements">
+                <!--<div class="hint"> Järjestetty postinumeron mukaan.</div>-->
+                <div id="haku">
+                    <img id="suurennuslasi" src="{{ url_for("static", filename="suurennuslasi.svg") }}">
+                    <form><input type="text" id="input" placeholder="Hae aluetta"></form>
+                </div>
+                <div id="alueet"></div>
             </div>
-            <div id="alueet"></div>
         </div>
     </div>
             <div id="root"></div>
