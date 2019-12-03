@@ -27,7 +27,7 @@ function collapse(){
 
     if (s.matches) {
         document.getElementById('alueet_menu').classList.add("collapsible");
-        document.getElementById('menu_elements').classList.add("kaaviot");
+        document.getElementById('postiNumeroLinkit').classList.add("kaaviot");
     }
 
     for (var i = 0; i < coll.length; i++) {
