@@ -14,6 +14,23 @@ google.charts.setOnLoadCallback(drawTaloudet2Chart);
 google.charts.setOnLoadCallback(drawTyollisyysChart);
 google.charts.setOnLoadCallback(drawPalvelutyopaikatChart);
 
+// https://plainjs.com/javascript/utilities/set-cookie-get-cookie-and-delete-cookie-5/
+function getCookie(name) {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+}
+
+// toimii kun sivu päivitetään
+function textColor(){
+        var theme = getCookie('theme');
+        if(theme === 'dark'){
+            var color = 'ghostwhite';
+        } else {
+            var color = 'black';
+        }
+        return color;
+}
+
 function drawSukupuoliChart() {
     var data = google.visualization.arrayToDataTable([
         ['Tiedot', 'Määrä'],
@@ -23,12 +40,15 @@ function drawSukupuoliChart() {
     var options = {
         title: 'Sukupuolijakauma',
         backgroundColor: 'transparent',
-        titleTextStyle: { color: 'black' },
-        legend: { textStyle: { color: 'black'}},
+        titleTextStyle: { color: textColor() },
+        legend: { textStyle: { color: textColor()}},
         chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
+
+
+
     chart.draw(data, options);
 }
 
@@ -66,18 +86,18 @@ function drawIkarakenneChart() {
         hAxis: {
             title: 'Ikä',
             format: 'string',
-            titleTextStyle: { color: 'black' },
+            titleTextStyle: { color: textColor() },
             gridlines: { color: 'white', count: -1},
-            textStyle: { color: 'black'},
+            textStyle: { color: textColor()},
         },
         vAxis: {
             title: 'Määrä',
-            titleTextStyle: { color: 'black' },
+            titleTextStyle: { color: textColor() },
             baselineColor: '#dbdbdb',
-            textStyle: { color: 'black'},
+            textStyle: { color: textColor()},
         },
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'black' },
+        titleTextStyle: { color: textColor() },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
         chartArea: { left: '15%', top: '10%', bottom: '30%', right: '2%', width: '85%', height: '50%', backgroundColor: '#dbdbdb'},
@@ -99,8 +119,8 @@ function drawTuloluokatChart() {
     var options = {
         title: 'Tuloluokat',
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'black' },
-        legend: { textStyle: { color: 'black'}},
+        titleTextStyle: { color: textColor() },
+        legend: { textStyle: { color: textColor()}},
         chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
@@ -122,8 +142,8 @@ function drawKoulutusChart() {
     var options = {
         title: 'Koulutus',
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'black' },
-        legend: { textStyle: { color: 'black'}},
+        titleTextStyle: { color: textColor() },
+        legend: { textStyle: { color: textColor()}},
         chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
@@ -146,8 +166,8 @@ function drawVaestoChart() {
     var options = {
         title: 'Väestön jakautuminen',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'black' },
-        legend: { textStyle: { color: 'black'}},
+        titleTextStyle: { color: textColor() },
+        legend: { textStyle: { color: textColor()}},
         chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
@@ -166,8 +186,8 @@ function drawAsuminenChart() {
     var options = {
         title: 'Asuntojen tyyppi',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'black' },
-        legend: { textStyle: { color: 'black'}},
+        titleTextStyle: { color: textColor() },
+        legend: { textStyle: { color: textColor()}},
         chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
@@ -193,14 +213,14 @@ function drawTaloudet1Chart() {
         title: 'Alueen taloudet',
         hAxis: {
             gridlines: { color: 'white', count: -1},
-            textStyle: { color: 'black'},
+            textStyle: { color: textColor()},
         },
         vAxis: {
             baselineColor: '#dbdbdb',
-            textStyle: { color: 'black', fontSize: 12},
+            textStyle: { color: textColor(), fontSize: 12},
         },
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'black' },
+        titleTextStyle: { color: textColor() },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
         chartArea: { left: '25%', right: '2%', width: '70%', height: '80%', backgroundColor: '#dbdbdb'},
@@ -222,8 +242,8 @@ function drawTaloudet2Chart() {
     var options = {
         title: 'Asuntojen omistus',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'black' },
-        legend: { textStyle: { color: 'black'}},
+        titleTextStyle: { color: textColor() },
+        legend: { textStyle: { color: textColor()}},
         chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
@@ -243,8 +263,8 @@ function drawTyollisyysChart() {
     var options = {
         title: 'Työllisyys',
         backgroundColor: { fill: 'transparent' },
-        titleTextStyle: { color: 'black' },
-        legend: { textStyle: { color: 'black'}},
+        titleTextStyle: { color: textColor() },
+        legend: { textStyle: { color: textColor()}},
         chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
@@ -284,14 +304,14 @@ function drawPalvelutyopaikatChart() {
         title: 'Työpaikat aloittain, 2016',
         hAxis: {
             gridlines: { color: 'white', count: -1},
-            textStyle: { color: 'black'},
+            textStyle: { color: textColor()},
         },
         vAxis: {
             baselineColor: '#dbdbdb',
-            textStyle: { color: 'black', fontSize: 11},
+            textStyle: { color: textColor(), fontSize: 11},
         },
         backgroundColor: { fill: 'transparent'},
-        titleTextStyle: { color: 'black' },
+        titleTextStyle: { color: textColor() },
         legend: { position: 'none'},
         bar: {groupWidth: '80%'},
         chartArea: { left: '25%', right: '2%', width: '70%', height: '80%', backgroundColor: '#dbdbdb'},
