@@ -46,16 +46,19 @@
                 <div class="infopanel">
                     <p id="koulutetut">Koulutetut asukkaat: {{ data['Ko_koul'] }}</p>
                 </div>
+                {% if data['koulut_yk_lkm'] or data['koulut_ak_lkm'] > 0 %}
                 <div class="infopanel">
-                    {% if data['koulut_ak_lkm'] > 0%}
+                    {% if data['koulut_ak_lkm'] > 0 %}
                     <h4>Alueen alakoulut</h4>
                     <p id="koulut_ak_lkm">Lukumäärä: {{ data['koulut_ak_lkm'] }}</p>
                     <p id="koulut_ak_oppilaat">Oppilaat: {{ data['koulut_ak_oppilaat'] }}</p>
                     <p id="koulut_ak_ryhmat">Opetusryhmät: {{ data['koulut_ak_ryhmat'] }}</p>
                     <p id="koulut_ak_ryhmakoko">Keskimääräinen ryhmäkoko: {{ data['koulut_ak_ryhmakoko'] }}</p>
                     {% endif %}
-                    {% if data['koulut_yk_lkm'] > 0 %}
+                    {% if data['koulut_yk_lkm'] and data['koulut_ak_lkm'] > 0 %}
                     <hr>
+                    {% endif %}
+                    {% if data['koulut_yk_lkm'] > 0 %}
                     <h4>Alueen yläkoulut</h4>
                     <p id="koulut_yk_lkm">Lukumäärä: {{ data['koulut_yk_lkm'] }}</p>
                     <p id="koulut_yk_oppilaat">Oppilaat: {{ data['koulut_yk_oppilaat'] }}</p>
@@ -63,6 +66,7 @@
                     <p id="koulut_yk_ryhmakoko">Keskimääräinen ryhmäkoko: {{ data['koulut_yk_ryhmakoko'] }}</p>
                     {% endif %}
                 </div>
+                {% endif %}
             </div>
 
             <button type="button" id="vaesto" class="collapsible">Väestön jakautuminen</button>

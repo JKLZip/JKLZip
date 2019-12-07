@@ -24,8 +24,8 @@ function drawSukupuoliChart() {
         title: 'Sukupuolijakauma',
         backgroundColor: 'transparent',
         titleTextStyle: { color: 'black' },
-        legend: { width: 30},
-        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
+        legend: { textStyle: { color: 'black'}},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
@@ -101,7 +101,7 @@ function drawTuloluokatChart() {
         backgroundColor: { fill: 'transparent'},
         titleTextStyle: { color: 'black' },
         legend: { textStyle: { color: 'black'}},
-        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tuloluokat'));
@@ -124,7 +124,7 @@ function drawKoulutusChart() {
         backgroundColor: { fill: 'transparent'},
         titleTextStyle: { color: 'black' },
         legend: { textStyle: { color: 'black'}},
-        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_koulutus'));
@@ -148,7 +148,7 @@ function drawVaestoChart() {
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'black' },
         legend: { textStyle: { color: 'black'}},
-        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_vaesto'));
@@ -164,11 +164,11 @@ function drawAsuminenChart() {
     ]);
 
     var options = {
-        title: 'Asunnot',
+        title: 'Asuntojen tyyppi',
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'black' },
         legend: { textStyle: { color: 'black'}},
-        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_asuminen'));
@@ -220,11 +220,11 @@ function drawTaloudet2Chart() {
     ]);
 
     var options = {
-        title: 'Taloudet',
+        title: 'Asuntojen omistus',
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'black' },
         legend: { textStyle: { color: 'black'}},
-        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_taloudet2'));
@@ -245,7 +245,7 @@ function drawTyollisyysChart() {
         backgroundColor: { fill: 'transparent' },
         titleTextStyle: { color: 'black' },
         legend: { textStyle: { color: 'black'}},
-        chartArea: { left: '1%', top: '10%', bottom: '5%', width: '100%', height: '70%'},
+        chartArea: { left: '1%', top: '10%', bottom: '5%', right: '10%', width: '100%', height: '70%'},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_tyollisyys'));
