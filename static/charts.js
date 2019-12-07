@@ -14,15 +14,28 @@ google.charts.setOnLoadCallback(drawTaloudet2Chart);
 google.charts.setOnLoadCallback(drawTyollisyysChart);
 google.charts.setOnLoadCallback(drawPalvelutyopaikatChart);
 
-// https://plainjs.com/javascript/utilities/set-cookie-get-cookie-and-delete-cookie-5/
-function getCookie(name) {
-    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return v ? v[2] : null;
+//kuunnellaan teeman vaihtoa ja ladataan kaaviot uudestaan
+document.getElementById('changeThemeButton').addEventListener("click", function() {
+    drawSukupuoliChart();
+    drawIkarakenneChart();
+    drawTuloluokatChart();
+    drawKoulutusChart();
+    drawVaestoChart();
+    drawAsuminenChart();
+    drawTaloudet1Chart();
+    drawTaloudet2Chart();
+    drawTyollisyysChart();
+    drawPalvelutyopaikatChart();
+});
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+function getTheme() {
+    var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    return cookieValue;
 }
 
-// toimii kun sivu päivitetään
 function textColor(){
-        var theme = getCookie('theme');
+        var theme = getTheme();
         if(theme === 'dark'){
             var color = 'ghostwhite';
         } else {
@@ -46,8 +59,6 @@ function drawSukupuoliChart() {
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_sukupuoli'));
-
-
 
     chart.draw(data, options);
 }
