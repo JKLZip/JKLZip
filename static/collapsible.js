@@ -3,8 +3,10 @@ window.onload = function() {
     if(sessionStorage.length > 0){
         for(var i=0;i<sessionStorage.length;i++){
             var h = getStorage("id" + i);
-            document.getElementById(h).classList.add("active");
-            document.getElementById(h).nextElementSibling.style.maxHeight = document.getElementById(h).nextElementSibling.scrollHeight + "px";
+            if(document.getElementById(h) !== null){
+                document.getElementById(h).classList.add("active");
+                document.getElementById(h).nextElementSibling.style.maxHeight = document.getElementById(h).nextElementSibling.scrollHeight + "px";
+            }
         }
     } else{
         if(document.getElementById('first_collapsible')){
@@ -12,6 +14,7 @@ window.onload = function() {
         }
     }
 }
+
 collapse();
 
 function firstCollapsible(){
@@ -46,17 +49,12 @@ function collapse(){
     }
 }
 
-function menu_collapse(s) {
-  if (s.matches) {
-    var e = document.getElementById('alueet_menu');
-    e.classList.add("collapsible");
-  }
-}
-
 function setStorage(){
     var lista = document.getElementsByClassName('collapsible active');
     for(var i=0;i<lista.length;i++){
-        sessionStorage.setItem("id" + i, lista[i].id);
+        if(lista[i].id !== 'alueet_menu'){
+            sessionStorage.setItem("id" + i, lista[i].id);
+        }
     }
 }
 
