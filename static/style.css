@@ -150,7 +150,6 @@ th {
 tr:nth-of-type(odd) {
     background-color: var(--main-bg-colour);
 }
-/*kaavioiden listan ulkoasu*/
 .collapsible {
   text-indent: 1%;
   font-size: 1em;
@@ -295,8 +294,8 @@ tr:nth-of-type(odd) {
 
     #kartta{
         height: 15em;
-        width: 25em;
-        max-width: 100%;
+        width: 30em;
+        max-width: 97%;
     }
 
     .piechart{
@@ -332,5 +331,12 @@ tr:nth-of-type(odd) {
     }
     #leftNav h4 {
         margin-bottom: 0;
+    }
+    p {
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+    .kaaviot {
+        width: 94%;
     }
 }

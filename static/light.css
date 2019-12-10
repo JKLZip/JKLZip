@@ -149,7 +149,6 @@ th {
 tr:nth-of-type(odd) {
     background-color: var(--main-bg-colour);
 }
-/*kaavioiden listan ulkoasu*/
 .collapsible {
   text-indent: 1%;
   font-size: 1em;
@@ -247,8 +246,11 @@ tr:nth-of-type(odd) {
     margin-bottom: 1em;
 }
 #mapFrame{
-    max-width:100%; !important;
+    /*max-width:100%; !important;*/
+    max-width: 97%;
+    padding-left: 0.4em;
 }
+
 
 @media screen and (max-width: 600px) {
     /*teema pienille näytöille*/
@@ -294,8 +296,9 @@ tr:nth-of-type(odd) {
 
     #kartta{
         height: 15em;
-        width: 25em;
-        max-width: 100%;
+        width: 30em;
+        max-width: 97%;
+        padding-left: 0.4em;
     }
 
     .piechart{
@@ -330,5 +333,12 @@ tr:nth-of-type(odd) {
     }
     #leftNav h4 {
         margin-bottom: 0;
+    }
+    p {
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+    .kaaviot {
+        width: 94%;
     }
 }
