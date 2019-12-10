@@ -246,9 +246,7 @@ tr:nth-of-type(odd) {
     margin-bottom: 1em;
 }
 #mapFrame{
-    /*max-width:100%; !important;*/
-    max-width: 97%;
-    padding-left: 0.4em;
+    max-width:100%; !important;
 }
 
 
@@ -298,7 +296,7 @@ tr:nth-of-type(odd) {
         height: 15em;
         width: 30em;
         max-width: 97%;
-        padding-left: 0.4em;
+        padding-left: 0.3em;
     }
 
     .piechart{
@@ -341,4 +339,8 @@ tr:nth-of-type(odd) {
     .kaaviot {
         width: 94%;
     }
+    #mapFrame{
+    max-width: 97%;
+    padding-left: 0.3em;
+}
 }
