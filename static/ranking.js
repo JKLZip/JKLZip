@@ -185,6 +185,15 @@ function getMap() {
   let innerDoc = iframe.contentDocument || iframe.contentWindow.document; //iframen dokumentti
   let lc=innerDoc.getElementsByClassName('leaflet-control-layers');
   lc[0].style.visibility = 'hidden';//layer control piiloon
+  let mapp=innerDoc.getElementById('mapFrame');
+
+  var s = window.matchMedia("(max-width: 7  00px)");
+  let lc2=innerDoc.getElementsByClassName('legend leaflet-control');
+   if (s.matches) {
+     lc2[0].style.width = '70%';
+     lc2[0].style.transform = 'scale(0.6,0.9)';
+    }
+
 
   let overlays = innerDoc.getElementsByClassName("leaflet-control-layers-overlays");
   for (let label of overlays[0].childNodes) {

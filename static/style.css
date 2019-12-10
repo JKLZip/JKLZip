@@ -319,3 +319,7 @@ tr:nth-of-type(odd) {
     left: -1rem;
     margin-right: -1rem;
 }
+#mapFrame{
+
+    max-width:100%; !important;
+}
