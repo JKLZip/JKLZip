@@ -29,7 +29,9 @@ function collapse(){
     var coll = document.getElementsByClassName("collapsible");
 
     if (s.matches) {
-        document.getElementById('alueet_menu').classList.add("collapsible");
+        var e = document.getElementById('alueet_menu');
+        e.style.width = '93.3%';
+        e.classList.add("collapsible");
         document.getElementById('postiNumeroLinkit').classList.add("kaaviot");
     }
 
