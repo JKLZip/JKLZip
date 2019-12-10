@@ -90,7 +90,7 @@ def embed_map(m, file_name):
     m_1.add_child(folium.map.LayerControl(
         position="bottomright", collapsed=True, autoZIndex=True))
     m.save(file_name)
-    return IFrame(file_name, width='100%', height='500px')
+    return IFrame(file_name, width='100%', height='100%')
 
 
 # LUO RANK MAP, VAIN OSA NYT
