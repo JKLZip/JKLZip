@@ -187,7 +187,7 @@ function getMap() {
   lc[0].style.visibility = 'hidden';//layer control piiloon
   let mapp=innerDoc.getElementById('mapFrame');
 
-  var s = window.matchMedia("(max-width: 7  00px)");
+  var s = window.matchMedia("(max-width: 700px)");
   let lc2=innerDoc.getElementsByClassName('legend leaflet-control');
    if (s.matches) {
      lc2[0].style.width = '70%';
