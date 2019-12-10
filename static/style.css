@@ -170,11 +170,11 @@ tr:nth-of-type(odd) {
   color: var(--hover-highlight-text-colour);
 }
 .collapsible:after {
-  content: "\23F5";
+  content: "\25B8";
   float: left;
 }
 .active:after {
-  content: "\23F7";
+  content: "\25BE";
 }
 .kaaviot {
   width: 90%;
@@ -222,10 +222,10 @@ tr:nth-of-type(odd) {
   float: left;
 }
 .asc:after {
-  content: " \23F6";
+  content: " \25B2";
 }
 .desc:after {
-  content: " \23F7";
+  content: " \25BC";
 }
 
 @media screen and (max-width: 600px) {
