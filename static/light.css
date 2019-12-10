@@ -238,6 +238,17 @@ tr:nth-of-type(odd) {
     left: -1rem;
     margin-right: -1rem;
 }
+#leftNav h4 {
+    background-color: var(--nav-colour);
+    color: var(--nav-link-colour);
+    display: block;
+    margin: 0; !important;
+    padding: 3%;
+    margin-bottom: 1em;
+}
+#mapFrame{
+    max-width:100%; !important;
+}
 
 @media screen and (max-width: 600px) {
     /*teema pienille näytöille*/
@@ -312,23 +323,12 @@ tr:nth-of-type(odd) {
         padding-right: 0;
     }
     #content h1 {
-        top: 0rem; !important;
-        left: 0rem; !important;
-        margin-right: 0rem; !important;
+        top: 0; !important;
+        left: 0; !important;
+        margin-right: 0; !important;
         border-radius: 2px;
     }
-}
-#leftNav h4 {
-    background-color: var(--nav-colour);
-    color: var(--nav-link-colour);
-    display: block;
-    margin: 0; !important;
-    padding: 3%;
-    margin-bottom: 1em;
-}
-
-
-#mapFrame{
-
-    max-width:100%; !important;
+    #leftNav h4 {
+        margin-bottom: 0;
+    }
 }

@@ -227,6 +227,29 @@ tr:nth-of-type(odd) {
 .desc:after {
   content: " \25BC";
 }
+#content h1 {
+    padding: 0; !important;
+    background-color: var(--nav-colour);
+    color: var(--nav-link-colour);
+    margin: 0; !important;
+    padding: 0.3rem; !important;
+    padding-left: 1rem;
+    position: relative;
+    top: -1rem;
+    left: -1rem;
+    margin-right: -1rem;
+}
+#leftNav h4 {
+    background-color: var(--nav-colour);
+    color: var(--nav-link-colour);
+    display: block;
+    margin: 0; !important;
+    padding: 3%;
+    margin-bottom: 1em;
+}
+#mapFrame{
+    max-width:100%; !important;
+}
 
 @media screen and (max-width: 600px) {
     /*teema pienille näytöille*/
@@ -242,15 +265,14 @@ tr:nth-of-type(odd) {
     .flexUnit {
         width: 100%;
         max-width: 100%;
-        padding-right: 1em;
-        margin-right: 1em;
+        padding-right: 0;
+        margin-right: 0;
     }
 
     #leftNav {
-        max-width: 100%;
-        width: 97.5%;
-        min-width: 90%;
-        margin-right: 1em;
+        width: 100%;
+        margin-right: 0;
+        padding-right: 0;
     }
 
     nav a {
@@ -262,9 +284,9 @@ tr:nth-of-type(odd) {
     }
 
     #content {
-        padding-right: 1em;
-        margin-right: 1em;
-        width: 96%;
+        padding: 0;
+        margin-right: 0;
+        width: 100%;
     }
 
     button {
@@ -298,28 +320,17 @@ tr:nth-of-type(odd) {
         height: 30em;
         max-width: 100%;
     }
-}
-#leftNav h4 {
-    background-color: var(--nav-colour);
-    color: var(--nav-link-colour);
-    display: block;
-    margin: 0; !important;
-    padding: 3%;
-    margin-bottom: 1em;
-}
-#content h1 {
-    padding: 0; !important;
-    background-color: var(--nav-colour);
-    color: var(--nav-link-colour);
-    margin: 0; !important;
-    padding: 0.3rem; !important;
-    padding-left: 1rem;
-    position: relative;
-    top: -1rem;
-    left: -1rem;
-    margin-right: -1rem;
-}
-#mapFrame{
-
-    max-width:100%; !important;
+    #postiNumeroLinkit {
+        padding-right: 0;
+        padding-top: 0.5em;
+    }
+    #content h1 {
+        top: 0; !important;
+        left: 0; !important;
+        margin-right: 0; !important;
+        border-radius: 2px;
+    }
+    #leftNav h4 {
+        margin-bottom: 0;
+    }
 }

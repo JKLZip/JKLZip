@@ -30,7 +30,9 @@ function collapse(){
 
     if (s.matches) {
         var e = document.getElementById('alueet_menu');
-        e.style.width = '93.3%';
+        e.style.width = '93.9%';
+        e.style.border = '2px';
+        e.style.borderRadius = '2px';
         e.classList.add("collapsible");
         document.getElementById('postiNumeroLinkit').classList.add("kaaviot");
     }
