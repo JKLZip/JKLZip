@@ -318,17 +318,3 @@ tr:nth-of-type(odd) {
     left: -1rem;
     margin-right: -1rem;
 }
-#data h2 {
-    padding: 0; !important;
-    display: inline-block;
-    background-color: var(--nav-colour);
-    color: var(--nav-link-colour);
-    margin: 0; !important;
-    padding: 0.3rem; !important;
-    margin-right: -1rem;
-    position: relative; !important;
-    top: -1rem;
-    left: -1rem;
-    width: 100%;
-    min-width: 100%;
-}
