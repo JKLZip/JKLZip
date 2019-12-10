@@ -21,14 +21,14 @@ Asenna riippuvuudet:
 ```
 pip install -r requirements.txt
 ```
-Aseta ympäristömuuttujat Flaskin vaatimalla tavalla(ks. Flaskin dokumentaatio) tai muuta JKLZip.py -> app.py
+Aseta ympäristömuuttujat Flaskin vaatimalla tavalla(ks. Flaskin dokumentaatio), tai muuta JKLZip.py -> app.py
 Käynnistä Kehityspalvelin ``` flask run```
 
 Julkaisukäytössä ja muussa tehoa vaativammassa käytössä on suositeltavaa käyttää jotain muuta WSGI-palvelinta esimerkiksi Gunicornia. Sen ohjeet löytyvät flaskin dokumentaatiosta https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#gunicorn
 
-Lyhyesti asenna gunicorn ja käynnistä WSGI -palvelin ```gunicorn -w 4 JKLZip:app``` jolloin palvelin käynnistyy localhostin porttiin 8000. 
+Lyhyesti asenna gunicorn https://pypi.org/project/gunicorn/ ```pip install gunicorn``` ja käynnistä WSGI -palvelin ```gunicorn -w 4 JKLZip:app``` jolloin palvelin käynnistyy localhostin porttiin 8000. 
 Tämän jälkeen voit käyttää esimerkiksi Nginx:ää ohjaamaan liikenteen portista 80 porttiin 8000. 
-Yksinkertainen esimerkki Nginx:n config -tiedostosta sijainnissa /etc/nginx/sites-enabled. Aseta oman palvelimen nimi kohtaan ```PALVELIMEN_NIMI```
+Yksinkertainen esimerkki Nginx:n config -tiedostosta sijainnissa /etc/nginx/sites-enabled. Aseta oman palvelimen nimi kohtaan ```PALVELIMEN_NIMI```. Palveliment mount pointia voit vaihtaa muuttamalla kohdan ```location /HALUAMASI_PAIKKA```
 ```
    server {
   2        listen 80;
@@ -43,3 +43,5 @@ Yksinkertainen esimerkki Nginx:n config -tiedostosta sijainnissa /etc/nginx/site
  11     }
 ```
 Seuraavaksi käynnistä nginx uudelleen komennolla : ```sudo service nginx restart```
+
+Enemmän Nginx proxystä: https://www.digitalocean.com/community/tutorials/understanding-nginx-http-proxying-load-balancing-buffering-and-caching
