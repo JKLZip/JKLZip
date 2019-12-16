@@ -290,6 +290,7 @@ tr:nth-of-type(odd) {
 
     button {
         margin: 0.5em;
+        display: none;
     }
 
     #kartta{
