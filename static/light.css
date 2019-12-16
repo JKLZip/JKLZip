@@ -290,9 +290,10 @@ tr:nth-of-type(odd) {
 
     button {
         margin: 0.5em;
-        display: none;
     }
-
+    #changeThemeButton {
+        display:none;
+    }
     #kartta{
         height: 15em;
         width: 30em;
